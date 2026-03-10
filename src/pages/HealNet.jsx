@@ -1,5 +1,6 @@
 import CTASection from '../components/CTASection';
 import SectionTitle from '../components/SectionTitle';
+import { Link } from 'react-router-dom';
 
 const capabilities = [
   { icon: '/assets/heal3.webp', title: 'Clinical Risk Prediction', items: ['Cardiac, respiratory, sleep, body status.', 'Confidence scores with clinical reasoning.'] },
@@ -47,7 +48,7 @@ const HealNet = () => {
             <p className="text-base leading-relaxed mb-5 text-left max-lg:text-center">Wearables produce continuous streams of physiological data, but raw measurements lack clinical intelligence. Without AI-driven analysis, subtle trend shifts and early risk indicators remain invisible.</p>
             <p className="text-base leading-relaxed mb-5 text-left max-lg:text-center">This delay in interpretation means health issues are often recognized only after symptoms escalate — limiting the window for preventive care.</p>
             <div className="mt-8 flex gap-5 max-lg:justify-center">
-              <button className="py-3.5 px-8 text-base rounded-xl border-none cursor-pointer bg-gray-300 transition-all duration-300 hover:bg-gray-200 hover:-translate-y-1 hover:shadow-lg"><b>Request <span className="text-accent">Demo</span></b></button>
+             <Link to="/contact"> <button className="py-3.5 px-8 text-base rounded-xl border-none cursor-pointer bg-gray-300 transition-all duration-300 hover:bg-gray-200 hover:-translate-y-1 hover:shadow-lg"><b>Request <span className="text-accent">Demo</span></b></button></Link>
               <button className="py-3.5 px-8 text-base rounded-xl border-none cursor-pointer bg-gray-300 font-semibold transition-all duration-300 hover:bg-gray-200 hover:-translate-y-1 hover:shadow-lg"><b>View <span className="text-accent">Capabilities</span></b></button>
             </div>
           </div>
@@ -58,7 +59,7 @@ const HealNet = () => {
       </section>
 
       {/* What HealNet Does */}
-      <section className="py-16 px-5 md:px-20 bg-white" data-aos="fade-up">
+      <section className="py-10 px-5 md:px-20 bg-white" data-aos="fade-up">
         <div className="flex items-center justify-between gap-20 max-lg:flex-col max-lg:text-center">
           <div className="flex-1 flex justify-center">
             <img src="/assets/heal2.webp" alt="HealNet" loading="lazy" className="w-full max-w-[600px] rounded-2xl shadow-lg transition-all duration-400 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl" />
@@ -77,7 +78,7 @@ const HealNet = () => {
       </section>
 
       {/* Key Capabilities */}
-      <section className="py-16 px-5 md:px-20 text-center" data-aos="fade-up">
+      <section className="py-10 px-5 md:px-20 text-center" data-aos="fade-up">
         <SectionTitle accent="Key" postText=" Capabilities" className="text-4xl mb-10" />
         <div className="bg-gray-100 rounded-3xl flex max-lg:flex-col p-10 gap-8">
           {capabilities.map((cap, i) => (
@@ -103,7 +104,7 @@ const HealNet = () => {
         <img src="/assets/heal9.webp" alt="Dashboard" loading="lazy" className="w-full max-w-[1000px] mx-auto rounded-2xl my-8 transition-all duration-400 hover:scale-[1.02] hover:shadow-2xl" />
 
         <div className="mt-8">
-          <a href="#" className="inline-block bg-gray-300 py-5 px-20 rounded-2xl no-underline text-2xl font-bold text-black transition-all duration-300 hover:bg-accent hover:text-white hover:shadow-xl">TALK TO US</a>
+          <Link to="/contact" className="inline-block bg-gray-300 py-5 px-20 rounded-2xl no-underline text-2xl font-bold text-black transition-all duration-300 hover:bg-accent hover:text-white hover:shadow-xl">TALK TO US</Link>
         </div>
       </section>
 

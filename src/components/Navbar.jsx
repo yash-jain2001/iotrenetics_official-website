@@ -8,9 +8,9 @@ const navLinks = [
   { to: "/industries", label: "Industries" },
   { to: "/about", label: "About" },
   { to: "/solutions", label: "Solutions" },
-  { to: "/contact", label: "Contact" },
-  { to: "/product-legacy", label: "Product Legacy" },
   { to: "/coming-soon", label: "coming-soon" },
+  { to: "/contact", label: "Contact" },
+  // { to: "/product-legacy", label: "Product Legacy" },
 ];
 
 const Navbar = () => {

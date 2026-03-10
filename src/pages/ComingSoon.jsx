@@ -15,6 +15,19 @@ const ComingSoon = () => {
           We're building something amazing. Stay tuned!
         </p>
 
+        <div className="mb-10">
+          <Link
+          to="/"
+          className="inline-block bg-brand text-white font-semibold px-8 py-3 rounded-lg
+                     hover:brightness-110 hover:-translate-y-0.5
+                     transition-all duration-200 shadow-lg shadow-brand/25"
+        >
+          Visi AI
+        </Link>
+
+        
+        </div>
+
         <Link
           to="/"
           className="inline-block bg-brand text-white font-semibold px-8 py-3 rounded-lg

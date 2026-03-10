@@ -37,6 +37,8 @@
 /* NavLink active state */
 a.active {
   @apply text-brand;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 /* WhatsApp button subtle bounce */

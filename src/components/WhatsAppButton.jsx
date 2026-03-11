@@ -1,4 +1,4 @@
-const WhatsAppButton = ({ phoneNumber = '*******', message = 'Hello! I would like to know more about IoTrenetics.' }) => {
+const WhatsAppButton = ({ phoneNumber = '7303677709', message = 'Hello! I would like to know more about IoTrenetics.' }) => {
   const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (

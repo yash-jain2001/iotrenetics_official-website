@@ -15,9 +15,9 @@ const ComingSoon = () => {
           We're building something amazing. Stay tuned!
         </p>
 
-        <div className="mb-10">
+        {/* <div className="mb-10">
           <Link
-          to="/"
+          to="#"
           className="inline-block bg-brand text-white font-semibold px-8 py-3 rounded-lg
                      hover:brightness-110 hover:-translate-y-0.5
                      transition-all duration-200 shadow-lg shadow-brand/25"
@@ -26,7 +26,7 @@ const ComingSoon = () => {
         </Link>
 
         
-        </div>
+        </div> */}
 
         <Link
           to="/"

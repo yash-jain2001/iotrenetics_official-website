@@ -3,12 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 
 const navLinks = [
   { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
   { to: "/automation", label: "Automation" },
   { to: "/finexa", label: "Finexa" },
   { to: "/industries", label: "Industries" },
-  { to: "/about", label: "About" },
   { to: "/solutions", label: "Solutions" },
-  { to: "/coming-soon", label: "coming-soon" },
+  // { to: "/coming-soon", label: "Coming Soon" },
   { to: "/contact", label: "Contact" },
   // { to: "/product-legacy", label: "Product Legacy" },
 ];

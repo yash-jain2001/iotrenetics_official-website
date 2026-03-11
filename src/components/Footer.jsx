@@ -18,7 +18,7 @@ const Footer = () => {
 
           {/* Instagram */}
           <a
-            href="https://www.instagram.com/iotrenetics"
+            href="https://www.instagram.com/iotrenetics_solutions/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/70 hover:text-white transition-colors duration-200"
@@ -33,7 +33,7 @@ const Footer = () => {
 
           {/* Mail */}
           <a
-            href="mailto:contact@iotrenetics.com"
+            href="mailto: iotrenetics@gmail.com"
             className="text-white/70 hover:text-white transition-colors duration-200"
             aria-label="Email"
           >

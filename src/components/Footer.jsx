@@ -5,7 +5,7 @@ const Footer = () => {
         <div className="flex items-center gap-5">
           {/* LinkedIn */}
           <a
-            href="https://www.linkedin.com/company/iotrenetics"
+            href="https://www.linkedin.com/in/iotrenetics-solutions-private-limited-962504377"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white/70 hover:text-white transition-colors duration-200"
@@ -33,7 +33,7 @@ const Footer = () => {
 
           {/* Mail */}
           <a
-            href="mailto: iotrenetics@gmail.com"
+            href="mailto:iotrenetics@gmail.com"
             className="text-white/70 hover:text-white transition-colors duration-200"
             aria-label="Email"
           >

@@ -13,11 +13,6 @@ const industries = [
       "Medical video analytics for ICUs, OTs & facilities.",
       "AI assistants for clinicians, operations & compliance.",
     ],
-    solutions: [
-      { label: "HealNet", to: "/healnet" },
-      { label: "VisiAI", to: "/coming-soon" },
-      { label: "Agentra", to: "/coming-soon" },
-    ],
   },
   {
     icon: "/assets/Icon2.webp",
@@ -29,7 +24,6 @@ const industries = [
       "Workplace safety & surveillance analytics.",
       "Operational dashboards for factories & plants.",
     ],
-    solutions: [],
   },
   {
     icon: "/assets/Icon3.webp",
@@ -41,7 +35,6 @@ const industries = [
       "Smart lighting, utilities & infrastructure monitoring.",
       "City-wide real-time alerts & insights.",
     ],
-    solutions: [],
   },
   {
     icon: "/assets/Icon4.webp",
@@ -53,7 +46,6 @@ const industries = [
       "Water usage analytics & leak detection.",
       "Demand forecasting & sustainability reporting.",
     ],
-    solutions: [],
   },
   {
     icon: "/assets/Icon5.webp",
@@ -65,7 +57,6 @@ const industries = [
       "AI teaching assistants & knowledge bots.",
       "AR/VR-based skill training & simulations.",
     ],
-    solutions: [],
   },
   {
     icon: "/assets/Icon6.webp",
@@ -77,7 +68,6 @@ const industries = [
       "Secure private LLM deployments.",
       "Workflow automation & productivity intelligence.",
     ],
-    solutions: [],
   },
   {
     icon: "/assets/Icon7.webp",
@@ -89,7 +79,6 @@ const industries = [
       "Energy optimization & consumption insights.",
       "Security, access control & video intelligence.",
     ],
-    solutions: [],
   },
 ];
 
@@ -123,27 +112,7 @@ const IndustryBlock = ({ industry }) => (
       </div>
     </div>
 
-    {/* <h3 className="text-center text-2xl md:text-3xl font-bold mt-16 mb-8">
-      <span className="text-accent">Sol</span>utions
-    </h3>
-    <div className="flex justify-center gap-8 flex-wrap">
-      {industry.solutions.map((sol, i) =>
-        sol.to ? (
-          <Link key={i} to={sol.to}>
-            <button className="bg-accent text-white border-none py-4 px-12 text-lg rounded cursor-pointer hover:bg-accent-dark transition-colors">
-              {sol.label}
-            </button>
-          </Link>
-        ) : (
-          <button
-            key={i}
-            className="bg-accent text-white border-none py-4 px-12 text-lg rounded cursor-pointer hover:bg-accent-dark transition-colors"
-          >
-            {sol.label}
-          </button>
-        ),
-      )}
-    </div> */}
+    
   </div>
 );
 
@@ -176,6 +145,8 @@ const Industries = () => {
           </Link>
         </div>
       </div> */}
+
+      
 
       <CTASection />
     </>

@@ -10,9 +10,10 @@ const technologies = [
 ];
 
 const testimonials = [
-  { quote: 'The automation pipelines built by <span class="text-accent font-semibold">IoTrenetics</span> reduced our manual workload by 60%. Highly reliable and innovative team.', author: '— CTO, Nova Engineering' },
-  { quote: '<span class="text-accent font-semibold">IoTrenetics</span> helped us achieve real-time visibility across all manufacturing units. Their IoT + AI solutions drastically improved our efficiency.', author: '— Operations Head, PrimeTech Industries' },
-  { quote: 'Smart, scalable, and future-ready solutions. Our monitoring system is now 24/7 intelligent and predictive.', author: '— Managing Director, Zenith Automation' },
+  { quote: 'Smart Home Automation Control lighting, appliances, and environments intelligently.'},
+  { quote: 'AI-Powered Systems Smart analytics and automation powered by artificial intelligence.'},
+  { quote: 'Intelligent Software Platforms Scalable software products designed for modern businesses.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
 ];
 
 const teamCards = [
@@ -85,12 +86,11 @@ const About = () => {
 
       {/* Testimonials */}
       <section className="max-w-[1200px] mx-auto px-5 py-20 text-center" data-aos="fade-up">
-        <SectionTitle accent="Test" postText="imonials" className="mb-16" />
+        <SectionTitle accent="What " postText=" We Do" className="mb-16" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-gray-100 p-10 text-left rounded-md leading-relaxed text-lg shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg" data-aos="fade-up" data-aos-delay={i * 100}>
               <p dangerouslySetInnerHTML={{ __html: `"${t.quote}"` }} />
-              <h4 className="mt-6 text-base font-medium">{t.author}</h4>
             </div>
           ))}
         </div>

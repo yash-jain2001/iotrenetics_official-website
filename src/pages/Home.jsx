@@ -19,13 +19,13 @@ const industriesItems = [
   { img: "/assets/core 10.webp", label: "Digital Transformation Systems" },
 ];
 
-const products = [
-  {name:"Enerlytix - Smart Energy Management", link: "/coming-soon"},
-  {name:"AquaMind - AI-Powered Water System", link: "/coming-soon"},
-  {name:"Agentra - AI Teammates for Business", link: "/coming-soon"},
-  {name:"Privora - Private LLM Platform", link: "/coming-soon"},
-  {name:"VisiAI - Smart Video Analytics", link: "/coming-soon"},
-];
+// const products = [
+//   {name:"Enerlytix - Smart Energy Management", link: "/coming-soon"},
+//   {name:"AquaMind - AI-Powered Water System", link: "/coming-soon"},
+//   {name:"Agentra - AI Teammates for Business", link: "/coming-soon"},
+//   {name:"Privora - Private LLM Platform", link: "/coming-soon"},
+//   {name:"VisiAI - Smart Video Analytics", link: "/coming-soon"},
+// ];
 
 const missionCards = [
   {
@@ -158,7 +158,7 @@ const Home = () => {
       </section>
 
       {/* Products */}
-      <section className="py-16 px-5">
+      {/* <section className="py-16 px-5">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Pro" postText="duct Portfolio" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mt-8">
@@ -176,7 +176,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Mission */}
       <section className="bg-gray-50 py-16 px-5" data-aos="fade-up">
@@ -203,16 +203,9 @@ const Home = () => {
       {/* Partners */}
       <section className="bg-gray-50 py-16 px-5 text-center" data-aos="fade-up">
         <div className="max-w-[1200px] mx-auto">
-          <SectionTitle accent="Our" postText=" Partners" />
+          <SectionTitle accent="Our" postText=" Vision" />
           <p className="max-w-[900px] mx-auto mb-10 text-base leading-relaxed text-gray-700">
-            At <strong>IoTrenetics Solutions Pvt. Ltd.</strong>, we believe
-            innovation thrives through collaboration. We work closely with
-            leading{" "}
-            <strong>
-              academic institutions, research labs, and industry partners
-            </strong>{" "}
-            to co-develop intelligent, sustainable, and real-time digital
-            solutions.
+            IoTrenetics was founded with the vision of building intelligent systems that seamlessly connect the physical and digital worlds. We aim to create smarter environments powered by automation, AI, and connected devices.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {partnerCards.map((card, i) => (

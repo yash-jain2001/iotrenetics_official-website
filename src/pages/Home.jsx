@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import CTASection from "../components/CTASection";
 import SectionTitle from "../components/SectionTitle";
 import InfoCard from "../components/InfoCard";
+import Marquee from "../components/Marquee";
 
 const coreFocusItems = [
   { img: "/assets/core 1.webp", label: "IoT-Driven Automation" },
@@ -91,7 +92,7 @@ const Home = () => {
     <>
       {/* Hero */}
       <section
-        className="bg-gradient-to-br from-brand to-brand-dark text-white text-center py-24 px-5 max-md:py-16"
+        className= " bg-gradient-to-br from-brand to-brand-dark text-white text-center py-24 px-5 max-md:py-16"
         data-aos="fade-up"
       >
         <div className="max-w-[800px] mx-auto">
@@ -112,7 +113,7 @@ const Home = () => {
       </section>
 
       {/* About */}
-      <section className="py-16 px-5 md:px-20 bg-white" data-aos="fade-up">
+      <section className="py-5 px-5 md:px-20 bg-white" data-aos="fade-up">
         <div className="flex items-center justify-between gap-10 max-lg:flex-col max-lg:text-center">
           <div className="flex-1">
             <h3 className="text-2xl md:text-3xl font-bold text-center mb-5">
@@ -140,13 +141,14 @@ const Home = () => {
             />
           </div>
         </div>
-        <h2 className="text-center mt-16 text-2xl md:text-3xl font-bold">
+        <h2 className="text-center mt-16 mb-6 text-2xl md:text-3xl font-bold">
           Empowering Innovation Through Technology
         </h2>
+        <Marquee direction="left"/>
       </section>
 
       {/* Core Focus */}
-      <section className="py-12 px-5" data-aos="fade-up">
+      <section className="py-3 px-5" data-aos="fade-up">
         <SectionTitle accent="Core" postText=" Focus Areas" />
         <FocusGrid items={coreFocusItems} />
       </section>

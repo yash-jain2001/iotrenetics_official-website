@@ -1,8 +1,14 @@
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import CTASection from "../components/CTASection";
 import SectionTitle from "../components/SectionTitle";
 import InfoCard from "../components/InfoCard";
 import Marquee from "../components/Marquee";
+import StatsCounter from "../components/StatsCounter";
+import TechMarquee from "../components/TechMarquee";
+import IoTExplanation from "../components/IoTExplanation";
+import LatestInsights from "../components/LatestInsights";
 
 const coreFocusItems = [
   { img: "/assets/core 1.webp", label: "IoT-Driven Automation" },
@@ -19,6 +25,59 @@ const industriesItems = [
   { img: "/assets/core 9.webp", label: "AR/VR & Immersive Technologies" },
   { img: "/assets/core 10.webp", label: "Digital Transformation Systems" },
 ];
+
+const heroHeadings = [
+  "Smart IoT Solutions for Connected Environments",
+  "Building Intelligent Infrastructure Through IoT",
+  "Advanced Automation for Modern Systems",
+];
+
+const NetworkBackground = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    {/* Network lines and nodes */}
+    <svg className="absolute w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="networkBg" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+          <circle cx="10" cy="10" r="2" fill="white" />
+          <circle cx="50" cy="50" r="3" fill="white" />
+          <circle cx="90" cy="20" r="2" fill="white" />
+          <path d="M10,10 L50,50 L90,20" stroke="white" strokeWidth="0.5" fill="none" />
+        </pattern>
+      </defs>
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#networkBg)" />
+    </svg>
+    {/* Animated glowing orbs */}
+    <motion.div
+      animate={{
+        y: [0, -50, 0],
+        x: [0, 30, 0],
+        scale: [1, 1.2, 1],
+        opacity: [0.3, 0.5, 0.3],
+      }}
+      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-[20%] left-[15%] w-64 h-64 bg-white/20 rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{
+        y: [0, 60, 0],
+        x: [0, -40, 0],
+        scale: [1, 1.5, 1],
+        opacity: [0.2, 0.4, 0.2],
+      }}
+      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute bottom-[10%] right-[10%] w-80 h-80 bg-white/10 rounded-full blur-3xl"
+    />
+    <motion.div
+      animate={{
+        y: [0, -30, 0],
+        x: [0, -20, 0],
+        opacity: [0.3, 0.6, 0.3],
+      }}
+      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+      className="absolute top-[40%] right-[40%] w-40 h-40 bg-white/10 rounded-full blur-2xl"
+    />
+  </div>
+);
 
 // const products = [
 //   {name:"Enerlytix - Smart Energy Management", link: "/coming-soon"},
@@ -88,26 +147,46 @@ const FocusGrid = ({ items }) => (
 );
 
 const Home = () => {
+  const [currentHeading, setCurrentHeading] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentHeading((prev) => (prev + 1) % heroHeadings.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* Hero */}
       <section
-        className= " bg-gradient-to-br from-brand to-brand-dark text-white text-center py-24 px-5 max-md:py-16"
-        data-aos="fade-up"
+        className="relative bg-gradient-to-br from-brand to-brand-dark text-white text-center py-32 px-5 max-md:py-20 overflow-hidden"
       >
-        <div className="max-w-[800px] mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Intelligence in Motion.
-          </h1>
-          <p className="text-lg mb-6 max-md:text-base">
+        <NetworkBackground />
+        <div className="max-w-[900px] mx-auto relative z-10" data-aos="fade-up">
+          <div className="min-h-[140px] md:min-h-[120px] flex items-end justify-center mb-6">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={currentHeading}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.5 }}
+                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg"
+              >
+                {heroHeadings[currentHeading]}
+              </motion.h1>
+            </AnimatePresence>
+          </div>
+          <p className="text-lg md:text-xl mb-10 max-md:text-base opacity-90 max-w-[700px] mx-auto font-light">
             Bridging the gap between the physical and digital worlds through
-            IoT, AI, and automation.
+            IoT, AI, and continuous automation.
           </p>
           <Link
             to="/industries"
-            className="bg-white text-brand py-3 px-7 rounded-full font-bold transition-colors duration-300 hover:bg-gray-200 no-underline inline-block"
+            className="bg-white text-brand py-4 px-10 rounded-full font-bold text-lg shadow-xl shadow-black/10 transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl hover:-translate-y-1 no-underline inline-block"
           >
-            Learn More
+            Explore Solutions
           </Link>
         </div>
       </section>
@@ -147,19 +226,28 @@ const Home = () => {
         <Marquee direction="left"/>
       </section>
 
+      {/* Stats Section */}
+      <StatsCounter />
+
       {/* Core Focus */}
-      <section className="py-3 px-5" data-aos="fade-up">
+      <section className="py-3 px-5 mb-12" data-aos="fade-up">
         <SectionTitle accent="Core" postText=" Focus Areas" />
         <FocusGrid items={coreFocusItems} />
       </section>
 
+      {/* IoT Explanation */}
+      <IoTExplanation />
+
       {/* Industries */}
-      <section className="py-12 px-5" data-aos="fade-up">
+      <section className="py-20 px-5" data-aos="fade-up">
         <SectionTitle accent="Ind" postText="ustries We Serve" />
         <FocusGrid items={industriesItems} />
       </section>
 
-      {/* Products */}
+      {/* Tech Marquee */}
+      <TechMarquee />
+
+      {/* Mission */}
       {/* <section className="py-16 px-5">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Pro" postText="duct Portfolio" />
@@ -221,6 +309,9 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      {/* Latest Insights */}
+      <LatestInsights />
 
       <CTASection />
     </>

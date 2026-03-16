@@ -95,7 +95,7 @@ const About = () => {
         </p>
       </section>
         <FeatureCard direction="right" />
-        <TechMarquee direction="right" />
+        {/* <TechMarquee direction="right" /> */}
 
       {/* Impact */}
       <section className="max-w-[1200px] mx-auto px-5 mt-10 text-center" data-aos="fade-up">

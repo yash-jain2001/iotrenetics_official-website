@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 const CTASection = () => {
   return (
-    <section className="bg-gradient-to-br from-brand to-brand-dark text-white text-center py-24 px-5 max-md:py-16">
+    <section className="bg-gradient-to-br from-brand to-brand-dark text-white text-center py-10 px-5 max-md:py-16">
       <div className="max-w-[1200px] mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-5 text-white">Let's Build the Future Together</h2>
         <p className="max-w-[800px] mx-auto mb-8 text-lg leading-relaxed text-gray-100">

@@ -73,16 +73,9 @@ const Contact = () => {
               {[
                 {
                   id: "email",
-                  label: "Work Email*",
+                  label: "Email*",
                   type: "email",
-                  name: "work_email",
-                  required: true,
-                },
-                {
-                  id: "company",
-                  label: "Company Name*",
-                  type: "text",
-                  name: "company_name",
+                  name: "email",
                   required: true,
                 },
                 {
@@ -108,7 +101,7 @@ const Contact = () => {
               ))}
               <div className="mb-5 w-full">
                 <label htmlFor="message" className="block text-lg mb-2">
-                  Anything else?
+                  How can we help?
                 </label>
                 <textarea
                   id="message"

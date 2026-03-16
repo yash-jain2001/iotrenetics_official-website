@@ -1,10 +1,22 @@
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
+  const navLinks = [
+    { to: "/", label: "Home" },
+    { to: "/about", label: "About" },
+    { to: "/automation", label: "Automation" },
+    { to: "/finexa", label: "Finexa" },
+    { to: "/industries", label: "Industries" },
+    { to: "/solutions", label: "Solutions" },
+    { to: "/contact", label: "Contact" },
+  ];
+
   return (
-    <footer className="bg-brand-dark text-white text-center pt-16 pb-8 px-5 text-sm">
-      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-10">
+    <footer className="bg-brand-dark text-white text-center pt-10 pb-10 px-5 text-sm">
+      <div className="max-w-[1200px] mx-auto flex flex-col items-center gap-5">
         
         {/* Newsletter Subscription */}
-        <div className="w-full max-w-[600px] bg-white/5 p-8 rounded-2xl border border-white/10" data-aos="fade-up">
+        <div className="w-full max-w-[1200px] bg-white/5 p-8 rounded-2xl border border-white/10" data-aos="fade-up">
           <h3 className="text-xl md:text-2xl font-bold mb-3 text-white">Subscribe for Updates</h3>
           <p className="text-white/70 mb-6 text-sm md:text-base leading-relaxed">Join our newsletter to receive the latest updates on IoT technology trends, automation developments, and company announcements.</p>
           <form className="flex max-md:flex-col gap-3" onSubmit={(e) => e.preventDefault()}>
@@ -25,7 +37,7 @@ const Footer = () => {
 
         <div className="w-full h-px bg-white/10 mb-2"></div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6">
+        <div className="flex md:flex-row items-center justify-between w-full">
           <p className="text-white/70">© 2026 IoTrenetics Solutions Pvt. Ltd. | Intelligence in Motion.</p>
 
           <div className="flex items-center gap-5">

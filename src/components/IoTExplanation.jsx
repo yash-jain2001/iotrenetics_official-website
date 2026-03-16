@@ -3,7 +3,7 @@ import SectionTitle from './SectionTitle';
 
 const IoTExplanation = () => {
   return (
-    <section className="py-20 px-5 bg-gray-50" data-aos="fade-up">
+    <section className="py-10 px-5 bg-gray-50" data-aos="fade-up">
       <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 space-y-6">
           <SectionTitle accent="Understanding" postText=" IoT & Automation" />
@@ -34,7 +34,7 @@ const IoTExplanation = () => {
         <div className="flex-1 w-full">
           <div className="relative rounded-3xl overflow-hidden shadow-2xl group">
              <div className="absolute inset-0 bg-gradient-to-tr from-brand/50 to-accent/50 mix-blend-multiply opacity-60 group-hover:opacity-40 transition-opacity duration-500 z-10"></div>
-             <img src="/assets/main 1.webp" alt="IoT Connectivity Diagram" className="w-full h-[450px] object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
+             <img src="/assets/main 1.webp" alt="IoT Connectivity Diagram" className="w-full h-[450px] object-fit scale-105 group-hover:scale-100 transition-transform duration-700" />
              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 bg-white/30 backdrop-blur-md rounded-full shadow-2xl flex items-center justify-center z-20">
                 <svg className="w-10 h-10 text-white animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
              </div>

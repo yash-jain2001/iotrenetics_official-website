@@ -1,18 +1,16 @@
 import CTASection from '../components/CTASection';
 import SectionTitle from '../components/SectionTitle';
 import FeatureCard from '../components/FeatureCard';
+import TechMarquee from '../components/TechMarquee';
 
-const technologies = [
-  { img: '/assets/T1.webp', title: 'IoT & Embedded Systems' },
-  { img: '/assets/T2.webp', title: 'AI and Machine Learning' },
-  { img: '/assets/T3.webp', title: 'Computer Vision' },
-  { img: '/assets/T4.webp', title: 'Digital Transformation' },
-];
+
 
 const testimonials = [
   { quote: 'Smart Home Automation Control lighting, appliances, and environments intelligently.'},
   { quote: 'AI-Powered Systems Smart analytics and automation powered by artificial intelligence.'},
   { quote: 'Intelligent Software Platforms Scalable software products designed for modern businesses.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
   { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
 ];
 
@@ -21,7 +19,7 @@ const timelineData = [
   { year: "2010", title: "Rise of Connected Devices", desc: "Smartphones catalyzed the growth of smart devices, bringing basic automation into consumer homes and personal spaces." },
   { year: "2015", title: "Industrial IoT Expansion", desc: "Heavy industries began adopting sensors and analytics en masse for predictive maintenance and real-time tracking." },
   { year: "2020", title: "AI & IoT Convergence", desc: "Machine learning algorithms integrated directly with edge devices, creating highly intelligent, autonomous systems." },
-  { year: "Present", title: "The Generative Era", desc: "Advanced AI models working alongside IoT grids to continuously self-optimize city infrastructure and industrial plants." }
+  { year: "Present", title: "The Generative Era / Agentic Era", desc: "Advanced AI models working alongside IoT grids to continuously self-optimize city infrastructure and industrial plants." }
 ];
 
 const teamCards = [
@@ -95,24 +93,21 @@ const About = () => {
           We use cutting-edge engineering and AI-driven intelligence to build future-ready systems.
           Our technology stack includes IoT, Machine Learning, Computer Vision, and Robotics.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {technologies.map((tech, i) => (
-            <FeatureCard key={i} image={tech.img} title={tech.title} />
-          ))}
-        </div>
       </section>
+        <FeatureCard direction="right" />
+        <TechMarquee direction="right" />
 
       {/* Impact */}
-      <section className="max-w-[1200px] mx-auto px-5 mt-20 text-center" data-aos="fade-up">
+      <section className="max-w-[1200px] mx-auto px-5 mt-10 text-center" data-aos="fade-up">
         <SectionTitle accent="Our" postText=" Impact" className="mb-12" />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          <div className="bg-gray-100 p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-start">
+        <div className="flex flex-col md:flex-row gap-5 md:gap-5">
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-start">
             <p>🏬<br />Companies achieve <span className="text-accent font-bold">30%+</span> improvement in efficiency using our automated systems.</p>
           </div>
-          <div className="bg-gray-100 p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-end">
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-end">
             <p>🖥️<br />Real-time monitoring reduces downtime and enhances decision-making.</p>
           </div>
-          <div className="bg-gray-100 p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg md:col-span-2 justify-self-center max-w-[460px] mt-8">
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-center">
             <p>🧠<br />Intelligent automation enables faster, safer, and more scalable workflows.</p>
           </div>
         </div>

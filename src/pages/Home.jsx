@@ -6,9 +6,9 @@ import SectionTitle from "../components/SectionTitle";
 import InfoCard from "../components/InfoCard";
 import Marquee from "../components/Marquee";
 import StatsCounter from "../components/StatsCounter";
-import TechMarquee from "../components/TechMarquee";
 import IoTExplanation from "../components/IoTExplanation";
 import LatestInsights from "../components/LatestInsights";
+import NewsTicker from "../components/NewsTicker";
 
 const coreFocusItems = [
   { img: "/assets/core 1.webp", label: "IoT-Driven Automation" },
@@ -124,11 +124,11 @@ const partnerCards = [
 ];
 
 const FocusGrid = ({ items }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+  <div className="flex flex-wrap justify-center  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
     {items.map((item, i) => (
       <div
         key={i}
-        className="text-center"
+        className="text-center w-96"
         data-aos="fade-up"
         data-aos-delay={i * 100}
       >
@@ -136,7 +136,7 @@ const FocusGrid = ({ items }) => (
           src={item.img}
           alt={item.label}
           loading="lazy"
-          className="w-full h-64 rounded-lg"
+          className="w-full object-fill h-64 rounded-lg"
         />
         <div className="bg-gray-100 p-6 rounded-xl text-center font-medium shadow-sm mt-2 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
           {item.label}
@@ -158,9 +158,12 @@ const Home = () => {
 
   return (
     <>
-      {/* Hero */}
+      {/* 2. Running News / Updates Ticker */}
+      <NewsTicker />
+
+      {/* 3. Hero Banner Section */}
       <section
-        className="relative bg-gradient-to-br from-brand to-brand-dark text-white text-center py-32 px-5 max-md:py-20 overflow-hidden"
+        className="relative bg-gradient-to-br from-brand to-brand-dark text-white text-center h-[90vh] md:h-screen items-center justify-center flex px-5 max-md:py-20 overflow-hidden"
       >
         <NetworkBackground />
         <div className="max-w-[900px] mx-auto relative z-10" data-aos="fade-up">
@@ -191,93 +194,53 @@ const Home = () => {
         </div>
       </section>
 
-      {/* About */}
-      <section className="py-5 px-5 md:px-20 bg-white" data-aos="fade-up">
-        <div className="flex items-center justify-between gap-10 max-lg:flex-col max-lg:text-center">
-          <div className="flex-1">
-            <h3 className="text-2xl md:text-3xl font-bold text-center mb-5">
-              About <span className="text-accent">Us</span>
-            </h3>
-            <p className="bg-gray-100 text-lg p-8 rounded-2xl leading-relaxed max-w-[800px] mx-auto text-center shadow-sm transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-lg hover:bg-white">
-              IoTrenetics Solutions Pvt. Ltd. is an innovative technology
-              startup working at the intersection of IoT, AI, Generative AI,
-              AR/VR, and Digital Transformation. Our mission is to build
-              intelligent, connected, and sustainable systems that empower
-              industries and communities to make smarter decisions.
-            </p>
-            <Link to="/about">
-              <button className="py-3.5 px-8 rounded-full border-none bg-gray-100 text-lg cursor-pointer mt-5 mx-auto block transition-all duration-300 hover:bg-white hover:-translate-y-1 hover:shadow-lg">
-                Learn <span className="text-accent font-bold">More</span>
-              </button>
-            </Link>
-          </div>
-          <div className="flex-1">
-            <img
-              src="/assets/main 1.webp"
-              alt="IoTrenetics Illustration"
-              loading="lazy"
-              className="w-full rounded-2xl"
-            />
-          </div>
+      {/* 4. About Us Section (Text Only) */}
+      <section className="py-10 px-5 border md:px-20 bg-gray-50 text-center" data-aos="fade-up">
+        <div className="w-full mx-auto flex flex-col items-center justify-center gap-5">
+          <h3 className="text-3xl md:text-4xl font-bold">
+            About <span className="text-accent">Us</span>
+          </h3>
+          <p className="bg-white text-lg md:text-xl p-10 rounded-3xl leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand/5 border border-gray-100">
+            IoTrenetics Solutions Pvt. Ltd. is an innovative technology
+            startup working at the intersection of IoT, AI, Generative AI,
+            AR/VR, and Digital Transformation. Our mission is to build
+            intelligent, connected, and sustainable systems that empower
+            industries and communities to make smarter decisions.
+          </p>
+          <Link to="/about">
+            <button className="py-4 px-10 rounded-full border border-gray-200 bg-white text-lg font-bold cursor-pointer mx-auto block transition-all duration-300 hover:bg-brand hover:text-white hover:-translate-y-1 hover:border-brand shadow-sm">
+              Learn <span className="text-accent group-hover:text-white">More</span>
+            </button>
+          </Link>
         </div>
-        <h2 className="text-center mt-16 mb-6 text-2xl md:text-3xl font-bold">
-          Empowering Innovation Through Technology
-        </h2>
-        <Marquee direction="left"/>
       </section>
 
-      {/* Stats Section */}
-      <StatsCounter />
-
-      {/* Core Focus */}
-      <section className="py-3 px-5 mb-12" data-aos="fade-up">
+      {/* 7. Core Focus Areas Section */}
+      <section className="py-16 px-5 bg-gray-50" data-aos="fade-up">
         <SectionTitle accent="Core" postText=" Focus Areas" />
         <FocusGrid items={coreFocusItems} />
       </section>
 
-      {/* IoT Explanation */}
+      {/* 8. Additional Sections */}
       <IoTExplanation />
+      
+      <StatsCounter />
 
-      {/* Industries */}
-      <section className="py-20 px-5" data-aos="fade-up">
+      <section className="py-10 px-5 bg-white" data-aos="fade-up">
         <SectionTitle accent="Ind" postText="ustries We Serve" />
         <FocusGrid items={industriesItems} />
       </section>
 
-      {/* Tech Marquee */}
-      <TechMarquee />
 
-      {/* Mission */}
-      {/* <section className="py-16 px-5">
-        <div className="max-w-[1200px] mx-auto">
-          <SectionTitle accent="Pro" postText="duct Portfolio" />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 mt-8">
-            {products.map((item, i) => (
-              <Link to={item.link}>
-                <div
-                  key={i}
-                  className="bg-gray-100 h-32 p-6 rounded-xl text-center font-medium shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg"
-                  data-aos="fade-up"
-                  data-aos-delay={i * 100}
-                >
-                  {item.name}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Mission */}
-      <section className="bg-gray-50 py-16 px-5" data-aos="fade-up">
+      <section className="bg-gray-50 border-b py-20 px-5" data-aos="fade-up">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Our" postText=" Mission" />
-          <p className="text-center max-w-[800px] mx-auto mb-8 text-lg">
+          <p className="text-center max-w-[800px] mx-auto mb-12 text-xl opacity-90 leading-relaxed font-light">
             To empower businesses and communities by delivering cutting-edge IoT
             and AI-driven solutions that make the world smarter, safer, and more
             connected.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
             {missionCards.map((card, i) => (
               <InfoCard
                 key={i}
@@ -290,14 +253,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partners */}
-      <section className="bg-gray-50 py-16 px-5 text-center" data-aos="fade-up">
+      <section className="bg-white py-20 px-5 text-center" data-aos="fade-up">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Our" postText=" Vision" />
-          <p className="max-w-[900px] mx-auto mb-10 text-base leading-relaxed text-gray-700">
+          <p className="max-w-[900px] mx-auto mb-16 text-lg md:text-xl leading-relaxed text-gray-700 font-light">
             IoTrenetics was founded with the vision of building intelligent systems that seamlessly connect the physical and digital worlds. We aim to create smarter environments powered by automation, AI, and connected devices.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {partnerCards.map((card, i) => (
               <InfoCard
                 key={i}
@@ -310,7 +272,6 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Latest Insights */}
       <LatestInsights />
 
       <CTASection />

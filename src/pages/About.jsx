@@ -9,9 +9,9 @@ const testimonials = [
   { quote: 'Smart Home Automation Control lighting, appliances, and environments intelligently.'},
   { quote: 'AI-Powered Systems Smart analytics and automation powered by artificial intelligence.'},
   { quote: 'Intelligent Software Platforms Scalable software products designed for modern businesses.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems. This replaces the client/testimonial section.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
+  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
 ];
 
 const timelineData = [

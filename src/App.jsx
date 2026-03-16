@@ -15,6 +15,7 @@ import HealNet from './pages/HealNet';
 import Automation from './pages/Automation';
 import ProductLegacy from './pages/ProductLegacy';
 import ComingSoon from './pages/ComingSoon';
+import PrivacyAndPolicy from './pages/PrivacyAndPolicy';
 import './index.css';
 
 function ScrollToTop() {
@@ -46,6 +47,7 @@ function App() {
         <Route path="/automation" element={<Automation />} />
         <Route path="/product-legacy" element={<ProductLegacy />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
+        <Route path="/privacy-policy" element={<PrivacyAndPolicy />} />
       </Routes>
       <Footer />
       <WhatsAppButton />

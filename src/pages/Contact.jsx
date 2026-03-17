@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import CTASection from "../components/CTASection";
 
 const benefits = [
@@ -111,9 +112,9 @@ const Contact = () => {
               </div>
               <p className="text-sm mt-4">
                 By submitting this form, I acknowledge receipt of the{" "}
-                <a href="/privacy-policy" className="text-accent underline">
+                <Link to="/privacy-policy" className="text-accent underline">
                   IoTrenetics Policy
-                </a>
+                </Link>
                 .
               </p>
               <p className="text-sm mt-2.5">

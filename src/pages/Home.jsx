@@ -4,7 +4,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import CTASection from "../components/CTASection";
 import SectionTitle from "../components/SectionTitle";
 import InfoCard from "../components/InfoCard";
-import Marquee from "../components/Marquee";
 import StatsCounter from "../components/StatsCounter";
 import IoTExplanation from "../components/IoTExplanation";
 import LatestInsights from "../components/LatestInsights";
@@ -124,11 +123,11 @@ const partnerCards = [
 ];
 
 const FocusGrid = ({ items }) => (
-  <div className="flex flex-wrap justify-center  grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
+  <div className="flex flex-wrap justify-center gap-6 max-w-[1200px] mx-auto">
     {items.map((item, i) => (
       <div
         key={i}
-        className="text-center w-96"
+        className="text-center w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm"
         data-aos="fade-up"
         data-aos-delay={i * 100}
       >
@@ -240,13 +239,14 @@ const Home = () => {
             and AI-driven solutions that make the world smarter, safer, and more
             connected.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8 mt-8">
             {missionCards.map((card, i) => (
               <InfoCard
                 key={i}
                 icon={card.icon}
                 title={card.title}
                 description={card.desc}
+                className="flex-1 min-w-[280px]"
               />
             ))}
           </div>
@@ -259,13 +259,14 @@ const Home = () => {
           <p className="max-w-[900px] mx-auto mb-16 text-lg md:text-xl leading-relaxed text-gray-700 font-light">
             IoTrenetics was founded with the vision of building intelligent systems that seamlessly connect the physical and digital worlds. We aim to create smarter environments powered by automation, AI, and connected devices.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8">
             {partnerCards.map((card, i) => (
               <InfoCard
                 key={i}
                 icon={card.icon}
                 title={card.title}
                 description={card.desc}
+                className="flex-1 min-w-[280px]"
               />
             ))}
           </div>

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import NewsletterUpdates from './NewsletterUpdates';
 
 const Footer = () => {
   const navLinks = [
@@ -34,6 +35,8 @@ const Footer = () => {
             </button>
           </form>
         </div>
+
+        {/* <NewsletterUpdates/> */}
 
         <div className="w-full h-px bg-white/10 mb-2"></div>
 

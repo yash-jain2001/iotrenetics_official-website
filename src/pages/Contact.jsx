@@ -112,8 +112,8 @@ const Contact = () => {
               </div>
               <p className="text-sm mt-4">
                 By submitting this form, I acknowledge receipt of the{" "}
-                <Link to="/privacy-policy" className="text-accent underline">
-                  IoTrenetics Policy
+                <Link to="/terms-and-conditions" className="text-accent underline">
+                  IoTrenetics terms & conditions
                 </Link>
                 .
               </p>

@@ -15,8 +15,9 @@ import HealNet from './pages/HealNet';
 import Automation from './pages/Automation';
 import ProductLegacy from './pages/ProductLegacy';
 import ComingSoon from './pages/ComingSoon';
-import PrivacyAndPolicy from './pages/PrivacyAndPolicy';
+import TermsAndConditions from './pages/TermsAndConditions';
 import './index.css';
+import PrivacyPolicyFinexa from './pages/PrivacyPolicyFinexa';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,7 +48,8 @@ function App() {
         <Route path="/automation" element={<Automation />} />
         <Route path="/product-legacy" element={<ProductLegacy />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
-        <Route path="/privacy-policy" element={<PrivacyAndPolicy />} />
+        <Route path="/privacy-policy-finexa" element={<PrivacyPolicyFinexa />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
       </Routes>
       <Footer />
       <WhatsAppButton />

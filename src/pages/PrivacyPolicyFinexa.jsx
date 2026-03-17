@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PrivacyAndPolicy = () => {
+const PrivacyPolicyFinexa = () => {
   const currentDate = new Date();
   const formattedDate = `${currentDate.getDate()} ${currentDate.toLocaleString('default', { month: 'long' }).toLowerCase()}, ${currentDate.getFullYear()}`;
 
@@ -9,7 +9,7 @@ const PrivacyAndPolicy = () => {
       <div className="max-w-[1200px] mx-auto rounded-3xl">
         
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">Privacy <span className="text-accent">Policy</span></h1>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4"><span className="text-accent">Privacy </span>&<span className="text-accent"> Policy</span></h1>
           <p className="text-gray-500 font-medium">Last Updated: {formattedDate}</p>
         </div>
 
@@ -159,4 +159,4 @@ const PrivacyAndPolicy = () => {
   )
 }
 
-export default PrivacyAndPolicy
+export default PrivacyPolicyFinexa

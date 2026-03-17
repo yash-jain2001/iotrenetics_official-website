@@ -28,7 +28,7 @@ const automations = [
 ];
 
 const ModeCard = ({ accent, title, img, desc }) => (
-  <div className="bg-gray-400 p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
+  <div className="bg-gray-400 p-6 rounded-3xl w-full md:w-[calc(50%-20px)] transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl" data-aos="fade-up">
     <h3 className="text-2xl font-bold mb-4 text-center"><span className="text-accent">{accent}</span> {title}</h3>
     <img src={img} alt={`${accent} ${title}`} loading="lazy" className="w-full rounded-2xl mb-4" />
     <p className="text-base leading-relaxed text-black text-justify">{desc}</p>
@@ -36,7 +36,7 @@ const ModeCard = ({ accent, title, img, desc }) => (
 );
 
 const AutomationCard = ({ accent, title, img, desc }) => (
-  <div className="bg-white p-6 rounded-2xl shadow-[0_12px_25px_rgba(255,0,0,0.15)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(255,0,0,0.25)]" data-aos="fade-up">
+  <div className="bg-white p-6 rounded-2xl w-full md:w-[calc(50%-20px)] shadow-[0_12px_25px_rgba(255,0,0,0.15)] transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_rgba(255,0,0,0.25)]" data-aos="fade-up">
     <h3 className="text-2xl font-bold mb-5 text-center"><span className="text-accent">{accent}</span> {title}</h3>
     <div className="flex items-center gap-6 max-md:flex-col max-md:text-center">
       <img src={img} alt={`${accent} ${title}`} loading="lazy" className="w-[140px] object-contain" />
@@ -90,9 +90,9 @@ const Automation = () => {
         <div className="max-w-[1200px] mx-auto">
           <h2 className="text-center text-3xl md:text-4xl font-bold">Why <span className="text-accent">IoTrenetics</span> Solutions Pvt. Ltd.?</h2>
           <h3 className="text-center text-xl md:text-2xl font-semibold mt-2.5">– The Gold Standard for Home Automation in India.</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+          <div className="flex flex-wrap justify-center gap-8 mt-16">
             {whyCards.map((card, i) => (
-              <div key={i} className="bg-white rounded-3xl p-8 text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+              <div key={i} className="bg-white rounded-3xl p-8 w-full md:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)] text-center transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
                 <img src={card.img} alt="" loading="lazy" className="w-14 mb-4 mx-auto" />
                 <h4 className="text-xl font-bold"><span className="text-accent">{card.accent}</span> {card.title}</h4>
                 <p className="text-sm leading-relaxed mt-2">{card.desc}</p>
@@ -105,21 +105,21 @@ const Automation = () => {
       {/* Modes */}
       <section className="bg-gray-300 py-20 px-5" data-aos="fade-up">
         <h2 className="text-center text-2xl md:text-3xl font-bold mb-16">Multiple operation modes available</h2>
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-          {modes.map((mode, i) => (
-            <ModeCard key={i} {...mode} />
-          ))}
-        </div>
+        <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center gap-10">
+            {modes.map((mode, i) => (
+              <ModeCard key={i} {...mode} />
+            ))}
+          </div>
       </section>
 
       {/* Automations */}
       <section className="bg-gray-300 py-20 px-5" data-aos="fade-up">
         <h2 className="text-center text-3xl font-extrabold text-black mb-16 tracking-wide"><span className="text-accent">AUTO</span>MATIONS</h2>
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
-          {automations.map((auto, i) => (
-            <AutomationCard key={i} {...auto} />
-          ))}
-        </div>
+        <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center gap-10">
+            {automations.map((auto, i) => (
+              <AutomationCard key={i} {...auto} />
+            ))}
+          </div>
       </section>
 
       <CTASection />

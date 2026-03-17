@@ -49,16 +49,16 @@ const About = () => {
 
       {/* Vision, Mission, Focus */}
       <section className="max-w-[1200px] mx-auto px-5 py-12 text-center" data-aos="fade-up">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="p-8 bg-brand text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-brand/30">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-8">
+          <div className="flex-1 min-w-[280px] p-8 bg-brand text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-brand/30">
             <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
             <p className="leading-relaxed opacity-90">To build intelligent, predictive, and self-optimizing environments that seamlessly connect the physical and digital worlds for a smarter future.</p>
           </div>
-          <div className="p-8 bg-accent text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-accent/30">
+          <div className="flex-1 min-w-[280px] p-8 bg-accent text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-accent/30">
             <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
             <p className="leading-relaxed opacity-90">Empowering businesses and communities by delivering cutting-edge IoT and AI-driven solutions that improve sustainability, efficiency, and safety.</p>
           </div>
-          <div className="p-8 bg-gray-900 text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-gray-900/30">
+          <div className="flex-1 min-w-[280px] p-8 bg-gray-900 text-white rounded-2xl shadow-xl transition-all hover:-translate-y-2 hover:shadow-gray-900/30">
             <h3 className="text-2xl font-bold mb-4">Our Focus</h3>
             <p className="leading-relaxed opacity-90">Innovating across Industrial IoT, AI/GenAI integration, smart city infrastructure, and deep technological automation systems.</p>
           </div>
@@ -118,9 +118,9 @@ const About = () => {
       {/* Testimonials */}
       <section className="max-w-[1200px] mx-auto px-5 py-20 text-center" data-aos="fade-up">
         <SectionTitle accent="What " postText=" We Do" className="mb-16" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-10">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-gray-100 px-5 py-5 text-left rounded-md leading-relaxed text-lg shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg" data-aos="fade-up" data-aos-delay={i * 100}>
+            <div key={i} className="flex-1 w-full md:w-[calc(33.333%-40px)] min-w-[300px] bg-gray-100 px-5 py-5 text-left rounded-md leading-relaxed text-lg shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg" data-aos="fade-up" data-aos-delay={i * 100}>
               <h3 className="text-xl text-center underline font-bold mb-4">{t.heading}</h3>
               <p className='text-base'>{t.quote}</p>
             </div>
@@ -131,9 +131,9 @@ const About = () => {
       {/* Team */}
       <section className="max-w-[1200px] mx-auto px-5 py-20 text-center" data-aos="fade-up">
         <SectionTitle accent="Our" postText=" Team" className="mb-16" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-10">
           {teamCards.map((card, i) => (
-            <div key={i} className="bg-gray-100 p-6 rounded-md flex items-stretch transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+            <div key={i} className="flex-1 w-full md:w-[calc(33.333%-40px)] min-w-[300px] bg-gray-100 p-6 rounded-md flex items-stretch transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
               <div className="bg-white p-8 rounded flex flex-col text-center flex-1 leading-relaxed">
                 <h3 className="text-xl font-bold mb-4"><span className="text-accent">{card.highlight}</span> {card.title}</h3>
                 <p>{card.desc}</p>

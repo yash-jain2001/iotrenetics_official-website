@@ -71,9 +71,9 @@ const StatsCounter = () => {
         </svg>
       </div>
 
-      <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center relative z-10">
+      <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center gap-8 text-center relative z-10">
         {stats.map((stat) => (
-          <div key={stat.id} className="p-6 transition-all duration-300 hover:-translate-y-2 hover:drop-shadow-2xl">
+          <div key={stat.id} className="w-[calc(50%-2rem)] md:flex-1 min-w-[150px] p-6 transition-all duration-300 hover:-translate-y-2 hover:drop-shadow-2xl">
             <h3 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-3 text-white drop-shadow-md">
               <Counter target={stat.value} suffix={stat.suffix} />
             </h3>

@@ -11,7 +11,7 @@ import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
 
 const coreFocusItems = [
-  { img: "/assets/core 1.webp", label: "IoT-Driven Automation" },
+  { img: "/assets/core 1.webp.jpeg", label: "IoT-Driven Automation" },
   { img: "/assets/core 2.webp", label: "AI & Generative AI Solutions" },
   { img: "/assets/core 3.webp", label: "Video Analytics & Computer Vision" },
   { img: "/assets/core 4.webp", label: "AR/VR & Immersive Technologies" },

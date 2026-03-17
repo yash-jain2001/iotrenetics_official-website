@@ -3,12 +3,13 @@ import { motion } from 'framer-motion';
 
 const NewsTicker = () => {
   const newsItems = [
-    "New IoT Gateway Firmware Update Released - v2.4.1",
-    "IoTrenetics partners with Global Tech for Smart City Initiative",
-    "Upcoming Webinar: Generative AI in Industrial Automation on April 15th",
-    "Successfully Deployed 10,000+ Smart Sensors in Q1 2026",
-    "Awarded 'Best Enterprise IoT Solution' at Tech Connect 2026",
-    "New AI-Powered Predictive Analytics Dashboard Now Available"
+    "Industrial IoT enables predictive maintenance and reduces downtime across global operations",
+    "AI Video Analytics powers real-time safety, surveillance, and smart monitoring",
+    "Agentra brings Agentic AI for autonomous workflows like intelligent email classification and response ",
+    " VisiAI leverages computer vision for PPE detection and intrusion monitoring",
+    " HealNet uses wearable data and AI for health insights and risk prediction",
+    "Virtura delivers immersive AR/VR training and simulation for next-gen workforce development",
+    " Smart automation improves energy efficiency and drives sustainable connected environments"
   ];
 
   return (
@@ -16,7 +17,7 @@ const NewsTicker = () => {
       <div className="flex items-center">
         {/* Static 'Latest Updates' label (Optional, can hide on very small screens) */}
         <div className="bg-accent text-white font-bold px-4 py-2 hidden md:flex items-center gap-2 whitespace-nowrap z-10 shadow-[4px_0_10px_rgba(0,0,0,0.2)]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          {/* <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> */}
           LATEST UPDATES
         </div>
 

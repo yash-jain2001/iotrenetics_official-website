@@ -6,12 +6,12 @@ import TechMarquee from '../components/TechMarquee';
 
 
 const testimonials = [
-  { quote: 'Smart Home Automation Control lighting, appliances, and environments intelligently.'},
-  { quote: 'AI-Powered Systems Smart analytics and automation powered by artificial intelligence.'},
-  { quote: 'Intelligent Software Platforms Scalable software products designed for modern businesses.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
-  { quote: 'IoT Device Integration Connecting devices to create smart ecosystems.'},
+  {heading:"Smart Home Automation", quote: 'Experience effortless living with automated control of lighting, climate, and security—reducing energy costs while improving comfort and convenience.'},
+  {heading:"AI & Intelligent Systems", quote: 'Turn data into decisions with AI systems that automate workflows, reduce manual effort, and help you operate faster and smarter.'},
+  {heading:"Intelligent Software Solutions", quote: 'From AI agents to video analytics and health insights, build custom software solutions that streamline operations and unlock actionable intelligence. (e.g., Agentra, VisiAI, HealNet)'},
+  {heading:"Mobile Applications", quote: 'Empower users with intuitive mobile apps that provide real-time insights, seamless experiences, and smarter decision-making on the go. (e.g., Finexa).'},
+  {heading:"Industrial IoT Solutions", quote: 'Minimize downtime and maximize efficiency with connected systems that monitor equipment, predict failures, and optimize performance in real time.'},
+  {heading:"Data Analytics & Insights", quote: 'Transform raw data into meaningful insights with powerful analytics dashboards that help you track performance, identify trends, and make informed decisions faster.'},
 ];
 
 const timelineData = [
@@ -33,9 +33,11 @@ const About = () => {
     <>
       {/* Mini Hero */}
       <section className="max-w-[1200px] mx-auto px-5 flex items-center justify-between gap-10 py-20 overflow-hidden max-md:flex-col max-md:text-center" data-aos="fade-up">
-        <div className="max-w-[480px]">
-          <h1 className="text-3xl font-bold"><span className="text-accent"> IoT</span>renetics Solutions Pvt. Ltd.</h1>
-          <p className="mt-3.5 leading-relaxed max-w-[420px]">IoTrenetics Solutions Pvt. Ltd. is an innovative technology startup working at the intersection of IoT, AI, Generative AI, AR/VR, and Digital Transformation.</p>
+        <div className="max-w-[480px] flex flex-col items-center justify-center text-justify">
+          <h1 className="text-3xl font-bold">Building Intelligent, Connected Systems for a Smarter Future</h1>
+          <p className="mt-3.5 leading-relaxed text-base text-gray-600 max-w-[420px]"><span className="text-accent font-bold italic">IoTrenetics Solutions Pvt. Ltd.</span> (pronounced: Eye-oh-Tren-etics) is an innovative technology company building intelligent solutions at the intersection of IoT, AI, and digital transformation. We create connected, data-driven systems that help businesses automate operations, gain real-time insights, and make smarter decisions.</p>
+
+          <p className="mt-3.5 leading-relaxed  max-w-[420px] text-gray-600">Driven by a vision of self-reliance, we proudly promote Swadeshi innovation—developing indigenous technologies that empower industries and contribute to a sustainable, future-ready ecosystem.</p>
           <button className="mt-5 py-2.5 px-6 border-none bg-gray-200 rounded-full cursor-pointer font-medium transition-colors duration-200 hover:bg-gray-300">
             <span className="text-accent">Explore</span> Our Vision
           </button>
@@ -118,8 +120,9 @@ const About = () => {
         <SectionTitle accent="What " postText=" We Do" className="mb-16" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {testimonials.map((t, i) => (
-            <div key={i} className="bg-gray-100 p-10 text-left rounded-md leading-relaxed text-lg shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg" data-aos="fade-up" data-aos-delay={i * 100}>
-              <p dangerouslySetInnerHTML={{ __html: `"${t.quote}"` }} />
+            <div key={i} className="bg-gray-100 px-5 py-5 text-left rounded-md leading-relaxed text-lg shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg" data-aos="fade-up" data-aos-delay={i * 100}>
+              <h3 className="text-xl text-center underline font-bold mb-4">{t.heading}</h3>
+              <p className='text-base'>{t.quote}</p>
             </div>
           ))}
         </div>

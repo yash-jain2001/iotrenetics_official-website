@@ -33,7 +33,7 @@ const NewsTicker = () => {
             <div className="flex items-center gap-10 md:gap-16 pr-10 md:pr-16">
               {newsItems.map((news, i) => (
                 <div key={i} className="flex items-center gap-2 font-medium tracking-wide whitespace-nowrap opacity-90 hover:opacity-100 transition-opacity">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse hidden md:block"></span>
+                  <span className="w-1.5 h-1.5 flex-shrink-0 rounded-full bg-accent animate-pulse"></span>
                   {news}
                 </div>
               ))}
@@ -42,7 +42,7 @@ const NewsTicker = () => {
             <div className="flex items-center gap-10 md:gap-16 pr-10 md:pr-16">
               {newsItems.map((news, i) => (
                 <div key={'dup-' + i} className="flex items-center gap-2 font-medium tracking-wide whitespace-nowrap opacity-90 hover:opacity-100 transition-opacity">
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse hidden md:block"></span>
+                  <span className="w-1.5 h-1.5 flex-shrink-0 rounded-full bg-accent animate-pulse"></span>
                   {news}
                 </div>
               ))}

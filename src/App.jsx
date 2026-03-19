@@ -18,6 +18,11 @@ import ComingSoon from './pages/ComingSoon';
 import TermsAndConditions from './pages/TermsAndConditions';
 import './index.css';
 import PrivacyPolicyFinexa from './pages/PrivacyPolicyFinexa';
+import IOT_Driven_Automation from './sub-pages/IOT_Driven_Automation';
+import Ai_and_Genrative_Solutions from './sub-pages/Ai_and_Genrative_Solutions';
+import Video_Analytics_and_Computer_Vision from './sub-pages/Video_Analytics_and_Computer_Vision';
+import ARVR_and_Immersive_technologies from './sub-pages/ARVR_and_Immersive_technologies';
+import Digital_Transformation_Systems from './sub-pages/Digital_Transformation_Systems';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -50,6 +55,12 @@ function App() {
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/privacy-policy-finexa" element={<PrivacyPolicyFinexa />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+
+        <Route path="/iot-driven-automation" element={<IOT_Driven_Automation />} />
+        <Route path="/ai-and-genrative-solutions" element={<Ai_and_Genrative_Solutions />} />
+        <Route path="/video-analytics-and-computer-vision" element={<Video_Analytics_and_Computer_Vision />} />
+        <Route path="/arvr-and-immersive-technologies" element={<ARVR_and_Immersive_technologies />} />
+        <Route path="/digital-transformation-systems" element={<Digital_Transformation_Systems />} />
       </Routes>
       <Footer />
       <WhatsAppButton />

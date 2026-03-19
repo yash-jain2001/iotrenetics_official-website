@@ -10,11 +10,11 @@ import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
 
 const coreFocusItems = [
-  { img: "/assets/core 1.webp.jpeg", label: "IoT-Driven Automation" },
-  { img: "/assets/core 2.webp", label: "AI & Generative AI Solutions" },
-  { img: "/assets/core 3.webp", label: "Video Analytics & Computer Vision" },
-  { img: "/assets/core 4.webp", label: "AR/VR & Immersive Technologies" },
-  { img: "/assets/core 5.webp", label: "Digital Transformation Systems" },
+  { img: "/assets/core 1.webp.jpeg", label: "IoT-Driven Automation", link: "/iot-driven-automation" },
+  { img: "/assets/core 2.webp", label: "AI & Generative AI Solutions", link: "/ai-and-genrative-solutions" },
+  { img: "/assets/core 3.webp", label: "Video Analytics & Computer Vision", link: "/video-analytics-and-computer-vision" },
+  { img: "/assets/core 4.webp", label: "AR/VR & Immersive Technologies", link: "/arvr-and-immersive-technologies" },
+  { img: "/assets/core 5.webp", label: "Digital Transformation Systems", link: "/digital-transformation-systems" },
 ];
 
 const industriesItems = [
@@ -124,24 +124,43 @@ const partnerCards = [
 
 const FocusGrid = ({ items }) => (
   <div className="flex flex-wrap justify-center gap-6 max-w-[1200px] mx-auto">
-    {items.map((item, i) => (
-      <div
-        key={i}
-        className="text-center w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm"
-        data-aos="fade-up"
-        data-aos-delay={i * 100}
-      >
-        <img
-          src={item.img}
-          alt={item.label}
-          loading="lazy"
-          className="w-full object-fill h-64 rounded-lg"
-        />
-        <div className="bg-gray-100 p-6 rounded-xl text-center font-medium shadow-sm mt-2 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg">
-          {item.label}
+    {items.map((item, i) => {
+      const wrapperClassName = "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm block no-underline text-inherit";
+      const innerContent = (
+        <div className="text-center rounded-xl border overflow-hidden h-full flex flex-col">
+          <img
+            src={item.img}
+            alt={item.label}
+            loading="lazy"
+            className="w-full object-fill h-64 rounded-lg flex-shrink-0"
+          />
+          <div className="bg-gray-100 p-6 rounded-xl text-center font-medium shadow-sm mt-2 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex-grow">
+            {item.label}
+          </div>
         </div>
-      </div>
-    ))}
+      );
+
+      return item.link ? (
+        <Link
+          to={item.link}
+          key={i}
+          className={wrapperClassName}
+          data-aos="fade-up"
+          data-aos-delay={i * 100}
+        >
+          {innerContent}
+        </Link>
+      ) : (
+        <div
+          key={i}
+          className={wrapperClassName}
+          data-aos="fade-up"
+          data-aos-delay={i * 100}
+        >
+          {innerContent}
+        </div>
+      );
+    })}
   </div>
 );
 

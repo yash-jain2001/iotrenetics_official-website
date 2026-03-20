@@ -38,9 +38,9 @@ const About = () => {
           <p className="mt-3.5 leading-relaxed text-base text-gray-600 max-w-[420px]"><span className="text-accent font-bold italic">IoTrenetics Solutions Pvt. Ltd.</span> (pronounced: Eye-oh-Tren-etics) is an innovative technology company building intelligent solutions at the intersection of IoT, AI, and digital transformation. We create connected, data-driven systems that help businesses automate operations, gain real-time insights, and make smarter decisions.</p>
 
           <p className="mt-3.5 leading-relaxed  max-w-[420px] text-gray-600">Driven by a vision of self-reliance, we proudly promote Swadeshi innovation—developing indigenous technologies that empower industries and contribute to a sustainable, future-ready ecosystem.</p>
-          <button className="mt-5 py-2.5 px-6 border-none bg-gray-200 rounded-full cursor-pointer font-medium transition-colors duration-200 hover:bg-gray-300">
+          {/* <button className="mt-5 py-2.5 px-6 border-none bg-gray-200 rounded-full cursor-pointer font-medium transition-colors duration-200 hover:bg-gray-300">
             <span className="text-accent">Explore</span> Our Vision
-          </button>
+          </button> */}
         </div>
         <div className="flex-shrink-0">
           <img src="/assets/display.webp" alt="About" loading="lazy" className="w-[360px] max-w-full opacity-90 max-md:w-[280px] max-md:mt-8" />
@@ -96,7 +96,7 @@ const About = () => {
           Our technology stack includes IoT, Machine Learning, Computer Vision, and Robotics.
         </p>
       </section>
-        <FeatureCard direction="right" />
+        <FeatureCard direction="left" />
         {/* <TechMarquee direction="right" /> */}
 
       {/* Impact */}

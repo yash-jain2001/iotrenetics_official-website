@@ -211,15 +211,15 @@ const Finexa = () => {
           </h3>
           <p className="font-bold my-4">
             Join thousands of users tracking their finances with just their
-            voice. <Link to={"/privacy-policy-finexa"}><span className="text-accent underline">privacy & policy</span></Link>
+            voice. <Link to={"/privacy-policy-finexa"}><span className="text-accent underline">Privacy Policy</span></Link>
           </p>
           <div className="flex gap-5 justify-center">
-            <button className="py-4 px-10 text-lg border-none rounded-xl bg-gray-500 text-white cursor-pointer hover:bg-gray-600 transition-colors">
+            <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Get Started in Seconds
             </button>
-            <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
+            {/* <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Download ⬇️
-            </button>
+            </button> */}
           </div>
         </div>
       </section>

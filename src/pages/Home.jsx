@@ -242,7 +242,7 @@ const Home = () => {
       {/* 8. Additional Sections */}
       <IoTExplanation />
       
-      <StatsCounter />
+      {/* <StatsCounter /> */}
 
       <section className="py-10 px-5 bg-white" data-aos="fade-up">
         <SectionTitle accent="Ind" postText="ustries We Serve" />

@@ -12,7 +12,7 @@ const CTASection = () => {
           solutions.
         </p>
         <div className="flex justify-center gap-5 flex-wrap max-md:flex-col max-md:items-center">
-          <Link to="/contact" className="bg-white text-brand py-3 px-7 rounded-full font-bold transition-colors duration-300 hover:bg-gray-200 no-underline">Get in Touch</Link>
+          <a href="mailto:sales@iotrenetics.com" className="bg-white text-brand py-3 px-7 rounded-full font-bold transition-colors duration-300 hover:bg-gray-200 no-underline">Get in Touch</a>
           <Link to="/solutions" className="bg-transparent border-2 border-white text-white py-3 px-7 rounded-full font-bold transition-all duration-300 hover:bg-white hover:text-brand no-underline">Explore Our Solutions</Link>
         </div>
       </div>

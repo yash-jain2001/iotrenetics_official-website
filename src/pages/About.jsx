@@ -116,7 +116,7 @@ const About = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="max-w-[1200px] mx-auto px-5 py-20 text-center" data-aos="fade-up">
+      <section className="max-w-[1200px] mx-auto px-5 py-8 text-center" data-aos="fade-up">
         <SectionTitle accent="What " postText=" We Do" className="mb-16" />
         <div className="flex flex-col md:flex-row flex-wrap justify-center gap-10">
           {testimonials.map((t, i) => (
@@ -128,8 +128,18 @@ const About = () => {
         </div>
       </section>
 
+      {/* paragraph */}
+      <section className="max-w-[1200px] mx-auto px-5 py-8 text-center" data-aos="fade-up">
+        <SectionTitle accent="Intelligence " postText=" in Motion" className="mb-16" />
+        <div className="flex flex-col md:flex-row flex-wrap justify-center gap-10">
+          <p className="text-gray-600 leading-relaxed">“Intelligence in Motion” reflects our belief that intelligence should not remain static or confined to systems—it should be continuously active, adaptive, and evolving. At IoTrenetics, we embed intelligence into the flow of everyday environments, enabling systems that not only collect data but interpret, learn, and act in real time.</p>
+          <p className="text-gray-600 leading-relaxed">It signifies a shift from passive technology to dynamic ecosystems—where devices communicate seamlessly, decisions are driven by live insights, and automation responds intelligently to changing conditions. From smart homes to industrial operations, we bring intelligence into motion by transforming how systems think, interact, and perform.</p>
+        </div>
+      </section>
+
+
       {/* Team */}
-      <section className="max-w-[1200px] mx-auto px-5 py-20 text-center" data-aos="fade-up">
+      <section className="max-w-[1200px] mx-auto px-5 py-8 text-center" data-aos="fade-up">
         <SectionTitle accent="Our" postText=" Team" className="mb-16" />
         <div className="flex flex-col md:flex-row flex-wrap justify-center gap-10">
           {teamCards.map((card, i) => (

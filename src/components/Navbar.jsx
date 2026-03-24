@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import ProductsMenu from "./ProductsMenu";
 
-const navLinks = [
+const leftNavLinks = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+];
+
+const rightNavLinks = [
   { to: "/automation", label: "Automation" },
-  { to: "/finexa", label: "Finexa" },
   { to: "/industries", label: "Industries" },
   { to: "/solutions", label: "Solutions" },
   // { to: "/coming-soon", label: "Coming Soon" },
   { to: "/contact", label: "Contact" },
-  // { to: "/product-legacy", label: "Product Legacy" },
 ];
 
 const Navbar = () => {
@@ -43,13 +45,29 @@ const Navbar = () => {
         <nav
           className={`max-md:${menuOpen ? "block" : "hidden"} ${menuOpen ? "max-md:block" : "max-md:hidden"} max-md:absolute max-md:top-20 max-md:right-0 max-md:w-full max-md:bg-white max-md:z-[999]`}
         >
-          <ul className="list-none flex gap-6 max-lg:gap-3 max-md:flex-col max-md:items-center max-md:py-4">
-            {navLinks.map(({ to, label }) => (
-              <li key={to}>
+          <ul className="list-none flex gap-6 max-lg:gap-3 max-md:flex-col max-md:items-center max-md:py-4 m-0 p-0">
+            {leftNavLinks.map(({ to, label }) => (
+              <li key={to} className="flex items-center w-full max-md:justify-center">
                 <NavLink
                   to={to}
                   onClick={closeMenu}
-                  className="no-underline text-gray-800 font-medium transition-colors duration-300 hover:text-brand"
+                  className="no-underline text-gray-800 font-medium transition-colors duration-300 hover:text-brand max-md:py-3 max-md:px-4 max-md:w-full max-md:text-center max-md:rounded-lg max-md:hover:bg-gray-50"
+                >
+                  {label}
+                </NavLink>
+              </li>
+            ))}
+
+            <li className="flex items-center w-full max-md:justify-center">
+              <ProductsMenu closeMobileMenu={closeMenu} />
+            </li>
+
+            {rightNavLinks.map(({ to, label }) => (
+              <li key={to} className="flex items-center w-full max-md:justify-center">
+                <NavLink
+                  to={to}
+                  onClick={closeMenu}
+                  className="no-underline text-gray-800 font-medium transition-colors duration-300 hover:text-brand max-md:py-3 max-md:px-4 max-md:w-full max-md:text-center max-md:rounded-lg max-md:hover:bg-gray-50"
                 >
                   {label}
                 </NavLink>

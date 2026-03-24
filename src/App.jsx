@@ -13,7 +13,6 @@ import Industries from './pages/Industries';
 import Contact from './pages/Contact';
 import HealNet from './pages/HealNet';
 import Automation from './pages/Automation';
-import ProductLegacy from './pages/ProductLegacy';
 import ComingSoon from './pages/ComingSoon';
 import TermsAndConditions from './pages/TermsAndConditions';
 import './index.css';
@@ -51,7 +50,6 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/healnet" element={<HealNet />} />
         <Route path="/automation" element={<Automation />} />
-        <Route path="/product-legacy" element={<ProductLegacy />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/privacy-policy-finexa" element={<PrivacyPolicyFinexa />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />

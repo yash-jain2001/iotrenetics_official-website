@@ -22,6 +22,11 @@ import Ai_and_Genrative_Solutions from './sub-pages/Ai_and_Genrative_Solutions';
 import Video_Analytics_and_Computer_Vision from './sub-pages/Video_Analytics_and_Computer_Vision';
 import ARVR_and_Immersive_technologies from './sub-pages/ARVR_and_Immersive_technologies';
 import Digital_Transformation_Systems from './sub-pages/Digital_Transformation_Systems';
+import SmartHomeAutomation from './articles/SmartHomeAutomation';
+import AIOT from './articles/AIOT';
+import IndustrialIOT from './articles/IndustrialIOT';
+import FinexaArticle from './articles/Finexa';
+
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -59,6 +64,11 @@ function App() {
         <Route path="/video-analytics-and-computer-vision" element={<Video_Analytics_and_Computer_Vision />} />
         <Route path="/arvr-and-immersive-technologies" element={<ARVR_and_Immersive_technologies />} />
         <Route path="/digital-transformation-systems" element={<Digital_Transformation_Systems />} />
+
+        <Route path="/smart-home-automation" element={<SmartHomeAutomation />} />
+        <Route path="/aiot" element={<AIOT />} />
+        <Route path="/industrial-iot" element={<IndustrialIOT />} />
+        <Route path="/finexa-article" element={<FinexaArticle />} />
       </Routes>
       <Footer />
       <WhatsAppButton />

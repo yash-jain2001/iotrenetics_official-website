@@ -5,24 +5,31 @@ import { Link } from 'react-router-dom';
 const insights = [
   {
     image: "/assets/core 8.webp",
-    category: "Smart Cities",
-    title: "How IoT is Revolutionizing Urban Infrastructure",
+    category: "Smart Home Automation",
+    title: "Reducing Energy Costs, Enhancing Security & Building the Future of Connected Living",
     date: "March 12, 2026",
-    link: "#"
+    link: "/smart-home-automation"
   },
   {
     image: "/assets/core 7.webp",
-    category: "Industrial IoT",
-    title: "Predictive Maintenance: The AI Advantage",
+    category: "AIOT",
+    title: "AI + IoT: Building Intelligent Environments with Data-Driven Decision Making & Secure Connected Systems",
     date: "February 28, 2026",
-    link: "#"
+    link: "/aiot"
   },
   {
     image: "/assets/core 6.webp",
-    category: "Home Automation",
-    title: "Building the Connected Home of Tomorrow",
+    category: "INDUSTRIAL IOT",
+    title: "Driving Efficiency, Reducing Downtime & Enabling Predictive Operations",
     date: "February 15, 2026",
-    link: "#"
+    link: "/industrial-iot"
+  },
+  {
+    image: "/assets/core 6.webp",
+    category: "Money",
+    title: "Finexa",
+    date: "February 15, 2026",
+    link: "/finexa-article"
   }
 ];
 
@@ -30,12 +37,12 @@ const LatestInsights = () => {
   return (
     <section className="py-10 px-5 bg-gray-50" data-aos="fade-up">
       <div className="max-w-[1200px] mx-auto">
-        <div className="flex justify-between items-end mb-10">
+        <div className="flex justify-between items-end">
           <SectionTitle accent="Latest" postText=" Insights" />
-          <Link to="/about" className="hidden md:inline-block text-brand font-bold hover:text-accent transition-colors">View All Articles &rarr;</Link>
+          {/* <Link to="#" className="hidden md:inline-block text-brand font-bold hover:text-accent transition-colors">View All Articles &rarr;</Link> */}
         </div>
         
-        <div className="flex flex-wrap justify-center gap-8">
+        <div className="flex gap-8">
           {insights.map((item, i) => (
             <div key={i} className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col h-full hover:-translate-y-1">
               <div className="h-56 overflow-hidden relative">
@@ -49,7 +56,7 @@ const LatestInsights = () => {
                 <h3 className="text-xl font-bold mb-3 line-clamp-2 text-gray-800 group-hover:text-brand transition-colors flex-grow">{item.title}</h3>
                 <div className="flex items-center justify-between text-gray-500 text-sm mt-auto pt-4 border-t border-gray-100">
                   <span>{item.date}</span>
-                  <span className="font-bold text-brand flex items-center gap-1 group-hover:gap-2 transition-all">Read <span className="hidden group-hover:inline">&rarr;</span></span>
+                  <Link to={item.link}><span className="font-bold text-brand flex items-center gap-1 group-hover:gap-2 transition-all">Read <span className="hidden group-hover:inline">&rarr;</span></span></Link>
                 </div>
               </div>
             </div>

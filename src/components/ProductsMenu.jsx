@@ -71,7 +71,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           aria-expanded={open ? 'true' : undefined}
         >
           <span>Products</span>
-          <KeyboardArrowDownIcon fontSize="small" className={`transition-transform duration-200 ${open ? 'rotate-180 text-blue-600' : ''}`} />
+          {/* <KeyboardArrowDownIcon fontSize="small" className={`transition-transform duration-200 ${open ? 'rotate-180 text-blue-600' : ''}`} /> */}
         </div>
 
         <Menu

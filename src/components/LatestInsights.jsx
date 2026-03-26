@@ -26,7 +26,7 @@ const insights = [
   },
   {
     image: "/assets/core 6.webp",
-    category: "Money",
+    category: "FinTech",
     title: "Finexa",
     date: "February 15, 2026",
     link: "/finexa-article"
@@ -44,10 +44,10 @@ const LatestInsights = () => {
         
         <div className="flex gap-8 overflow-x-scroll">
           {insights.map((item, i) => (
-            <div key={i} className="w-80 h-96 shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col hover:-translate-y-1">
+            <div key={i} className="w-96 h-[450px] shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col hover:-translate-y-1">
               <div className="h-56 overflow-hidden relative">
                 <div className="absolute inset-0 bg-brand/10 mix-blend-multiply z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <img src={item.image} alt={item.title} className="w-full h-full object-fit group-hover:scale-105 transition-transform duration-500" />
               </div>
               <div className="p-6 flex flex-col flex-grow">
                 <div className="mb-3">

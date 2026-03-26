@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Collapse from '@mui/material/Collapse';
@@ -71,7 +70,6 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           aria-expanded={open ? 'true' : undefined}
         >
           <span>Products</span>
-          {/* <KeyboardArrowDownIcon fontSize="small" className={`transition-transform duration-200 ${open ? 'rotate-180 text-blue-600' : ''}`} /> */}
         </div>
 
         <Menu
@@ -79,20 +77,19 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           anchorEl={anchorEl}
           open={open}
           onClose={handleDesktopClose}
-          MenuListProps={{ onMouseLeave: handleDesktopClose }}
           disableScrollLock={true}
           className="mt-2"
         >
           <MenuItem 
             onMouseEnter={handleSoftEnter}
-            sx={{ display: 'flex', justifyContent: 'space-between', width: '220px', fontWeight: 500, color: '#374151' }}
+            sx={{ display: 'flex', justifyContent: 'space-between', width: '220px', fontWeight: 500, color: '#374151', bgcolor: softOpen ? 'rgba(0,0,0,0.04)' : 'transparent' }}
           >
             Software Products <KeyboardArrowRightIcon fontSize="small" sx={{ color: '#9CA3AF' }} />
           </MenuItem>
           
           <MenuItem 
             onMouseEnter={handleHardEnter}
-            sx={{ display: 'flex', justifyContent: 'space-between', width: '220px', fontWeight: 500, color: '#374151' }}
+            sx={{ display: 'flex', justifyContent: 'space-between', width: '220px', fontWeight: 500, color: '#374151', bgcolor: hardOpen ? 'rgba(0,0,0,0.04)' : 'transparent' }}
           >
             Hardware Products <KeyboardArrowRightIcon fontSize="small" sx={{ color: '#9CA3AF' }} />
           </MenuItem>
@@ -106,9 +103,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
           disableScrollLock={true}
-          sx={{ pointerEvents: 'none' }}
-          PaperProps={{ sx: { pointerEvents: 'auto', ml: 0.5, minWidth: '180px' } }}
-          MenuListProps={{ onMouseLeave: () => setSoftAnchorEl(null) }}
+          PaperProps={{ sx: { ml: 0.5, minWidth: '180px' } }}
         >
           <MenuItem onClick={() => navigateTo('/finexa')} sx={{ fontSize: '14px', color: '#4B5563' }}>Finexa</MenuItem>
           <MenuItem onClick={() => navigateTo('/healnet')} sx={{ fontSize: '14px', color: '#4B5563' }}>HealNet</MenuItem>
@@ -122,12 +117,10 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
           transformOrigin={{ vertical: 'top', horizontal: 'left' }}
           disableScrollLock={true}
-          sx={{ pointerEvents: 'none' }}
-          PaperProps={{ sx: { pointerEvents: 'auto', ml: 0.5, minWidth: '220px' } }}
-          MenuListProps={{ onMouseLeave: () => setHardAnchorEl(null) }}
+          PaperProps={{ sx: { ml: 0.5, minWidth: '220px' } }}
         >
-          <MenuItem onClick={() => navigateTo('/hardware/item-1')} sx={{ fontSize: '14px', color: '#4B5563' }}>Hardware Product 1</MenuItem>
-          <MenuItem onClick={() => navigateTo('/hardware/item-2')} sx={{ fontSize: '14px', color: '#4B5563' }}>Hardware Product 2</MenuItem>
+          <MenuItem onClick={() => navigateTo('/coming-soon')} sx={{ fontSize: '14px', color: '#4B5563' }}>Hardware Product 1</MenuItem>
+          <MenuItem onClick={() => navigateTo('/coming-soon')} sx={{ fontSize: '14px', color: '#4B5563' }}>Hardware Product 2</MenuItem>
         </Menu>
       </div>
 
@@ -170,10 +163,10 @@ const ProductsMenu = ({ closeMobileMenu }) => {
               </ListItemButton>
               <Collapse in={mobileHardOpen} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4, py: 1 }} onClick={() => navigateTo('/hardware/item-1')}>
+                  <ListItemButton sx={{ pl: 4, py: 1 }} onClick={() => navigateTo('/coming-soon')}>
                     <ListItemText primary="Hardware Product 1" primaryTypographyProps={{ fontSize: '13px', color: '#4B5563' }} />
                   </ListItemButton>
-                  <ListItemButton sx={{ pl: 4, py: 1 }} onClick={() => navigateTo('/hardware/item-2')}>
+                  <ListItemButton sx={{ pl: 4, py: 1 }} onClick={() => navigateTo('/coming-soon')}>
                     <ListItemText primary="Hardware Product 2" primaryTypographyProps={{ fontSize: '13px', color: '#4B5563' }} />
                   </ListItemButton>
                 </List>

@@ -35,16 +35,16 @@ const insights = [
 
 const LatestInsights = () => {
   return (
-    <section className="py-10 px-5 bg-gray-50" data-aos="fade-up">
+    <section className="py-10 px-5 bg-gray-50 " data-aos="fade-up">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex justify-between items-end">
           <SectionTitle accent="Latest" postText=" Insights" />
           {/* <Link to="#" className="hidden md:inline-block text-brand font-bold hover:text-accent transition-colors">View All Articles &rarr;</Link> */}
         </div>
         
-        <div className="flex gap-8">
+        <div className="flex gap-8 overflow-x-scroll">
           {insights.map((item, i) => (
-            <div key={i} className="w-full sm:w-[calc(50%-2rem)] lg:w-[calc(33.333%-2rem)] max-w-sm bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col h-full hover:-translate-y-1">
+            <div key={i} className="w-80 h-96 shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col hover:-translate-y-1">
               <div className="h-56 overflow-hidden relative">
                 <div className="absolute inset-0 bg-brand/10 mix-blend-multiply z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <img src={item.image} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />

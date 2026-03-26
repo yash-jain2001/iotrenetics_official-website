@@ -50,11 +50,11 @@ const solutions = [
   },
 ];
 
-const sol = [
-  { label: "HealNet", to: "/healnet" },
-  // { label: "VisiAI", to: "/coming-soon" },
-  // { label: "Agentra", to: "/coming-soon" },
-];
+// const sol = [
+//   { label: "HealNet", to: "/healnet" },
+//   // { label: "VisiAI", to: "/coming-soon" },
+//   // { label: "Agentra", to: "/coming-soon" },
+// ];
 
 const Solutions = () => {
   return (
@@ -82,7 +82,7 @@ const Solutions = () => {
         </div>
       </section>
 
-      <div className="text-center mb-20">
+      {/* <div className="text-center mb-20">
         <SectionTitle accent="Sol" postText="utions" />
       <div className="flex justify-center gap-8 mb-16 flex-wrap">
         {sol.map((item, idx) => (
@@ -93,7 +93,7 @@ const Solutions = () => {
           </Link>
         ))}
       </div>
-      </div>
+      </div> */}
 
       <CTASection />
     </>

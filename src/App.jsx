@@ -26,6 +26,7 @@ import SmartHomeAutomation from './articles/SmartHomeAutomation';
 import AIOT from './articles/AIOT';
 import IndustrialIOT from './articles/IndustrialIOT';
 import FinexaArticle from './articles/Finexa';
+import Healnet from './articles/Healnet';
 
 
 function ScrollToTop() {
@@ -69,6 +70,7 @@ function App() {
         <Route path="/aiot" element={<AIOT />} />
         <Route path="/industrial-iot" element={<IndustrialIOT />} />
         <Route path="/finexa-article" element={<FinexaArticle />} />
+        <Route path="/healnet-article" element={<Healnet />} />
       </Routes>
       <Footer />
       <WhatsAppButton />

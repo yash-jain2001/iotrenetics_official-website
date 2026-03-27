@@ -49,8 +49,17 @@ const Automation = () => {
   return (
     <>
       {/* Hero */}
-      <section className="h-[90vh] bg-cover bg-center bg-no-repeat flex items-center justify-center text-center" style={{ backgroundImage: 'url("/assets/MainAutomation.webp")' }}>
-        <div className="flex items-center justify-center h-full">
+      <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-fill z-0 pointer-events-none"
+        >
+          <source src="/assets/Smart_home_transition_202603221919.mp4" type="video/mp4" />
+        </video>
+        <div className="relative z-10 flex items-center justify-center h-full">
           <h1 className="text-white text-3xl md:text-4xl font-bold leading-snug [text-shadow:0_4px_15px_rgba(0,0,0,0.7)]">
             Command Your Comfort. Powered by<br /><span className="text-accent">Home Automation</span>
           </h1>

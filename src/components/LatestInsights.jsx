@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 
 const insights = [
   {
-    image: "/assets/core 8.webp",
+    image: "/assets/core 11.jpeg",
     category: "Smart Home Automation",
     title: "Reducing Energy Costs, Enhancing Security & Building the Future of Connected Living",
     date: "March 12, 2026",
     link: "/smart-home-automation"
   },
   {
-    image: "/assets/core 11.jpeg",
+    image: "/assets/core 6.webp",
     category: "AIOT",
     title: "AI + IoT: Building Intelligent Environments with Data-Driven Decision Making & Secure Connected Systems",
     date: "February 28, 2026",
     link: "/aiot"
   },
   {
-    image: "/assets/core 6.webp",
+    image: "/assets/core 8.webp",
     category: "INDUSTRIAL IOT",
     title: "Driving Efficiency, Reducing Downtime & Enabling Predictive Operations",
     date: "February 15, 2026",
@@ -33,7 +33,7 @@ const insights = [
   },
   {
     image: "/assets/core 12.jpeg",
-    category: "FinTech",
+    category: "HealthTech",
     title: "Healnet",
     date: "February 15, 2026",
     link: "/healnet-article"

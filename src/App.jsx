@@ -27,6 +27,7 @@ import AIOT from './articles/AIOT';
 import IndustrialIOT from './articles/IndustrialIOT';
 import FinexaArticle from './articles/Finexa';
 import Healnet from './articles/Healnet';
+import DeleteAccFinexa from './pages/DeleteAccFinexa';
 
 
 function ScrollToTop() {
@@ -58,6 +59,7 @@ function App() {
         <Route path="/automation" element={<Automation />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/privacy-policy-finexa" element={<PrivacyPolicyFinexa />} />
+        <Route path="/delete-account-policy-finexa" element={<DeleteAccFinexa />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 
         <Route path="/iot-driven-automation" element={<IOT_Driven_Automation />} />

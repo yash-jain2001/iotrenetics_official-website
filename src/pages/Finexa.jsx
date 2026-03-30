@@ -213,10 +213,11 @@ const Finexa = () => {
             Join thousands of users tracking their finances with just their
             voice. <Link to={"/privacy-policy-finexa"}><span className="text-accent underline">Privacy Policy</span></Link>
           </p>
-          <div className="flex gap-5 justify-center">
+          <div className="flex flex-col gap-2 justify-center items-center">
             <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Get Started in Seconds
             </button>
+            <Link to={"/delete-account-policy-finexa"}><span className="text-accent underline">Delete account policy</span></Link>
             {/* <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Download ⬇️
             </button> */}

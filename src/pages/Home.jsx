@@ -10,6 +10,7 @@ import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
 
 const coreFocusItems = [
+  { img: "/assets/MainAutomation.webp", label: "Home Automation", link: "/automation" },
   { img: "/assets/core 1.webp.jpeg", label: "IoT-Driven Automation", link: "/iot-driven-automation" },
   { img: "/assets/core 2.webp", label: "AI & Generative AI Solutions", link: "/ai-and-genrative-solutions" },
   { img: "/assets/core 3.webp", label: "Video Analytics & Computer Vision", link: "/video-analytics-and-computer-vision" },
@@ -31,52 +32,52 @@ const heroHeadings = [
   "Advanced Automation for Modern Systems",
 ];
 
-const NetworkBackground = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-    {/* Network lines and nodes */}
-    <svg className="absolute w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <pattern id="networkBg" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-          <circle cx="10" cy="10" r="2" fill="white" />
-          <circle cx="50" cy="50" r="3" fill="white" />
-          <circle cx="90" cy="20" r="2" fill="white" />
-          <path d="M10,10 L50,50 L90,20" stroke="white" strokeWidth="0.5" fill="none" />
-        </pattern>
-      </defs>
-      <rect x="0" y="0" width="100%" height="100%" fill="url(#networkBg)" />
-    </svg>
-    {/* Animated glowing orbs */}
-    <motion.div
-      animate={{
-        y: [0, -50, 0],
-        x: [0, 30, 0],
-        scale: [1, 1.2, 1],
-        opacity: [0.3, 0.5, 0.3],
-      }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-[20%] left-[15%] w-64 h-64 bg-white/20 rounded-full blur-3xl"
-    />
-    <motion.div
-      animate={{
-        y: [0, 60, 0],
-        x: [0, -40, 0],
-        scale: [1, 1.5, 1],
-        opacity: [0.2, 0.4, 0.2],
-      }}
-      transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute bottom-[10%] right-[10%] w-80 h-80 bg-white/10 rounded-full blur-3xl"
-    />
-    <motion.div
-      animate={{
-        y: [0, -30, 0],
-        x: [0, -20, 0],
-        opacity: [0.3, 0.6, 0.3],
-      }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-[40%] right-[40%] w-40 h-40 bg-white/10 rounded-full blur-2xl"
-    />
-  </div>
-);
+// const NetworkBackground = () => (
+//   <div className="absolute inset-0 overflow-hidden pointer-events-none">
+//     {/* Network lines and nodes */}
+//     <svg className="absolute w-full h-full opacity-20" xmlns="http://www.w3.org/2000/svg">
+//       <defs>
+//         <pattern id="networkBg" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+//           <circle cx="10" cy="10" r="2" fill="white" />
+//           <circle cx="50" cy="50" r="3" fill="white" />
+//           <circle cx="90" cy="20" r="2" fill="white" />
+//           <path d="M10,10 L50,50 L90,20" stroke="white" strokeWidth="0.5" fill="none" />
+//         </pattern>
+//       </defs>
+//       <rect x="0" y="0" width="100%" height="100%" fill="url(#networkBg)" />
+//     </svg>
+//     {/* Animated glowing orbs */}
+//     <motion.div
+//       animate={{
+//         y: [0, -50, 0],
+//         x: [0, 30, 0],
+//         scale: [1, 1.2, 1],
+//         opacity: [0.3, 0.5, 0.3],
+//       }}
+//       transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+//       className="absolute top-[20%] left-[15%] w-64 h-64 bg-white/20 rounded-full blur-3xl"
+//     />
+//     <motion.div
+//       animate={{
+//         y: [0, 60, 0],
+//         x: [0, -40, 0],
+//         scale: [1, 1.5, 1],
+//         opacity: [0.2, 0.4, 0.2],
+//       }}
+//       transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+//       className="absolute bottom-[10%] right-[10%] w-80 h-80 bg-white/10 rounded-full blur-3xl"
+//     />
+//     <motion.div
+//       animate={{
+//         y: [0, -30, 0],
+//         x: [0, -20, 0],
+//         opacity: [0.3, 0.6, 0.3],
+//       }}
+//       transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+//       className="absolute top-[40%] right-[40%] w-40 h-40 bg-white/10 rounded-full blur-2xl"
+//     />
+//   </div>
+// );
 
 // const products = [
 //   {name:"Enerlytix - Smart Energy Management", link: "/coming-soon"},
@@ -183,8 +184,20 @@ const Home = () => {
       <section
         className="relative bg-gradient-to-br from-brand to-brand-dark text-white text-center h-[90vh] md:h-screen items-center justify-center flex px-5 max-md:py-20 overflow-hidden"
       >
-        <NetworkBackground />
-        <div className="max-w-[900px] mx-auto relative z-10" data-aos="fade-up">
+        <video
+          autoPlay
+          loop
+          playsInline
+          muted
+          className="absolute inset-0 w-full h-full object-fill z-0 pointer-events-none"
+        >
+          <source
+            src="/assets/Smart_home_transition_202603221919.mp4"
+            type="video/mp4"
+          />
+        </video>
+        {/* <NetworkBackground /> */}
+        <div className="max-w-[900px] mx-auto relative backdrop-blur-sm p-5 rounded-lg z-10" data-aos="fade-up">
           <div className="min-h-[140px] md:min-h-[120px] flex items-end justify-center mb-6">
             <AnimatePresence mode="wait">
               <motion.h1

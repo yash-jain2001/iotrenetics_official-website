@@ -10,7 +10,7 @@ import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
 
 const coreFocusItems = [
-  { img: "/assets/MainAutomation.webp", label: "Home Automation", link: "/automation" },
+  { img: "/assets/core 0.jpeg", label: "Home Automation", link: "/automation" },
   { img: "/assets/core 1.webp.jpeg", label: "IoT-Driven Automation", link: "/iot-driven-automation" },
   { img: "/assets/core 2.webp", label: "AI & Generative AI Solutions", link: "/ai-and-genrative-solutions" },
   { img: "/assets/core 3.webp", label: "Video Analytics & Computer Vision", link: "/video-analytics-and-computer-vision" },
@@ -133,7 +133,7 @@ const FocusGrid = ({ items }) => (
             src={item.img}
             alt={item.label}
             loading="lazy"
-            className="w-full object-fill h-64 rounded-lg flex-shrink-0"
+            className="w-full object-cover h-64 rounded-lg flex-shrink-0"
           />
           <div className="bg-gray-100 p-6 rounded-xl text-center font-medium shadow-sm mt-2 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex-grow">
             {item.label}

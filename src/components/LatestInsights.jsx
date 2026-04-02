@@ -32,7 +32,7 @@ const insights = [
     link: "/finexa-article"
   },
   {
-    image: "/assets/core 6.webp",
+    image: "/assets/core 13.jpeg",
     category: "HealthTech",
     title: "Healnet",
     date: "February 15, 2026",

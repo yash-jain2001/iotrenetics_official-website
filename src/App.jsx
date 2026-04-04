@@ -28,7 +28,7 @@ import IndustrialIOT from './articles/IndustrialIOT';
 import FinexaArticle from './articles/Finexa';
 import Healnet from './articles/Healnet';
 import DeleteAccFinexa from './pages/DeleteAccFinexa';
-
+import Agentra from './pages/Agentra';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -56,6 +56,7 @@ function App() {
         <Route path="/industries" element={<Industries />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/healnet" element={<HealNet />} />
+        <Route path="/agentra" element={<Agentra />} />
         <Route path="/automation" element={<Automation />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route path="/privacy-policy-finexa" element={<PrivacyPolicyFinexa />} />

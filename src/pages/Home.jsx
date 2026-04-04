@@ -189,7 +189,7 @@ const Home = () => {
           loop
           playsInline
           muted
-          className="absolute inset-0 w-full h-full object-fill z-0 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
         >
           <source
             src="/assets/Smart_home_transition_202603221919.mp4"

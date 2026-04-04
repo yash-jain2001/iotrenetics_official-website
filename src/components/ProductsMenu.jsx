@@ -63,7 +63,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
         >
           <MenuItem onClick={() => navigateTo('/finexa')} sx={{ fontSize: '15px', color: '#374151', py: 1 }}>Finexa</MenuItem>
           <MenuItem onClick={() => navigateTo('/healnet')} sx={{ fontSize: '15px', color: '#374151', py: 1 }}>HealNet</MenuItem>
-          <MenuItem onClick={() => navigateTo('/coming-soon')} sx={{ fontSize: '15px', color: '#374151', py: 1 }}>Agentra</MenuItem>
+          <MenuItem onClick={() => navigateTo('/agentra')} sx={{ fontSize: '15px', color: '#374151', py: 1 }}>Agentra</MenuItem>
         </Menu>
       </div>
 

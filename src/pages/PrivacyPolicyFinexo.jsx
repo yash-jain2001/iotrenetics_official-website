@@ -29,7 +29,7 @@ const UnorderedList = ({ children }) => (
   </ul>
 );
 
-const PrivacyPolicyfinexo = () => {
+const PrivacyPolicyFinexo = () => {
   return (
     <div className="min-h-screen bg-slate-50 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-indigo-100 selection:text-indigo-900">
       <div className=" mx-auto rounded-3xl shadow-xl overflow-hidden bg-white ring-1 ring-slate-900/5">
@@ -885,4 +885,4 @@ const PrivacyPolicyfinexo = () => {
   );
 };
 
-export default PrivacyPolicyfinexo;
+export default PrivacyPolicyFinexo;

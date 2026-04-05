@@ -21,7 +21,7 @@ import Automation from "./pages/Automation";
 import ComingSoon from "./pages/ComingSoon";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import "./index.css";
-import PrivacyPolicyfinexo from "./pages/PrivacyPolicyfinexo";
+import PrivacyPolicyFinexo from "./pages/PrivacyPolicyFinexo";
 import IOT_Driven_Automation from "./sub-pages/IOT_Driven_Automation";
 import Ai_and_Genrative_Solutions from "./sub-pages/Ai_and_Genrative_Solutions";
 import Video_Analytics_and_Computer_Vision from "./sub-pages/Video_Analytics_and_Computer_Vision";
@@ -32,7 +32,7 @@ import AIOT from "./articles/AIOT";
 import IndustrialIOT from "./articles/IndustrialIOT";
 import FinexoArticle from "./articles/Finexo";
 import Healnet from "./articles/Healnet";
-import DeleteAccfinexo from "./pages/DeleteAccfinexo";
+import DeleteAccFinexo from "./pages/DeleteAccFinexo";
 import Agentra from "./pages/Agentra";
 
 function ScrollToTop() {
@@ -66,11 +66,11 @@ function App() {
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route
           path="/privacy-policy-finexo"
-          element={<PrivacyPolicyfinexo />}
+          element={<PrivacyPolicyFinexo />}
         />
         <Route
           path="/delete-account-policy-finexo"
-          element={<DeleteAccfinexo />}
+          element={<DeleteAccFinexo />}
         />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 

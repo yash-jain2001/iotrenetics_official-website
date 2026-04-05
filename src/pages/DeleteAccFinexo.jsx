@@ -1,6 +1,6 @@
 import React from "react";
 
-const DeleteAccfinexo = () => {
+const DeleteAccFinexo = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <header className="bg-gradient-to-br from-orange-500 to-red-500 text-white py-6 px-5 text-center">
@@ -245,4 +245,4 @@ const DeleteAccfinexo = () => {
   );
 };
 
-export default DeleteAccfinexo;
+export default DeleteAccFinexo;

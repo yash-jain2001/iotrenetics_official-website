@@ -11,7 +11,7 @@ const purposeCards = [
     items: ["Talk to Save", "Smart Verification", "Error-Free Records"],
   },
   {
-    title: "⚙️ Finexa Understands",
+    title: "⚙️ finexo Understands",
     items: [
       "Amount",
       "Expense or income",
@@ -50,8 +50,10 @@ const featureBoxes = [
   },
 ];
 
-const PurposeCard = ({ title, items, className = '' }) => (
-  <div className={`p-7 border border-gray-200 bg-gray-100 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-white ${className}`}>
+const PurposeCard = ({ title, items, className = "" }) => (
+  <div
+    className={`p-7 border border-gray-200 bg-gray-100 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-white ${className}`}
+  >
     <h3 className="text-xl font-semibold mb-4">{title}</h3>
     <ul className="pl-5 list-disc">
       {items.map((item, i) => (
@@ -63,14 +65,14 @@ const PurposeCard = ({ title, items, className = '' }) => (
   </div>
 );
 
-const Finexa = () => {
+const finexo = () => {
   return (
     <>
       {/* Top */}
       <section className="py-20 px-5 md:px-24" data-aos="fade-up">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-extrabold">
-            <span className="text-accent">Fin</span>exa
+            <span className="text-accent">Fin</span>exo
           </h1>
           <br />
           <h2 className="text-3xl md:text-4xl font-bold">
@@ -83,31 +85,31 @@ const Finexa = () => {
           </p>
         </div>
 
-        {/* What is Finexa */}
+        {/* What is finexo */}
         <div className="flex items-center gap-16 max-lg:flex-col">
           <div className="w-full lg:w-[55%] transition-all duration-400 hover:-translate-y-1.5">
             <h2 className="text-4xl font-extrabold mb-5">
-              What is <span className="text-accent">Finexa</span>
+              What is <span className="text-accent">finexo</span>
             </h2>
             <p className="text-xl leading-relaxed mb-5 text-gray-900">
-              Finexa is a smart, voice-eroded personal finance and expense
+              finexo is a smart, voice-eroded personal finance and expense
               management app that helps you track money naturally — just by
               speaking.
             </p>
             <p className="text-xl leading-relaxed mb-5 text-gray-900">
               Instead of typing transactions manually; users can speak in plain
-              language, and Finexa automatically understands, categorizes, and
+              language, and finexo automatically understands, categorizes, and
               records expenses or income — for both personal and group use.
             </p>
             <strong className="text-xl">
-              Speak your spending, <span className="text-accent">Finexa</span>{" "}
+              Speak your spending, <span className="text-accent">finexo</span>{" "}
               does the rest.
             </strong>
           </div>
           <div className="w-full lg:w-[45%]">
             <img
-              src="/assets/finexa1.webp"
-              alt="Finexa App Illustration"
+              src="/assets/finexo1.webp"
+              alt="finexo App Illustration"
               loading="lazy"
               className="w-full transition-transform duration-400 hover:scale-[1.03]"
             />
@@ -118,18 +120,23 @@ const Finexa = () => {
       {/* Purpose */}
       <section className="py-20 px-[6%] bg-white" data-aos="fade-up">
         <h1 className="text-4xl font-extrabold mb-10">
-          Purpose of <span className="text-accent">Finexa</span>
+          Purpose of <span className="text-accent">finexo</span>
         </h1>
         <div className="flex gap-16 items-center max-lg:flex-col">
           <div className="flex flex-wrap rounded-xl overflow-hidden bg-gray-300 w-full">
             {purposeCards.map((card, i) => (
-              <PurposeCard key={i} title={card.title} items={card.items} className="w-full sm:w-1/2" />
+              <PurposeCard
+                key={i}
+                title={card.title}
+                items={card.items}
+                className="w-full sm:w-1/2"
+              />
             ))}
           </div>
           <div>
             <img
-              src="/assets/finexa2.webp"
-              alt="Finexa Illustration"
+              src="/assets/finexo2.webp"
+              alt="finexo Illustration"
               loading="lazy"
               className="max-w-[520px] w-full transition-transform duration-400 hover:-translate-y-4 hover:scale-105"
             />
@@ -137,16 +144,16 @@ const Finexa = () => {
         </div>
       </section>
 
-      {/* Ask Finexa */}
+      {/* Ask finexo */}
       <section className="py-20 px-[8%] bg-white" data-aos="fade-up">
         <div className="flex items-center justify-between gap-10 max-lg:flex-col max-lg:text-center">
           <div className="flex-1">
             <h2 className="text-4xl font-bold">
-              Ask <span className="text-accent">Finexa</span> (AI Assistant)
+              Ask <span className="text-accent">finexo</span> (AI Assistant)
             </h2>
             <p className="text-lg mt-5 max-w-[520px] max-lg:mx-auto">
               Unlock deep insights into your spending habits by simply asking.
-              Finexa doesn't just record data—it understands your financial
+              finexo doesn't just record data—it understands your financial
               history.
             </p>
             <h4 className="mt-6 text-xl font-semibold">Ask questions like:</h4>
@@ -160,8 +167,8 @@ const Finexa = () => {
           </div>
           <div className="flex-1 text-center">
             <img
-              src="/assets/finexa3.webp"
-              alt="Ask Finexa AI"
+              src="/assets/finexo3.webp"
+              alt="Ask finexo AI"
               loading="lazy"
               className="w-full max-w-[480px] animate-float hover:animate-none hover:-translate-y-5 hover:scale-[1.06] transition-transform duration-600"
             />
@@ -175,8 +182,8 @@ const Finexa = () => {
           <span className="text-accent">Core</span> Features
         </h2>
         <div className="flex items-center gap-12 max-lg:flex-col max-lg:items-center">
-          <div className="flex flex-col">
-            {["/assets/finexa4.webp", "/assets/finexa5.webp"].map((src, i) => (
+          <div className="flex flex-col gap-10">
+            {["/assets/finexo4.webp", "/assets/finexo5.webp"].map((src, i) => (
               <img
                 key={i}
                 src={src}
@@ -211,13 +218,20 @@ const Finexa = () => {
           </h3>
           <p className="font-bold my-4">
             Join thousands of users tracking their finances with just their
-            voice. <Link to={"/privacy-policy-finexa"}><span className="text-accent underline">Privacy Policy</span></Link>
+            voice.{" "}
+            <Link to={"/privacy-policy-finexo"}>
+              <span className="text-accent underline">Privacy Policy</span>
+            </Link>
           </p>
           <div className="flex flex-col gap-2 justify-center items-center">
             <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Get Started in Seconds
             </button>
-            <Link to={"/delete-account-policy-finexa"}><span className="text-accent underline">Delete account policy</span></Link>
+            <Link to={"/delete-account-policy-finexo"}>
+              <span className="text-accent underline">
+                Delete account policy
+              </span>
+            </Link>
             {/* <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
               Download ⬇️
             </button> */}
@@ -230,4 +244,4 @@ const Finexa = () => {
   );
 };
 
-export default Finexa;
+export default finexo;

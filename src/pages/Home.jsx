@@ -182,7 +182,7 @@ const Home = () => {
 
       {/* 3. Hero Banner Section */}
       <section
-        className="relative bg-gradient-to-br from-brand to-brand-dark text-white text-center h-[90vh] md:h-screen items-center justify-center flex px-5 max-md:py-20 overflow-hidden"
+        className="relative bg-transparent text-white text-center h-[90vh] md:h-screen items-center justify-center flex px-5 max-md:py-20 overflow-hidden"
       >
         <video
           autoPlay

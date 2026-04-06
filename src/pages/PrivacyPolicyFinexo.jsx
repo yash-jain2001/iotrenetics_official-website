@@ -46,13 +46,13 @@ const PrivacyPolicyFinexo = () => {
               Privacy Policy
             </h1>
             <p className="text-xl text-indigo-100 mb-8 font-medium">
-              finexo — Voice-Powered Finance Manager
+              Finexo — Voice-Powered Finance Manager
             </p>
 
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 ring-1 ring-white/20 shadow-lg">
               <HeaderInfo
                 label="App Name"
-                value="finexo — Voice-Powered Finance Manager"
+                value="Finexo — Voice-Powered Finance Manager"
               />
               <HeaderInfo
                 label="Company"
@@ -77,7 +77,7 @@ const PrivacyPolicyFinexo = () => {
           <SectionTitle>1. Introduction</SectionTitle>
           <Paragraph>
             IoTrenetics Solutions Private Limited (“we,” “our,” or “us”)
-            operates the finexo mobile application (the “App”), a voice-powered
+            operates the Finexo mobile application (the “App”), a voice-powered
             personal finance manager available on Android via Google Play. We
             are committed to protecting your personal information and your right
             to privacy.
@@ -354,7 +354,7 @@ const PrivacyPolicyFinexo = () => {
 
           <SectionTitle>5. Third-Party Services</SectionTitle>
           <Paragraph>
-            finexo integrates the following third-party services that may have
+            Finexo integrates the following third-party services that may have
             access to certain data as required to perform their functions:
           </Paragraph>
 
@@ -449,7 +449,7 @@ const PrivacyPolicyFinexo = () => {
           </div>
           <Paragraph>
             We do not use any third-party advertising networks, behavioural
-            tracking SDKs, or data brokers. finexo does not display
+            tracking SDKs, or data brokers. Finexo does not display
             advertisements.
           </Paragraph>
 
@@ -652,7 +652,7 @@ const PrivacyPolicyFinexo = () => {
                 e) Right to Withdraw Consent (Microphone):
               </strong>{" "}
               You may revoke microphone permission at any time via your device’s
-              system settings (Settings &gt; Apps &gt; finexo &gt; Permissions).
+              system settings (Settings &gt; Apps &gt; Finexo &gt; Permissions).
               This will disable voice input but will not affect other App
               features.
             </li>
@@ -686,7 +686,7 @@ const PrivacyPolicyFinexo = () => {
 
           <SectionTitle>10. Children’s Privacy</SectionTitle>
           <Paragraph>
-            finexo is not directed at children under the age of 13 (or under 16
+            Finexo is not directed at children under the age of 13 (or under 16
             in the European Economic Area). We do not knowingly collect personal
             information from children under these ages.
           </Paragraph>
@@ -865,7 +865,7 @@ const PrivacyPolicyFinexo = () => {
                 <strong className="text-slate-700">
                   For data deletion requests:
                 </strong>{" "}
-                Use the subject line <em>“Data Deletion Request — finexo”</em>
+                Use the subject line <em>“Data Deletion Request — Finexo”</em>
               </p>
             </div>
           </div>

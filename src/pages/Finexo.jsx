@@ -11,7 +11,7 @@ const purposeCards = [
     items: ["Talk to Save", "Smart Verification", "Error-Free Records"],
   },
   {
-    title: "⚙️ finexo Understands",
+    title: "⚙️ Finexo Understands",
     items: [
       "Amount",
       "Expense or income",
@@ -89,20 +89,20 @@ const finexo = () => {
         <div className="flex items-center gap-16 max-lg:flex-col">
           <div className="w-full lg:w-[55%] transition-all duration-400 hover:-translate-y-1.5">
             <h2 className="text-4xl font-extrabold mb-5">
-              What is <span className="text-accent">finexo</span>
+              What is <span className="text-accent">Finexo</span>
             </h2>
             <p className="text-xl leading-relaxed mb-5 text-gray-900">
-              finexo is a smart, voice-eroded personal finance and expense
+              Finexo is a smart, voice-eroded personal finance and expense
               management app that helps you track money naturally — just by
               speaking.
             </p>
             <p className="text-xl leading-relaxed mb-5 text-gray-900">
               Instead of typing transactions manually; users can speak in plain
-              language, and finexo automatically understands, categorizes, and
+              language, and Finexo automatically understands, categorizes, and
               records expenses or income — for both personal and group use.
             </p>
             <strong className="text-xl">
-              Speak your spending, <span className="text-accent">finexo</span>{" "}
+              Speak your spending, <span className="text-accent">Finexo</span>{" "}
               does the rest.
             </strong>
           </div>
@@ -120,7 +120,7 @@ const finexo = () => {
       {/* Purpose */}
       <section className="py-20 px-[6%] bg-white" data-aos="fade-up">
         <h1 className="text-4xl font-extrabold mb-10">
-          Purpose of <span className="text-accent">finexo</span>
+          Purpose of <span className="text-accent">Finexo</span>
         </h1>
         <div className="flex gap-16 items-center max-lg:flex-col">
           <div className="flex flex-wrap rounded-xl overflow-hidden bg-gray-300 w-full">
@@ -149,11 +149,11 @@ const finexo = () => {
         <div className="flex items-center justify-between gap-10 max-lg:flex-col max-lg:text-center">
           <div className="flex-1">
             <h2 className="text-4xl font-bold">
-              Ask <span className="text-accent">finexo</span> (AI Assistant)
+              Ask <span className="text-accent">Finexo</span> (AI Assistant)
             </h2>
             <p className="text-lg mt-5 max-w-[520px] max-lg:mx-auto">
               Unlock deep insights into your spending habits by simply asking.
-              finexo doesn't just record data—it understands your financial
+              Finexo doesn't just record data—it understands your financial
               history.
             </p>
             <h4 className="mt-6 text-xl font-semibold">Ask questions like:</h4>

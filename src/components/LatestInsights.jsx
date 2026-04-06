@@ -30,7 +30,7 @@ const insights = [
   {
     image: "/assets/core 12.jpeg",
     category: "FinTech",
-    title: "finexo",
+    title: "Finexo",
     date: "February 15, 2026",
     link: "/finexo-article",
   },

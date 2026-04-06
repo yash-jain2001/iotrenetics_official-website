@@ -4,7 +4,7 @@ const DeleteAccFinexo = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
       <header className="bg-gradient-to-br from-orange-500 to-red-500 text-white py-6 px-5 text-center">
-        <h1 className="text-3xl font-extrabold tracking-tight">finexo</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight">Finexo</h1>
         <p className="mt-1 text-sm opacity-90">
           by IoTrenetics Solutions Private Limited · Made in Bharat 🇮🇳
         </p>
@@ -17,8 +17,8 @@ const DeleteAccFinexo = () => {
             🗑️ Account & Data Deletion
           </h2>
           <p className="text-gray-600 leading-relaxed text-[15px] mb-3">
-            At finexo, we respect your privacy and your right to control your
-            data. This page explains how to request deletion of your finexo
+            At Finexo, we respect your privacy and your right to control your
+            data. This page explains how to request deletion of your Finexo
             account and all associated data.
           </p>
           <p className="text-gray-600 leading-relaxed text-[15px] mb-3">
@@ -39,7 +39,7 @@ const DeleteAccFinexo = () => {
           <ul className="list-none my-4 space-y-4">
             {[
               <span key="1">
-                Open the <strong>finexo</strong> app on your device
+                Open the <strong>Finexo</strong> app on your device
               </span>,
               <span key="2">
                 Tap the <strong>☰ Menu</strong> icon in the top-left corner
@@ -93,7 +93,7 @@ const DeleteAccFinexo = () => {
               </a>
             </p>
             <p className="m-0 text-[15px] text-orange-800">
-              📌 Subject: <strong>Account Deletion Request — finexo</strong>
+              📌 Subject: <strong>Account Deletion Request — Finexo</strong>
             </p>
             <p className="m-0 text-[15px] text-orange-800">
               📝 Include: Your <strong>registered email address</strong>
@@ -236,7 +236,7 @@ const DeleteAccFinexo = () => {
 
       <footer className="text-center py-6 text-[13px] text-gray-400 border-t border-gray-200">
         <p>
-          <strong className="text-orange-500 font-bold">finexo</strong> is a
+          <strong className="text-orange-500 font-bold">Finexo</strong> is a
           product of IoTrenetics Solutions Private Limited
         </p>
         <p className="mt-1.5">Made in Bharat 🇮🇳 · support@iotrenetics.com</p>

@@ -19,7 +19,7 @@ const TermsAndConditions = () => {
 
         <div className="space-y-8 text-lg">
           <p>
-            These Terms and Conditions ("Terms") govern your use of the finexo
+            These Terms and Conditions ("Terms") govern your use of the Finexo
             mobile application and all services provided by IoTrenetics
             Solutions Pvt. Ltd. ("Company", "we", "our", or "us").
           </p>
@@ -64,7 +64,7 @@ const TermsAndConditions = () => {
               We provide digital technology services including:
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
-              <li>Mobile applications (e.g., finexo)</li>
+              <li>Mobile applications (e.g., Finexo)</li>
               <li>AI-driven analytics and insights</li>
               <li>IoT-based and data-driven platforms</li>
               <li>SaaS and automation tools</li>
@@ -131,7 +131,7 @@ const TermsAndConditions = () => {
               6. No Financial, Investment, or Medical Advice
             </h2>
             <p className="mb-3">
-              finexo provides informational and analytical insights only.
+              Finexo provides informational and analytical insights only.
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-4">
               <li>

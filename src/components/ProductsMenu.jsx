@@ -64,7 +64,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
             onClick={() => navigateTo("/finexo")}
             sx={{ fontSize: "15px", color: "#374151", py: 1 }}
           >
-            finexo
+            Finexo
           </MenuItem>
           <MenuItem
             onClick={() => navigateTo("/healnet")}

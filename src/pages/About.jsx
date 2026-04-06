@@ -22,7 +22,7 @@ const testimonials = [
   {
     heading: "Mobile Applications",
     quote:
-      "Empower users with intuitive mobile apps that provide real-time insights, seamless experiences, and smarter decision-making on the go. (e.g., finexo).",
+      "Empower users with intuitive mobile apps that provide real-time insights, seamless experiences, and smarter decision-making on the go. (e.g., Finexo).",
   },
   {
     heading: "Industrial IoT Solutions",

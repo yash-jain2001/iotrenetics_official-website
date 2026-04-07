@@ -72,12 +72,12 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           >
             HealNet
           </MenuItem>
-          <MenuItem
+          {/* <MenuItem
             onClick={() => navigateTo("/agentra")}
             sx={{ fontSize: "15px", color: "#374151", py: 1 }}
           >
             Agentra
-          </MenuItem>
+          </MenuItem> */}
         </Menu>
       </div>
 
@@ -148,6 +148,19 @@ const ProductsMenu = ({ closeMobileMenu }) => {
                   }}
                 />
               </ListItemButton>
+              {/* <ListItemButton
+                sx={{ py: 1, px: 2 }}
+                onClick={() => navigateTo("/agentra")}
+              >
+                <ListItemText
+                  primary="Agentra"
+                  primaryTypographyProps={{
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    color: "#4B5563",
+                  }}
+                />
+              </ListItemButton> */}
             </List>
           </Collapse>
         </List>

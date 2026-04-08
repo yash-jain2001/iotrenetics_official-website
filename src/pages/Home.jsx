@@ -8,6 +8,7 @@ import StatsCounter from "../components/StatsCounter";
 import IoTExplanation from "../components/IoTExplanation";
 import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
+import SmartHomePage from "./SmartifyClone";
 
 const coreFocusItems = [
   { img: "/assets/core 0.jpeg", label: "Home Automation", link: "/automation" },
@@ -306,6 +307,7 @@ const Home = () => {
       </section>
 
       <LatestInsights />
+      <SmartHomePage/>
 
       <CTASection />
     </>

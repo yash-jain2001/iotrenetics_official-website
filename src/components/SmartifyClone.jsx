@@ -104,6 +104,10 @@ export default function SmartHomePage() {
                 <option>Apartment</option>
                 <option>Villa</option>
                 <option>Office</option>
+                <option>Hotel</option>
+                <option>Restaurant</option>
+                <option>Studio</option>
+                <option>Other</option>
               </select>
             </div>
           </div>

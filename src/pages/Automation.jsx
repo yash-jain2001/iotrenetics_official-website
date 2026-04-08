@@ -1,6 +1,7 @@
 import CTASection from '../components/CTASection';
 import SectionTitle from '../components/SectionTitle';
 import FeatureCard from '../components/FeatureCard';
+import SmartHomePage from '../components/SmartifyClone';
 
 const whyCards = [
   { img: '/assets/Automation3.webp', accent: 'All-in-One', title: 'Control', desc: 'Manage lights, curtains, and appliances from a single app.' },
@@ -130,6 +131,8 @@ const Automation = () => {
             ))}
           </div>
       </section>
+
+      <SmartHomePage/>
 
       <CTASection />
     </>

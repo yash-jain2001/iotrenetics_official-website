@@ -142,8 +142,8 @@ export default function SmartHomePage() {
               Get detailed quote
             </button>
 
-            <button className="border px-6 py-3 rounded-lg w-full md:w-auto">
-              Call us now
+            <button className=" px-6 py-3 rounded-lg w-full md:w-auto">
+             Call us 📞 +91 7303677709
             </button>
           </div>
         </div>

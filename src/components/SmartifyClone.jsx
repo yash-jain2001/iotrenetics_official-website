@@ -38,6 +38,17 @@ const cards = [
 ];
 
 export default function SmartHomePage() {
+  const handleCallUs = () => {
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const phoneNumber = "+917303677709";
+
+    if (isMobile) {
+      window.location.href = `tel:${phoneNumber}`;
+    } else {
+      window.open(`https://wa.me/917303677709`, "_blank");
+    }
+  };
+
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
       {/* Heading */}
@@ -142,7 +153,10 @@ export default function SmartHomePage() {
               Get detailed quote
             </button>
 
-            <button className=" px-6 py-3 rounded-lg w-full md:w-auto">
+            <button 
+              onClick={handleCallUs}
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg w-full md:w-auto"
+            >
              Call us 📞 +91 7303677709
             </button>
           </div>

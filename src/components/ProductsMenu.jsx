@@ -127,7 +127,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
                 onClick={() => navigateTo("/finexo")}
               >
                 <ListItemText
-                  primary="finexo"
+                  primary="Finexo"
                   primaryTypographyProps={{
                     fontSize: "14px",
                     fontWeight: 500,

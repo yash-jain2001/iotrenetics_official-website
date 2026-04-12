@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const cards = [
   {
@@ -38,12 +38,43 @@ const cards = [
 ];
 
 export default function SmartHomePage() {
+  // ✅ STATE
+  const [rooms, setRooms] = useState("1-2 Rooms");
+  const [property, setProperty] = useState("Apartment");
+  const [selectedOptions, setSelectedOptions] = useState([]);
+
+  const phoneNumber = "7303677709";
+
+  // ✅ HANDLE CHECKBOX
+  const toggleOption = (option) => {
+    setSelectedOptions((prev) =>
+      prev.includes(option)
+        ? prev.filter((item) => item !== option)
+        : [...prev, option]
+    );
+  };
+
+  // ✅ WHATSAPP REDIRECT FUNCTION
+  const handleGetQuote = () => {
+    const optionsText =
+      selectedOptions.length > 0
+        ? selectedOptions.join(", ")
+        : "no specific automation";
+
+    const message = `Hi, I just generated a quote for a ${rooms} ${property} with ${optionsText}. Please assist further.`;
+
+    const encodedMessage = encodeURIComponent(message);
+
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappURL, "_blank");
+  };
+
   const handleCallUs = () => {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-    const phoneNumber = "+917303677709";
 
     if (isMobile) {
-      window.location.href = `tel:${phoneNumber}`;
+      window.location.href = `tel:+917303677709`;
     } else {
       window.open(`https://wa.me/917303677709`, "_blank");
     }
@@ -51,7 +82,6 @@ export default function SmartHomePage() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      {/* Heading */}
       <h1 className="text-3xl font-semibold text-center mb-2">
         What You Can Automate
       </h1>
@@ -66,7 +96,6 @@ export default function SmartHomePage() {
             key={index}
             className="w-full md:w-[48%] bg-white rounded-xl shadow-md overflow-hidden"
           >
-            {/* Image */}
             <div
               className="h-40 bg-cover bg-center relative"
               style={{ backgroundImage: `url(${card.image})` }}
@@ -76,7 +105,6 @@ export default function SmartHomePage() {
               </div>
             </div>
 
-            {/* List */}
             <div className="p-4">
               {card.items.map((item, i) => (
                 <p key={i} className="text-gray-600 mb-1">
@@ -94,15 +122,19 @@ export default function SmartHomePage() {
           Get instant estimate
         </h2>
         <p className="text-gray-500 mb-6">
-          Use our calculator to get an approximate cost for your smart home project.
+          Use our calculator to get an approximate cost.
         </p>
 
         <div className="bg-white shadow-md rounded-xl p-6 max-w-3xl mx-auto text-left">
-          {/* Row */}
+          {/* Inputs */}
           <div className="flex flex-col md:flex-row gap-4 mb-5">
             <div className="flex flex-col flex-1">
               <label className="mb-1 font-medium">Number of Rooms</label>
-              <select className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400">
+              <select
+                value={rooms}
+                onChange={(e) => setRooms(e.target.value)}
+                className="border rounded-lg p-2"
+              >
                 <option>1-2 Rooms</option>
                 <option>3-4 Rooms</option>
                 <option>5+ Rooms</option>
@@ -111,7 +143,11 @@ export default function SmartHomePage() {
 
             <div className="flex flex-col flex-1">
               <label className="mb-1 font-medium">Property Type</label>
-              <select className="border rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-teal-400">
+              <select
+                value={property}
+                onChange={(e) => setProperty(e.target.value)}
+                className="border rounded-lg p-2"
+              >
                 <option>Apartment</option>
                 <option>Villa</option>
                 <option>Office</option>
@@ -123,7 +159,7 @@ export default function SmartHomePage() {
             </div>
           </div>
 
-          {/* Checkbox Section */}
+          {/* Options */}
           <label className="font-medium block mb-3">
             What do you want to automate?
           </label>
@@ -141,7 +177,11 @@ export default function SmartHomePage() {
                 key={i}
                 className="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-lg cursor-pointer w-[48%] md:w-[30%]"
               >
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  checked={selectedOptions.includes(item)}
+                  onChange={() => toggleOption(item)}
+                />
                 {item}
               </label>
             ))}
@@ -149,15 +189,18 @@ export default function SmartHomePage() {
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row gap-4">
-            <button className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg w-full md:w-auto">
+            <button
+              onClick={handleGetQuote}
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg"
+            >
               Get detailed quote
             </button>
 
-            <button 
+            <button
               onClick={handleCallUs}
-              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg w-full md:w-auto"
+              className="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg"
             >
-             Call us 📞 +91 7303677709
+              Call us 📞 +91 7303677709
             </button>
           </div>
         </div>

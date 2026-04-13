@@ -1,922 +1,241 @@
-import React from "react";
+import CTASection from "../components/CTASection";
 
-export default function Agentra() {
+const purposeCards = [
+  {
+    title: "📥 Real-Time Email Ingestion",
+    items: [
+      "Connects directly with Gmail",
+      "Continuously monitors inbox",
+      "Captures raw email streams instantly",
+    ],
+  },
+  {
+    title: "🤖 AI Classification Engine",
+    items: [
+      "Important, Spam, Promotional, General",
+      "Powered by Mistral AI",
+      "Confidence-based tagging",
+    ],
+  },
+  {
+    title: "💬 Auto Reply Intelligence",
+    items: [
+      "Context-aware responses",
+      "Learns from templates",
+      "Instant reply generation",
+    ],
+    accent: true,
+  },
+  {
+    title: "🔔 Smart Notifications",
+    items: [
+      "Priority alerts",
+      "Urgent email detection",
+      "Daily summaries",
+    ],
+  },
+];
+
+const featureBoxes = [
+  {
+    title: "⚡ Fast Mode",
+    items: [
+      "Instant replies without approval",
+      "Fully automated workflow",
+      "Ideal for high-volume emails",
+    ],
+  },
+  {
+    title: "🛡️ Safe Mode",
+    items: [
+      "Manual approval before sending",
+      "Edit responses easily",
+      "Perfect for sensitive emails",
+    ],
+  },
+];
+
+const PurposeCard = ({ title, items, className = "" }) => (
+  <div
+    className={`p-7 border border-gray-200 bg-gray-100 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:bg-white ${className}`}
+  >
+    <h3 className="text-xl font-semibold mb-4">{title}</h3>
+    <ul className="pl-5 list-disc">
+      {items.map((item, i) => (
+        <li key={i} className="mb-2.5 text-base">
+          {item}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const Agentra = () => {
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4 sm:px-6 lg:px-8 font-sans text-gray-800 selection:bg-blue-200">
-      <div className=" mx-auto bg-white shadow-xl rounded-sm overflow-hidden print:shadow-none print:bg-white divide-y divide-gray-200">
-        {/* Cover / Header Layer */}
-        <header className="px-12 pt-14 pb-10">
-          <div className="flex justify-between text-xs font-semibold text-gray-500 uppercase tracking-widest mb-12">
-            <span>Agentra MailSense — Technical README</span>
-            <span>Confidential · v1.0 · March 2026</span>
-          </div>
-
-          <h1 className="text-4xl font-bold text-gray-900 mb-2 font-serif">
-            Agentra MailSense
+    <>
+      {/* HERO */}
+      <section className="py-20 px-5 md:px-24" data-aos="fade-up">
+        <div className="text-center mb-16">
+          <h1 className="text-5xl font-extrabold">
+            Agentra<span className="text-accent">MailSense</span>
           </h1>
-          <h2 className="text-xl text-gray-600 mb-8 border-l-4 border-blue-600 pl-4 font-medium">
-            AI-Powered Agentic Email Automation Platform
+          <br />
+          <h2 className="text-3xl md:text-4xl font-bold">
+            AI-Powered <span className="text-accent">Email Automation</span>
           </h2>
+          <p className="text-xl text-gray-700 mt-2">
+            Transform your inbox into an intelligent, self-managing system —
+            classify emails, generate replies, and automate actions instantly.
+          </p>
+        </div>
 
-          <div className="bg-gray-50 p-4 rounded text-sm text-gray-600 flex justify-between border border-gray-100">
-            <span>
-              <strong>Prepared by:</strong> Pooja
-            </span>
-            <span>
-              <strong>Date:</strong> March 2026
-            </span>
-            <span>
-              <strong>Status:</strong> Development
-            </span>
+        {/* WHAT IS */}
+        <div className="flex items-center gap-16 max-lg:flex-col">
+          <div className="w-full lg:w-[55%]">
+            <h2 className="text-4xl font-extrabold mb-5">
+              What is <span className="text-accent">Agentra</span>
+            </h2>
+            <p className="text-xl mb-5">
+              AgentraMailSense is an AI-powered autonomous email system that
+              understands, classifies, and responds to emails in real time.
+            </p>
+            <p className="text-xl mb-5">
+              Instead of manually replying or sorting emails, Agentra analyzes
+              context, prioritizes conversations, and responds intelligently —
+              saving time and improving communication efficiency.
+            </p>
+            <strong className="text-xl">
+              Let AI handle your inbox,{" "}
+              <span className="text-accent">you focus on what matters.</span>
+            </strong>
           </div>
-        </header>
 
-        <main className="px-12 py-10 space-y-12 text-sm leading-relaxed text-gray-700">
-          {/* 1. Executive Summary */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              1. Executive Summary
-            </h3>
-            <p className="mb-4">
-              Agentra MailSense is a full-stack, multi-user AI email automation
-              platform that connects directly to Gmail via Google OAuth2 and
-              uses Mistral AI to classify, archive, and automatically reply to
-              emails — all without manual effort.
+          <div className="w-full lg:w-[50%] rounded-xl overflow-hidden">
+            <img
+              src="/assets/agentra img 1.jpeg"
+              className="w-full transition-transform hover:scale-[1.03]"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* PURPOSE */}
+      <section className="py-20 px-[6%] bg-white">
+        <h1 className="text-4xl font-extrabold mb-10">
+          Core of <span className="text-accent">Agentra</span>
+        </h1>
+
+        <div className="flex gap-16 items-center max-lg:flex-col">
+          <div className="flex flex-wrap rounded-xl overflow-hidden bg-gray-300 w-full">
+            {purposeCards.map((card, i) => (
+              <PurposeCard
+                key={i}
+                title={card.title}
+                items={card.items}
+                className="w-full sm:w-1/2"
+              />
+            ))}
+          </div>
+
+          {/* <div>
+            <img
+              src="/assets/agentra img 2.jpeg"
+              className="max-w-[520px] w-full transition-transform hover:scale-105"
+            />
+          </div> */}
+        </div>
+      </section>
+
+      {/* AI SECTION */}
+      <section className="py-20 px-[8%] bg-white">
+        <div className="flex items-center justify-between gap-10 max-lg:flex-col max-lg:text-center">
+          <div className="flex-1">
+            <h2 className="text-4xl font-bold">
+              AI Email <span className="text-accent">Assistant</span>
+            </h2>
+            <p className="text-lg mt-5 max-w-[520px]">
+              Agentra doesn’t just read emails — it understands them. Get
+              automatic replies, insights, and actions instantly.
             </p>
-            <p className="mb-6">
-              The platform gives users two operational modes —{" "}
-              <strong>Fast Mode</strong> for fully automated hands-free replies,
-              and <strong>Safe Mode</strong> for AI-drafted replies that the
-              user reviews and approves before sending. A server-side scheduler
-              handles auto-deletion of spam and promotional emails on a
-              configurable schedule, even when no browser is open.
-            </p>
 
-            <h4 className="font-bold text-gray-900 mb-3">
-              Key Value Proposition
+            <h4 className="mt-6 text-xl font-semibold">
+              It can handle tasks like:
             </h4>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">→</span> Reduces email
-                management time by automating classification, archiving, and
-                replies
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">→</span> Gives users
-                control via Safe Mode without sacrificing intelligence
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">→</span> Runs entirely on
-                open-source / low-cost infrastructure (Node.js + SQLite +
-                Mistral AI)
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-600 mr-2">→</span> Zero build step —
-                deploy a single Node.js server, no separate frontend required
-              </li>
+
+            <ul className="mt-4 list-disc pl-5">
+              <li className="mb-2">Reply to client emails instantly</li>
+              <li className="mb-2">Filter spam intelligently</li>
+              <li className="mb-2">Prioritize important conversations</li>
             </ul>
-          </section>
+          </div>
 
-          {/* 2. Technology Stack */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              2. Technology Stack
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full border-collapse border border-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="border border-gray-200 px-4 py-2 text-left font-bold text-gray-900">
-                      Layer
-                    </th>
-                    <th className="border border-gray-200 px-4 py-2 text-left font-bold text-gray-900">
-                      Technology
-                    </th>
-                    <th className="border border-gray-200 px-4 py-2 text-left font-bold text-gray-900">
-                      Purpose
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white">
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Frontend
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      HTML5 + React 18 (UMD)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Single-page dashboard — no build step required
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Backend
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Node.js 24 + Express 4
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      REST API server, OAuth callback, scheduler
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Database
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      SQLite (node:sqlite)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Built-in to Node 24 — zero compilation needed
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      AI Model
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Mistral AI (mistral-small)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Email classification + contextual reply generation
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Email API
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Gmail API (googleapis)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      OAuth2 inbox access, send, draft, trash
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Auth
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      JWT + bcryptjs
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Secure login, OTP email verification
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      OTP Email
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Nodemailer (SMTP)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Signup verification and password reset codes
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Scheduler
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Node.js setInterval
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Server-side auto-delete runs every hour
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-2 font-medium">
-                      Styling
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Custom CSS Variables
-                    </td>
-                    <td className="border border-gray-200 px-4 py-2">
-                      Dark/light theme, fully responsive
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
+          <div className="flex-1 text-center">
+            <img
+              src="/assets/agentra img 3.jpeg"
+              className="w-full max-w-[480px] hover:scale-[1.06] transition-transform"
+            />
+          </div>
+        </div>
+      </section>
 
-          {/* 3. Feature List */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-6">
-              3. Feature List
-            </h3>
+      {/* FEATURES */}
+      <section className="py-16 px-5 md:px-20 border">
+        <h2 className="text-center text-3xl md:text-4xl font-bold mb-12">
+          <span className="text-accent">Agent</span> Modes
+        </h2>
 
-            <div className="space-y-6 text-sm">
-              <div>
-                <h4 className="font-bold text-gray-800 mb-2">
-                  3.1 Authentication & User Management
-                </h4>
-                <table className="min-w-full border-collapse border border-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold w-1/4">
-                        Feature
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                        Description
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-center font-bold w-1/12">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Multi-user signup
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Email + OTP verification via SMTP. Bcrypt password
-                        hashing.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        JWT login
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Secure JSON Web Token sessions, 7-day expiry.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Forgot password
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        6-digit OTP sent to email. 3-step reset flow.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Delete account
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Identity verified with email + password before permanent
-                        deletion.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Role-based access
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Admin / User / Observer roles stored per account.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
+        <div className="flex items-center justify-center max-lg:flex-col">
+          <div className="flex flex-col gap-10">
+            {[
+              "/assets/agentra img 1.jpeg",
+              "/assets/agentra img 2.jpeg",
+            ].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                className="w-full max-w-[480px] h-[250px] hover:scale-[1.02] shadow-lg"
+              />
+            ))}
+          </div>
+
+          <div className="flex flex-col gap-10 lg:ml-[15%] max-lg:w-full">
+            {featureBoxes.map((box, i) => (
+              <div
+                key={i}
+                className="bg-gray-100 w-[480px] p-10 h-[250px] rounded-2xl hover:shadow-xl"
+              >
+                <h3 className="text-xl font-semibold mb-4">{box.title}</h3>
+                <ul className="pl-5 list-disc">
+                  {box.items.map((item, j) => (
+                    <li key={j} className="mb-2">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            ))}
+          </div>
+        </div>
 
-              <div>
-                <h4 className="font-bold text-gray-800 mb-2">
-                  3.2 Gmail Integration
-                </h4>
-                <table className="min-w-full border-collapse border border-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold w-1/4">
-                        Feature
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                        Description
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-center font-bold w-1/12">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        OAuth2 Connect
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        One-click Google sign-in. Tokens stored encrypted.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Date-range fetch
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Yesterday / 7 days / 30 days / 1 year / Custom.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Email classification
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Mistral AI classifies emails: Important, Promotion,
-                        Spam.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Auto-archive
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Promo/spam removed from inbox automatically on fetch.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Email reader
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Click any email to open full body in detail modal.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Bulk delete
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Select by category or individually and move to bin.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        {/* CTA */}
+        <div className="text-center mt-16">
+          <h3 className="text-2xl md:text-3xl font-bold">
+            Turn Inbox Chaos into{" "}
+            <span className="text-accent">Clarity</span>
+          </h3>
+          <p className="font-bold my-4">
+            Smarter emails. Faster replies. Better productivity.
+          </p>
 
-              <div>
-                <h4 className="font-bold text-gray-800 mb-2">
-                  3.3 AI Reply Automation
-                </h4>
-                <table className="min-w-full border-collapse border border-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold w-1/4">
-                        Feature
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                        Description
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-center font-bold w-1/12">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Fast Mode
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Agent generates and sends replies automatically to
-                        Important emails.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Safe Mode
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Agent generates a draft; user previews, edits, before
-                        sending.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Custom context
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Safe Mode users can add per-email context before reply
-                        gen.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Template editor
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        User-editable base template used as starting point for
-                        AI replies.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          <button className="py-4 px-10 text-lg rounded-xl font-bold bg-blue-500 text-white hover:bg-blue-600">
+            Get Started
+          </button>
+        </div>
+      </section>
 
-              <div>
-                <h4 className="font-bold text-gray-800 mb-2">
-                  3.4 Auto-Delete Scheduler
-                </h4>
-                <table className="min-w-full border-collapse border border-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold w-1/4">
-                        Feature
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                        Description
-                      </th>
-                      <th className="border border-gray-200 px-3 py-1.5 text-center font-bold w-1/12">
-                        Status
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Server-side cron
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Runs hourly on backend — works even when browser closed.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Configurable rules
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Per-user settings: spam after N days, bin auto-empty.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Audit logging
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5">
-                        Every action logged to agent_logs with timestamp.
-                      </td>
-                      <td className="border border-gray-200 px-3 py-1.5 text-center">
-                        ✅ Done
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </section>
-
-          {/* 4. Project Structure */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              4. Project Structure
-            </h3>
-            <pre className="bg-gray-50 border border-gray-200 p-4 rounded text-xs font-mono text-gray-800 leading-snug overflow-x-auto">
-              {`agentra-mailsense/
-├── backend/
-│ ├── server.js ← Express entry point (port 3000)
-│ ├── db.js ← SQLite schema + all prepared statements
-│ ├── gmail.js ← Google OAuth2 + Gmail API helpers
-│ ├── mailer.js ← Nodemailer OTP sender (SMTP)
-│ ├── mistral.js ← Mistral AI classify + reply generation
-│ ├── scheduler.js ← Server-side hourly auto-delete engine
-│ ├── middleware/
-│ │ └── auth.js ← JWT sign + requireAuth middleware
-│ ├── routes/
-│ │ ├── auth.js ← /api/login, signup-*, forgot-*, delete-account
-│ │ └── gmail.js ← /api/gmail-*, /api/oauth2callback
-│ ├── package.json
-│ └── .env.example ← Copy to .env and fill in your values
-└── public/
- ├── index.html ← Sign-in / Sign-up page
- └── dashboard.html ← React dashboard (served at /dashboard.html)`}
-            </pre>
-          </section>
-
-          {/* 5. API Reference */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              5. API Reference
-            </h3>
-
-            <h4 className="font-bold text-gray-800 mb-2">
-              5.1 Authentication Routes
-            </h4>
-            <div className="overflow-x-auto mb-6">
-              <table className="min-w-full border-collapse border border-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Method
-                    </th>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Endpoint
-                    </th>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/signup-send-otp
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Register user + send OTP to email
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/signup-verify-otp
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Verify OTP → activate account
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/login
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Login → returns JWT token
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/delete-account
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Permanently delete account + all data
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h4 className="font-bold text-gray-800 mb-2">5.2 Gmail Routes</h4>
-            <div className="overflow-x-auto">
-              <table className="min-w-full border-collapse border border-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Method
-                    </th>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Endpoint
-                    </th>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Description
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      GET
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/gmail-auth
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Redirect to Google OAuth2 consent screen
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      GET
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/oauth2callback
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Google redirects here after authorization
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/gmail-fetch
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Fetch + classify emails by date range
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      POST
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs text-blue-700">
-                      /api/gmail-reply
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Send reply (Fast) or save draft (Safe Mode)
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* 6. Setup & Installation */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              6. Setup & Installation
-            </h3>
-
-            <h4 className="font-bold text-gray-800 mb-2">6.1 Prerequisites</h4>
-            <ul className="list-disc pl-5 mb-6">
-              <li>
-                <strong>Node.js</strong> - Version 22 or higher (Node 24
-                recommended)
-              </li>
-              <li>
-                <strong>Mistral API Key</strong> - Free at console.mistral.ai
-              </li>
-              <li>
-                <strong>Google Cloud</strong> - OAuth2 credentials for Gmail API
-              </li>
-              <li>
-                <strong>Gmail Account</strong> - The SMTP sender account for OTP
-                emails
-              </li>
-            </ul>
-
-            <h4 className="font-bold text-gray-800 mb-2">
-              6.2 Installation Steps
-            </h4>
-            <pre className="bg-gray-50 border border-gray-200 p-4 rounded text-xs font-mono text-gray-800 mb-6 overflow-x-auto">
-              {`# 1. Extract the project zip or clone the repo
-cd agentra-mailsense/backend
-
-# 2. Install dependencies
-npm install
-
-# 3. Create your environment file
-cp .env.example .env
-
-# 4. Start the server
-npm run dev
-http://localhost:3000`}
-            </pre>
-
-            <h4 className="font-bold text-gray-800 mb-2">
-              6.3 Google Cloud OAuth2 Setup
-            </h4>
-            <ul className="list-disc pl-5 mb-6 space-y-1">
-              <li>Go to console.cloud.google.com and create a project</li>
-              <li>
-                Navigate to APIs & Services → Library → search "Gmail API" →
-                Enable
-              </li>
-              <li>
-                OAuth consent screen → External → add scopes:{" "}
-                <span className="font-mono text-xs">
-                  gmail.readonly, gmail.send, gmail.modify
-                </span>
-              </li>
-              <li>Test Users page → add addresses</li>
-              <li>
-                Credentials → Create OAuth 2.0 Client ID → Web application
-              </li>
-              <li>
-                Redirect URIs:{" "}
-                <span className="font-mono text-xs">
-                  http://localhost:3000/api/oauth2callback
-                </span>
-              </li>
-            </ul>
-
-            <h4 className="font-bold text-gray-800 mb-2">
-              6.4 Environment Variables (.env)
-            </h4>
-            <pre className="bg-gray-50 border border-gray-200 p-4 rounded text-xs font-mono text-gray-800 mb-6 overflow-x-auto">
-              {`PORT=3000
-NODE_ENV=development
-JWT_SECRET=your_jwt_secret
-
-GOOGLE_CLIENT_ID=your_client_id.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=your_client_secret
-GOOGLE_REDIRECT_URI=http://localhost:3000/api/oauth2callback
-
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=youremail@gmail.com
-SMTP_PASS=xxxx xxxx xxxx xxxx
-
-MISTRAL_API_KEY=your_key_from_console.mistral.ai
-DB_PATH=./mailsense.db`}
-            </pre>
-          </section>
-
-          {/* 7. Deployment Guide */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              7. Deployment Guide
-            </h3>
-            <p className="mb-2 font-bold">7.1 Deploy to Render.com</p>
-            <ul className="list-disc pl-5 mb-4 space-y-1">
-              <li>Push to GitHub and connect on Render → New Web Service</li>
-              <li>
-                Root Directory: <code>backend</code> | Build:{" "}
-                <code>npm install</code> | Start: <code>node server.js</code>
-              </li>
-              <li>
-                Important: Due to ephemeral storage on Free Tier, the SQLite DB
-                is wiped on redeploy. Use a Persistent Disk or provision a
-                PostgreSQL DB.
-              </li>
-            </ul>
-            <p className="mb-2 font-bold">7.2 Deploy to Railway.app</p>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>
-                Railway provides persistent storage natively. Run{" "}
-                <code>railway init</code> and <code>railway up</code> via CLI.
-              </li>
-            </ul>
-          </section>
-
-          {/* 8. Known Issues */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              8. Known Issues & Fixes
-            </h3>
-            <div className="overflow-x-auto">
-              <table className="min-w-full border-collapse border border-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Error
-                    </th>
-                    <th className="border border-gray-200 px-3 py-1.5 text-left font-bold">
-                      Fix
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      better-sqlite3 compile error
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Replaced with built-in node:sqlite. Run npm install again.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      SMTP EAUTH error
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Use 16-char Gmail App Password, not main password.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      Error 403 access_denied
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      App is in Testing mode. Add yourself as Test User.
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-3 py-1.5 font-mono text-xs">
-                      redirect_uri_mismatch
-                    </td>
-                    <td className="border border-gray-200 px-3 py-1.5">
-                      Callback URL missing in Google Cloud credentials.
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          {/* 9. Execution Plan */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              9. Week 1 Execution Plan
-            </h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>
-                <strong>Day 1:</strong> Environment Setup & Verify /api/health
-              </li>
-              <li>
-                <strong>Day 2:</strong> Google OAuth and Consent Screen tests
-              </li>
-              <li>
-                <strong>Day 3:</strong> Mistral AI classification and reply
-                quality tests
-              </li>
-              <li>
-                <strong>Day 4:</strong> End-to-end Test (Signup → Connect Gmail
-                → Fetch emails)
-              </li>
-              <li>
-                <strong>Day 5:</strong> Auto-reply test for Fast & Safe Mode
-              </li>
-              <li>
-                <strong>Day 6:</strong> Edge Cases (Spam clearing, pagination,
-                bulk empty)
-              </li>
-              <li>
-                <strong>Day 7:</strong> Deployment on Render/Railway
-              </li>
-            </ul>
-          </section>
-
-          {/* 10. Security Considerations */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              10. Security Considerations
-            </h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>Passwords hashed with bcryptjs (cost factor 12).</li>
-              <li>JWT tokens signed with high-entropy secret, 7-day expiry.</li>
-              <li>
-                Gmail OAuth tokens stored securely in DB, never exposed to
-                client.
-              </li>
-              <li>Account deletion requires strict re-verification.</li>
-            </ul>
-            <p className="mt-4 font-bold">Production Recommendation:</p>
-            <p className="mt-1">
-              Migrate SQLite to PostgreSQL, use HTTPS, and add rate-limiting for
-              auth routes.
-            </p>
-          </section>
-
-          {/* 11. Roadmap */}
-          <section>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              11. Future Roadmap
-            </h3>
-            <ul className="list-disc pl-5 space-y-1">
-              <li>
-                Vector database (FAISS/Weaviate) for deep agent memory context.
-              </li>
-              <li>Real-time websocket dashboards instead of polling.</li>
-              <li>Chain-of-thought reasoning logs visible in Safe Mode.</li>
-              <li>Docker containerisation.</li>
-            </ul>
-          </section>
-        </main>
-      </div>
-    </div>
+      <CTASection />
+    </>
   );
-}
+};
+
+export default Agentra;

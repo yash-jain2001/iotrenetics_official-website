@@ -8,6 +8,7 @@ import StatsCounter from "../components/StatsCounter";
 import IoTExplanation from "../components/IoTExplanation";
 import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
+import FloatingBackground from "../components/FloatingBackground";
 
 const coreFocusItems = [
   { img: "/assets/core 0.jpeg", label: "Home Automation", link: "/automation" },
@@ -177,6 +178,7 @@ const Home = () => {
 
   return (
     <>
+      <FloatingBackground />
       {/* 2. Running News / Updates Ticker */}
       <NewsTicker />
 
@@ -226,12 +228,12 @@ const Home = () => {
       </section>
 
       {/* 4. About Us Section (Text Only) */}
-      <section className="py-10 px-5 border md:px-20 bg-gray-50 text-center" data-aos="fade-up">
+      <section className="py-10 px-5 border bg-transparent text-center" data-aos="fade-up">
         <div className="w-full mx-auto flex flex-col items-center justify-center gap-5">
           <h3 className="text-3xl md:text-4xl font-bold">
             About <span className="text-accent">Us</span>
           </h3>
-          <p className="bg-white text-lg md:text-xl p-10 rounded-3xl leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand/5 border border-gray-100">
+          <p className="bg-transparent text-lg md:text-xl p-10 rounded-3xl leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-brand/5 border border-gray-100">
             IoTrenetics Solutions Pvt. Ltd. is an innovative technology
             startup working at the intersection of IoT, AI, Generative AI,
             AR/VR, and Digital Transformation. Our mission is to build
@@ -247,7 +249,7 @@ const Home = () => {
       </section>
 
       {/* 7. Core Focus Areas Section */}
-      <section className="py-16 px-5 bg-gray-50" data-aos="fade-up">
+      <section className="py-16 px-5 bg-transparent text-center" data-aos="fade-up">
         <SectionTitle accent="Core" postText=" Focus Areas" />
         <FocusGrid items={coreFocusItems} />
       </section>
@@ -257,13 +259,13 @@ const Home = () => {
       
       {/* <StatsCounter /> */}
 
-      <section className="py-10 px-5 bg-white" data-aos="fade-up">
+      <section className="py-10 px-5 bg-transparent text-center" data-aos="fade-up">
         <SectionTitle accent="Ind" postText="ustries We Serve" />
         <FocusGrid items={industriesItems} />
       </section>
 
 
-      <section className="bg-gray-50 border-b py-20 px-5" data-aos="fade-up">
+      <section className="bg-transparent text-center border-b py-20 px-5" data-aos="fade-up">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Our" postText=" Mission" />
           <p className="text-center max-w-[800px] mx-auto mb-12 text-xl opacity-90 leading-relaxed font-light">
@@ -285,7 +287,7 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="bg-white py-20 px-5 text-center" data-aos="fade-up">
+      <section className="bg-transparent text-center py-20 px-5" data-aos="fade-up">
         <div className="max-w-[1200px] mx-auto">
           <SectionTitle accent="Our" postText=" Vision" />
           <p className="max-w-[900px] mx-auto mb-16 text-lg md:text-xl leading-relaxed text-gray-700 font-light">

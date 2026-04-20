@@ -3,7 +3,7 @@ import SectionTitle from './SectionTitle';
 
 const IoTExplanation = () => {
   return (
-    <section className="py-10 px-5 bg-gray-50" data-aos="fade-up">
+    <section className="py-10 px-5 bg-transparent text-center" data-aos="fade-up">
       <div className="max-w-[1200px] mx-auto flex flex-col lg:flex-row items-center gap-12">
         <div className="flex-1 space-y-6">
           <SectionTitle accent="Understanding" postText=" IoT & Automation" />

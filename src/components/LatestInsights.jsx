@@ -45,7 +45,7 @@ const insights = [
 
 const LatestInsights = () => {
   return (
-    <section className="py-10 px-5 bg-gray-50 " data-aos="fade-up">
+    <section className="py-10 px-5 bg-transparent text-center " data-aos="fade-up">
       <div className="max-w-[1200px] mx-auto">
         <div className="flex justify-between items-end">
           <SectionTitle accent="Latest" postText=" Insights" />

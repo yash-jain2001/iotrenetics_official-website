@@ -17,6 +17,7 @@
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
     "aos": "^2.3.4",
+    "daisyui": "^5.5.19",
     "framer-motion": "^12.36.0",
     "motion": "^12.36.0",
     "react": "^19.2.0",

@@ -9,6 +9,11 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import { useNavigate } from "react-router-dom";
 
+// Import Logos
+import finexoLogo from "../../public/assets/finexo logo.png";
+import healnetLogo from "../../public/assets/healnet logo.jpeg";
+import agentraLogo from "../../public/assets/agentra logo.jpeg";
+
 const ProductsMenu = ({ closeMobileMenu }) => {
   // Desktop State
   const [anchorEl, setAnchorEl] = useState(null);
@@ -48,7 +53,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <span>Products</span>
+          <span>Products🔽</span>
         </div>
 
         <Menu
@@ -62,21 +67,48 @@ const ProductsMenu = ({ closeMobileMenu }) => {
         >
           <MenuItem
             onClick={() => navigateTo("/finexo")}
-            sx={{ fontSize: "15px", color: "#374151", py: 1 }}
+            sx={{
+              fontSize: "15px",
+              color: "#374151",
+              py: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 5,
+            }}
           >
-            Finexo
+            <span>Finexo</span>
+            <img src={finexoLogo} alt="Finexo" className="h-8 w-auto object-cover" />
           </MenuItem>
           <MenuItem
             onClick={() => navigateTo("/healnet")}
-            sx={{ fontSize: "15px", color: "#374151", py: 1 }}
+            sx={{
+              fontSize: "15px",
+              color: "#374151",
+              py: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 5,
+            }}
           >
-            HealNet
+            <span>HealNet</span>
+            <img src={healnetLogo} alt="HealNet" className="h-8 w-auto object-cover" />
           </MenuItem>
           <MenuItem
             onClick={() => navigateTo("/agentra")}
-            sx={{ fontSize: "15px", color: "#374151", py: 1 }}
+            sx={{
+              fontSize: "15px",
+              color: "#374151",
+              py: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 5,
+            }}
           >
-            Agentra
+            <span>Agentra</span>
+            <img src={agentraLogo} alt="Agentra" className="h-10 w-auto object-cover" />
           </MenuItem>
         </Menu>
       </div>
@@ -123,9 +155,20 @@ const ProductsMenu = ({ closeMobileMenu }) => {
               }}
             >
               <ListItemButton
-                sx={{ py: 1, px: 2 }}
+                sx={{
+                  py: 1,
+                  px: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                }}
                 onClick={() => navigateTo("/finexo")}
               >
+                <img
+                  src={finexoLogo}
+                  alt="Finexo"
+                  className="h-6 w-auto object-contain"
+                />
                 <ListItemText
                   primary="Finexo"
                   primaryTypographyProps={{
@@ -136,9 +179,20 @@ const ProductsMenu = ({ closeMobileMenu }) => {
                 />
               </ListItemButton>
               <ListItemButton
-                sx={{ py: 1, px: 2 }}
+                sx={{
+                  py: 1,
+                  px: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                }}
                 onClick={() => navigateTo("/healnet")}
               >
+                <img
+                  src={healnetLogo}
+                  alt="HealNet"
+                  className="h-6 w-auto object-contain"
+                />
                 <ListItemText
                   primary="HealNet"
                   primaryTypographyProps={{
@@ -149,9 +203,20 @@ const ProductsMenu = ({ closeMobileMenu }) => {
                 />
               </ListItemButton>
               <ListItemButton
-                sx={{ py: 1, px: 2 }}
+                sx={{
+                  py: 1,
+                  px: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                }}
                 onClick={() => navigateTo("/agentra")}
               >
+                <img
+                  src={agentraLogo}
+                  alt="Agentra"
+                  className="h-6 w-auto object-contain"
+                />
                 <ListItemText
                   primary="Agentra"
                   primaryTypographyProps={{

@@ -219,7 +219,7 @@ const Home = () => {
             IoT, AI, and continuous automation.
           </p>
           <Link
-            to="/industries"
+            to="/solutions"
             className="bg-white text-brand py-4 px-10 rounded-full font-bold text-lg shadow-xl shadow-black/10 transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl hover:-translate-y-1 no-underline inline-block"
           >
             Explore Solutions

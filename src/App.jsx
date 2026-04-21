@@ -17,7 +17,8 @@ import Finexo from "./pages/Finexo";
 import Industries from "./pages/Industries";
 import Contact from "./pages/Contact";
 import HealNet from "./pages/HealNet";
-import Automation from "./pages/Automation";
+import HomeAutomation from "./pages/HomeAutomation";
+import OfficeAutomation from "./pages/OfficeAutomation";
 import ComingSoon from "./pages/ComingSoon";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import "./index.css";
@@ -62,7 +63,8 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/healnet" element={<HealNet />} />
         <Route path="/agentra" element={<Agentra />} />
-        <Route path="/automation" element={<Automation />} />
+        <Route path="/home-automation" element={<HomeAutomation />} />
+        <Route path="/office-automation" element={<OfficeAutomation />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route
           path="/privacy-policy-finexo"

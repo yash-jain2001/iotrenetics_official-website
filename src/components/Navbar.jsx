@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import ProductsMenu from "./ProductsMenu";
+import AutomationMenu from "./AutomationMenu";
 
 const leftNavLinks = [
   { to: "/", label: "Home" },
@@ -8,7 +9,6 @@ const leftNavLinks = [
 ];
 
 const rightNavLinks = [
-  { to: "/automation", label: "Automation" },
   { to: "/industries", label: "Industries" },
   { to: "/solutions", label: "Solutions" },
   // { to: "/coming-soon", label: "Coming Soon" },
@@ -60,6 +60,10 @@ const Navbar = () => {
 
             <li className="flex items-center w-full max-md:justify-center">
               <ProductsMenu closeMobileMenu={closeMenu} />
+            </li>
+
+            <li className="flex items-center w-full max-md:justify-center">
+              <AutomationMenu closeMobileMenu={closeMenu} />
             </li>
 
             {rightNavLinks.map(({ to, label }) => (

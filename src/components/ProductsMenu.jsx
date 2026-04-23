@@ -53,7 +53,7 @@ const ProductsMenu = ({ closeMobileMenu }) => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <span>Products🔽</span>
+          <span>Products</span>
         </div>
 
         <Menu

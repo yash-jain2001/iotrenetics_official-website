@@ -18,7 +18,7 @@ const FinexoArticle = () => {
               <span>Web</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight mb-4 tracking-tight">
-              finexo
+              Finexo
             </h1>
             <p className="text-2xl md:text-3xl text-emerald-600 font-bold leading-relaxed mb-4">
               Your Money. Your Voice. Your Control.
@@ -37,7 +37,7 @@ const FinexoArticle = () => {
                 >
                   <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V9h2v2H9z" />
                 </svg>
-                Coming Soon on Google Play & App Store
+                Available on <a href="https://play.google.com/store/apps/details?id=com.iotrenetics.finexo" target="_blank"><span className="text-blue-500">Google Play Store</span></a> and comming soon on <span className="text-red-500">App Store</span>
               </span>
               <span className="w-1 h-1 rounded-full bg-slate-300"></span>
               <span className="flex items-center gap-2">Made in Bharat 🇮🇳</span>

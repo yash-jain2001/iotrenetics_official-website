@@ -48,7 +48,7 @@ const AutomationMenu = ({ closeMobileMenu }) => {
           aria-haspopup="true"
           aria-expanded={open ? "true" : undefined}
         >
-          <span>Automation🔽</span>
+          <span>Automation</span>
         </div>
 
         <Menu

@@ -224,9 +224,9 @@ const finexo = () => {
             </Link>
           </p>
           <div className="flex flex-col gap-2 justify-center items-center">
-            <button className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
-              Get Started in Seconds
-            </button>
+            <a href="https://play.google.com/store/apps/details?id=com.iotrenetics.finexo" target="_blank" className="py-4 px-10 text-lg border-none rounded-xl font-bold bg-blue-500 text-white cursor-pointer hover:bg-blue-600 transition-colors">
+              Now available on Play Store
+            </a>
             <Link to={"/delete-account-policy-finexo"}>
               <span className="text-accent underline">
                 Delete account policy

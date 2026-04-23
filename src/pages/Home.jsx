@@ -179,6 +179,7 @@ const Home = () => {
   return (
     <>
       <FloatingBackground />
+      <div className="relative z-10">
       {/* 2. Running News / Updates Ticker */}
       <NewsTicker />
 
@@ -310,6 +311,7 @@ const Home = () => {
       <LatestInsights />
 
       <CTASection />
+      </div>
     </>
   );
 };

@@ -21,7 +21,7 @@ import {
   ChartBarIcon
 } from '@heroicons/react/24/outline';
 
-const Blob = ({ color, size, top, left, delay, duration, scrollSpeed }) => {
+const Blob = ({ color, size, top, left, right, bottom, delay, duration, scrollSpeed }) => {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, { damping: 20, stiffness: 100 });
   
@@ -31,64 +31,77 @@ const Blob = ({ color, size, top, left, delay, duration, scrollSpeed }) => {
   return (
     <motion.div
       style={{
+        position: 'absolute',
         top,
         left,
+        right,
+        bottom,
         width: size,
         height: size,
-        backgroundColor: color,
         y,
         scale,
         willChange: "transform",
       }}
-      animate={{
-        x: [0, 50, -50, 0],
-        y: [0, -30, 30, 0],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        delay,
-        ease: "linear",
-      }}
-      className="absolute rounded-full blur-[120px] opacity-[0.15] pointer-events-none"
-    />
+    >
+      <motion.div
+        style={{
+          width: "100%",
+          height: "100%",
+          backgroundColor: color,
+          borderRadius: "9999px",
+          filter: "blur(100px)",
+          opacity: 0.35,
+        }}
+        animate={{
+          x: [0, 50, -50, 0],
+          y: [0, -30, 30, 0],
+        }}
+        transition={{
+          duration,
+          repeat: Infinity,
+          delay,
+          ease: "linear",
+        }}
+      />
+    </motion.div>
   );
 };
 
-const Particle = ({ Icon, color, size, top, left, scrollSpeed, duration, rotationDir }) => {
+const Particle = ({ Icon, color, size, top, left, scrollSpeed, duration, rotationDir, opacity }) => {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, { damping: 25, stiffness: 120 });
   
   const y = useTransform(smoothScrollY, [0, 5000], [0, scrollSpeed]);
-  const scale = useTransform(smoothScrollY, [0, 2000], [0.8, 1.4]);
   const rotateScroll = useTransform(smoothScrollY, [0, 5000], [0, 360 * rotationDir]);
 
   return (
     <motion.div
       style={{
+        position: 'absolute',
         top,
         left,
         width: size,
         height: size,
-        color,
         y,
-        scale,
         rotate: rotateScroll,
         willChange: "transform",
       }}
-      animate={{
-        y: [0, -60, 0],
-        x: [0, 40, 0],
-        opacity: [0.05, 0.2, 0.05],
-      }}
-      transition={{
-        duration,
-        repeat: Infinity,
-        ease: "easeInOut",
-      }}
-      className="absolute pointer-events-none"
     >
-      <Icon className="w-full h-full opacity-60" />
+      <motion.div
+        animate={{
+          y: [0, -40, 0],
+          x: [0, 30, 0],
+          opacity: [opacity * 0.5, opacity, opacity * 0.5],
+        }}
+        transition={{
+          duration,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{ color, width: "100%", height: "100%" }}
+      >
+        <Icon style={{ width: "100%", height: "100%" }} />
+      </motion.div>
     </motion.div>
   );
 };
@@ -100,21 +113,33 @@ const IOT_ICONS = [
   VideoCameraIcon, BeakerIcon, ChartBarIcon
 ];
 
-const STATIC_PARTICLES = [...Array(35)].map((_, i) => ({
+// Position particles WITHIN the viewport (0-95%) since container is fixed
+const STATIC_PARTICLES = [...Array(25)].map((_, i) => ({
   Icon: IOT_ICONS[i % IOT_ICONS.length],
   color: i % 3 === 0 ? "#0067b8" : i % 3 === 1 ? "#e53935" : "#002e5d",
-  size: Math.random() * 80 + 60, // Larger size
-  top: `${Math.random() * 400}vh`,
-  left: `${Math.random() * 100}vw`,
-  scrollSpeed: -(Math.random() * 1500 + 800),
-  duration: Math.random() * 12 + 8,
+  size: Math.floor(Math.random() * 80 + 80),
+  top: `${Math.floor(Math.random() * 90 + 5)}%`,
+  left: `${Math.floor(Math.random() * 90 + 5)}%`,
+  scrollSpeed: -(Math.random() * 400 + 100),
+  duration: Math.random() * 10 + 6,
   rotationDir: Math.random() > 0.5 ? 1 : -1,
+  opacity: Math.random() * 0.15 + 0.15, // 0.15 – 0.30
 }));
 
 const FloatingBackground = () => {
-
   return (
-    <div className="fixed inset-0 z-[-1] overflow-hidden pointer-events-none">
+    <div
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 0,
+        overflow: 'hidden',
+        pointerEvents: 'none',
+      }}
+    >
       {/* Large Blobs */}
       <Blob 
         color="#0067b8" 
@@ -123,28 +148,28 @@ const FloatingBackground = () => {
         left="-5%" 
         delay={0} 
         duration={15} 
-        scrollSpeed={-300} 
+        scrollSpeed={-200} 
       />
       <Blob 
         color="#e53935" 
         size="30vw" 
-        top="40%" 
+        top="30%" 
         right="-10%" 
         delay={2} 
         duration={20} 
-        scrollSpeed={-500} 
+        scrollSpeed={-400} 
       />
       <Blob 
         color="#0067b8" 
-        size="50vw" 
-        bottom="-20%" 
-        left="20%" 
+        size="45vw" 
+        bottom="-15%" 
+        left="15%" 
         delay={5} 
         duration={18} 
-        scrollSpeed={-800} 
+        scrollSpeed={-300} 
       />
 
-      {/* Decorative Particles */}
+      {/* Decorative IoT Icon Particles */}
       {STATIC_PARTICLES.map((p, i) => (
         <Particle
           key={i}
@@ -156,6 +181,7 @@ const FloatingBackground = () => {
           scrollSpeed={p.scrollSpeed}
           duration={p.duration}
           rotationDir={p.rotationDir}
+          opacity={p.opacity}
         />
       ))}
     </div>

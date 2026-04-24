@@ -35,6 +35,7 @@ import FinexoArticle from "./articles/Finexo";
 import Healnet from "./articles/Healnet";
 import DeleteAccFinexo from "./pages/DeleteAccFinexo";
 import Agentra from "./pages/Agentra";
+import ChatBot from "./components/ChatBot";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -54,6 +55,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -106,8 +108,9 @@ function App() {
         <Route path="/finexo-article" element={<FinexoArticle />} />
         <Route path="/healnet-article" element={<Healnet />} />
       </Routes>
-      <Footer />
+      <ChatBot />
       <WhatsAppButton />
+      <Footer />
     </Router>
   );
 }

@@ -16,6 +16,7 @@
     "@heroicons/react": "^2.2.0",
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
+    "@typebot.io/react": "^0.10.2",
     "aos": "^2.3.4",
     "daisyui": "^5.5.19",
     "framer-motion": "^12.36.0",

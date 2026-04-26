@@ -17,7 +17,7 @@ const insights = [
     title:
       "AI + IoT: Building Intelligent Environments with Data-Driven Decision Making & Secure Connected Systems",
     date: "February 28, 2026",
-    link: "/aiot",
+    link: "/aiot-article",
   },
   {
     image: "/assets/core 7.webp",
@@ -25,7 +25,7 @@ const insights = [
     title:
       "Driving Efficiency, Reducing Downtime & Enabling Predictive Operations",
     date: "February 15, 2026",
-    link: "/industrial-iot",
+    link: "/industrial-iot-article",
   },
   {
     image: "/assets/core 12.jpeg",

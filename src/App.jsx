@@ -36,6 +36,7 @@ import Healnet from "./articles/Healnet";
 import DeleteAccFinexo from "./pages/DeleteAccFinexo";
 import Agentra from "./pages/Agentra";
 import ChatBot from "./components/ChatBot";
+import HotelAutomation from "./pages/HotelAutomation";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -67,6 +68,7 @@ function App() {
         <Route path="/agentra" element={<Agentra />} />
         <Route path="/home-automation" element={<HomeAutomation />} />
         <Route path="/office-automation" element={<OfficeAutomation />} />
+        <Route path="/hotel-automation" element={<HotelAutomation />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route
           path="/privacy-policy-finexo"
@@ -103,8 +105,8 @@ function App() {
           path="/smart-home-automation"
           element={<SmartHomeAutomation />}
         />
-        <Route path="/aiot" element={<AIOT />} />
-        <Route path="/industrial-iot" element={<IndustrialIOT />} />
+        <Route path="/aiot-article" element={<AIOT />} />
+        <Route path="/industrial-iot-article" element={<IndustrialIOT />} />
         <Route path="/finexo-article" element={<FinexoArticle />} />
         <Route path="/healnet-article" element={<Healnet />} />
       </Routes>

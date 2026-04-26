@@ -60,9 +60,10 @@ const HomeAutomation = () => {
         >
           <source src="/assets/Smart_home_transition_202603221919.mp4" type="video/mp4" />
         </video> */}
+        <div className="absolute inset-0 bg-black/25"></div>
         <div className="relative z-10 flex items-center justify-center h-full">
           <h1 className="text-white text-3xl md:text-4xl font-bold leading-snug [text-shadow:0_4px_15px_rgba(0,0,0,0.7)]">
-            Command Your Comfort. Powered by<br /><span className="text-accent">Home Automation</span>
+            Command Your Comfort. Powered by<br /><span className="text-white">Home Automation</span>
           </h1>
         </div>
       </section>

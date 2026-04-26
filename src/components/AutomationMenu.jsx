@@ -88,6 +88,20 @@ const AutomationMenu = ({ closeMobileMenu }) => {
           >
             <span>Office Automation</span>
           </MenuItem>
+          <MenuItem
+            onClick={() => navigateTo("/hotel-automation")}
+            sx={{
+              fontSize: "15px",
+              color: "#374151",
+              py: 1,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 5,
+            }}
+          >
+            <span>Hotel Automation</span>
+          </MenuItem>
         </Menu>
       </div>
 
@@ -163,6 +177,25 @@ const AutomationMenu = ({ closeMobileMenu }) => {
               >
                 <ListItemText
                   primary="Office Automation"
+                  primaryTypographyProps={{
+                    fontSize: "14px",
+                    fontWeight: 500,
+                    color: "#4B5563",
+                  }}
+                />
+              </ListItemButton>
+              <ListItemButton
+                sx={{
+                  py: 1,
+                  px: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 2,
+                }}
+                onClick={() => navigateTo("/hotel-automation")}
+              >
+                <ListItemText
+                  primary="Hotel Automation"
                   primaryTypographyProps={{
                     fontSize: "14px",
                     fontWeight: 500,

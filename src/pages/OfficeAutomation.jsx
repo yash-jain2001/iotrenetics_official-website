@@ -72,10 +72,11 @@ const OfficeAutomation = () => {
     <>
       {/* HERO */}
       <section className="relative bg-[url('/assets/MainOfficeAutomation.jpg')] bg-cover bg-center h-[90vh] flex items-center justify-center text-center">
+        <div className="absolute inset-0 bg-black/35"></div>
         <div className="relative z-10">
           <h1 className="text-white text-3xl md:text-5xl font-bold leading-snug">
             POWERING INTELLIGENT <br />
-            <span className="text-accent">COMMERCIAL SPACES</span>
+            <span className="text-white">COMMERCIAL SPACES</span>
           </h1>
           <p className="text-white mt-4 max-w-2xl mx-auto">
             From offices to large-scale facilities — automate, monitor, and control everything seamlessly.

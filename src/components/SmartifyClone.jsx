@@ -121,9 +121,9 @@ export default function SmartHomePage() {
         <h2 className="text-2xl font-semibold mb-2">
           Get instant estimate
         </h2>
-        <p className="text-gray-500 mb-6">
+        {/* <p className="text-gray-500 mb-6">
           Use our calculator to get an approximate cost.
-        </p>
+        </p> */}
 
         <div className="bg-white shadow-md rounded-xl p-6 max-w-3xl mx-auto text-left">
           {/* Inputs */}
@@ -133,7 +133,7 @@ export default function SmartHomePage() {
               <select
                 value={rooms}
                 onChange={(e) => setRooms(e.target.value)}
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 bg-white"
               >
                 <option>1-2 Rooms</option>
                 <option>3-4 Rooms</option>
@@ -146,7 +146,7 @@ export default function SmartHomePage() {
               <select
                 value={property}
                 onChange={(e) => setProperty(e.target.value)}
-                className="border rounded-lg p-2"
+                className="border rounded-lg p-2 bg-white"
               >
                 <option>Apartment</option>
                 <option>Villa</option>

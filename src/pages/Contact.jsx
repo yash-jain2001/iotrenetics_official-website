@@ -39,8 +39,8 @@ const Contact = () => {
           </div>
 
           {/* Right — Form */}
-          <div className="flex-[1.2]">
-            <form className=" p-5 flex flex-col" action="https://api.web3forms.com/submit" method="POST">
+          <div className="flex-[1.2] w-full">
+            <form className="p-4 sm:p-6 flex flex-col" action="https://api.web3forms.com/submit" method="POST">
               <input
                 type="hidden"
                 name="access_key"

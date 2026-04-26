@@ -27,7 +27,7 @@ const Navbar = () => {
           <img
             src="/assets/IOT.webp"
             alt="IoTrenetics Logo"
-            className="h-[130px] relative max-md:h-[100px] max-md:-mt-[2%]"
+            className="h-[100px] md:h-[130px] relative max-md:h-12 max-sm:h-10 transition-all duration-300"
           />
         </Link>
 

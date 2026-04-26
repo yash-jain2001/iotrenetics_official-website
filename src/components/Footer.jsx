@@ -43,11 +43,11 @@ const Footer = () => {
         <div className="w-full h-px bg-white/10 mb-2"></div>
 
         {/* Footer Bottom */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4">
+        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-6 md:gap-4 mt-4">
 
           {/* ✅ FIXED TEXT (NO WRAP EVER) */}
-          <p className="text-white/70 whitespace-nowrap text-center md:text-left">
-            © 2026 IoTrenetics Solutions Pvt. Ltd. | Intelligence in Motion.
+          <p className="text-white/70 text-center md:text-left text-xs sm:text-sm">
+            © 2026 IoTrenetics Solutions Pvt. Ltd. <span className="hidden sm:inline">|</span> <br className="sm:hidden" /> Intelligence in Motion.
           </p>
 
           {/* Social Icons */}

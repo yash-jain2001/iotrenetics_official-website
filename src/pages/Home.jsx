@@ -125,18 +125,19 @@ const partnerCards = [
 ];
 
 const FocusGrid = ({ items }) => (
-  <div className="flex flex-wrap justify-center gap-6 max-w-[1200px] mx-auto">
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
     {items.map((item, i) => {
-      const wrapperClassName = "w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm block no-underline text-inherit";
       const innerContent = (
-        <div className="text-center rounded-xl border overflow-hidden h-full flex flex-col">
-          <img
-            src={item.img}
-            alt={item.label}
-            loading="lazy"
-            className="w-full object-cover h-64 rounded-lg flex-shrink-0"
-          />
-          <div className="bg-gray-100 p-6 rounded-xl text-center font-medium shadow-sm mt-2 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex-grow">
+        <div className="text-center rounded-xl border border-gray-100 overflow-hidden h-full flex flex-col group transition-all duration-300 hover:shadow-xl">
+          <div className="overflow-hidden h-64">
+            <img
+              src={item.img}
+              alt={item.label}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
+          <div className="bg-gray-50 p-6 text-center font-medium transition-colors duration-300 group-hover:bg-brand group-hover:text-white flex-grow flex items-center justify-center">
             {item.label}
           </div>
         </div>
@@ -146,7 +147,7 @@ const FocusGrid = ({ items }) => (
         <Link
           to={item.link}
           key={i}
-          className={wrapperClassName}
+          className="block no-underline text-inherit"
           data-aos="fade-up"
           data-aos-delay={i * 100}
         >
@@ -155,7 +156,7 @@ const FocusGrid = ({ items }) => (
       ) : (
         <div
           key={i}
-          className={wrapperClassName}
+          className="block"
           data-aos="fade-up"
           data-aos-delay={i * 100}
         >
@@ -209,7 +210,7 @@ const Home = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-lg px-2"
               >
                 {heroHeadings[currentHeading]}
               </motion.h1>
@@ -221,7 +222,7 @@ const Home = () => {
           </p>
           <Link
             to="/solutions"
-            className="bg-white text-brand py-4 px-10 rounded-full font-bold text-lg shadow-xl shadow-black/10 transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl hover:-translate-y-1 no-underline inline-block"
+            className="bg-white text-brand py-3 md:py-4 px-8 md:px-10 rounded-full font-bold text-base md:text-lg shadow-xl shadow-black/10 transition-all duration-300 hover:bg-gray-100 hover:shadow-2xl hover:-translate-y-1 no-underline inline-block"
           >
             Explore Solutions
           </Link>

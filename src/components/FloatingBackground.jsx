@@ -24,6 +24,14 @@ import {
 const Blob = ({ color, size, top, left, right, bottom, delay, duration, scrollSpeed }) => {
   const { scrollY } = useScroll();
   const smoothScrollY = useSpring(scrollY, { damping: 20, stiffness: 100 });
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   const y = useTransform(smoothScrollY, [0, 5000], [0, scrollSpeed]);
   const scale = useTransform(smoothScrollY, [0, 5000], [1, 1.3]);
@@ -49,8 +57,8 @@ const Blob = ({ color, size, top, left, right, bottom, delay, duration, scrollSp
           height: "100%",
           backgroundColor: color,
           borderRadius: "9999px",
-          filter: "blur(100px)",
-          opacity: 0.35,
+          filter: isMobile ? "blur(60px)" : "blur(100px)",
+          opacity: isMobile ? 0.2 : 0.35,
         }}
         animate={{
           x: [0, 50, -50, 0],
@@ -114,16 +122,16 @@ const IOT_ICONS = [
 ];
 
 // Position particles WITHIN the viewport (0-95%) since container is fixed
-const STATIC_PARTICLES = [...Array(25)].map((_, i) => ({
+const STATIC_PARTICLES = [...Array(15)].map((_, i) => ({
   Icon: IOT_ICONS[i % IOT_ICONS.length],
   color: i % 3 === 0 ? "#0067b8" : i % 3 === 1 ? "#e53935" : "#002e5d",
-  size: Math.floor(Math.random() * 80 + 80),
+  size: Math.floor(Math.random() * 40 + 40), // Smaller particles (40-80px)
   top: `${Math.floor(Math.random() * 90 + 5)}%`,
-  left: `${Math.floor(Math.random() * 90 + 5)}%`,
-  scrollSpeed: -(Math.random() * 400 + 100),
-  duration: Math.random() * 10 + 6,
+  left: `${Math.floor(Math.random() * 85 + 5)}%`, // Keep more away from edges
+  scrollSpeed: -(Math.random() * 200 + 50), // Slower scroll
+  duration: Math.random() * 10 + 8,
   rotationDir: Math.random() > 0.5 ? 1 : -1,
-  opacity: Math.random() * 0.15 + 0.15, // 0.15 – 0.30
+  opacity: Math.random() * 0.1 + 0.1, // Lower opacity for mobile (0.1 - 0.2)
 }));
 
 const FloatingBackground = () => {
@@ -135,38 +143,40 @@ const FloatingBackground = () => {
         left: 0,
         right: 0,
         bottom: 0,
+        width: '100vw',
+        height: '100vh',
         zIndex: 0,
         overflow: 'hidden',
         pointerEvents: 'none',
       }}
     >
-      {/* Large Blobs */}
+      {/* Large Blobs - Adjusted sizes for mobile/desktop */}
       <Blob 
         color="#0067b8" 
-        size="40vw" 
-        top="-10%" 
-        left="-5%" 
+        size="60vw" 
+        top="-5%" 
+        left="-15%" 
         delay={0} 
         duration={15} 
-        scrollSpeed={-200} 
+        scrollSpeed={-150} 
       />
       <Blob 
         color="#e53935" 
-        size="30vw" 
-        top="30%" 
-        right="-10%" 
+        size="50vw" 
+        top="25%" 
+        right="-20%" 
         delay={2} 
         duration={20} 
-        scrollSpeed={-400} 
+        scrollSpeed={-300} 
       />
       <Blob 
         color="#0067b8" 
-        size="45vw" 
-        bottom="-15%" 
-        left="15%" 
+        size="70vw" 
+        bottom="-10%" 
+        left="5%" 
         delay={5} 
         duration={18} 
-        scrollSpeed={-300} 
+        scrollSpeed={-200} 
       />
 
       {/* Decorative IoT Icon Particles */}

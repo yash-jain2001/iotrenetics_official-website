@@ -6,10 +6,10 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth overflow-x-hidden;
   }
   body {
-    @apply font-sans text-gray-800 bg-white leading-relaxed;
+    @apply font-sans text-gray-800 bg-white leading-relaxed overflow-x-hidden max-w-full;
   }
   a {
     @apply no-underline text-inherit;

@@ -106,7 +106,7 @@ const AutomationMenu = ({ closeMobileMenu }) => {
             }}
           >
             <ListItemText
-              primary="Products"
+              primary="Automation"
               primaryTypographyProps={{
                 fontWeight: 500,
                 color: "#1f2937",
@@ -143,7 +143,7 @@ const AutomationMenu = ({ closeMobileMenu }) => {
                 onClick={() => navigateTo("/home-automation")}
               >
                 <ListItemText
-                  primary="Finexo"
+                  primary="Home Automation"
                   primaryTypographyProps={{
                     fontSize: "14px",
                     fontWeight: 500,
@@ -162,7 +162,7 @@ const AutomationMenu = ({ closeMobileMenu }) => {
                 onClick={() => navigateTo("/office-automation")}
               >
                 <ListItemText
-                  primary="HealNet"
+                  primary="Office Automation"
                   primaryTypographyProps={{
                     fontSize: "14px",
                     fontWeight: 500,

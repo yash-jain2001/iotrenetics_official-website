@@ -307,7 +307,7 @@ const Home = () => {
               IoT and AI-driven solutions that make the world smarter, safer,
               and more connected.
             </p>
-            <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6 sm:gap-8 mt-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 mt-8">
               {missionCards.map((card, i) => (
                 <InfoCard
                   key={i}
@@ -332,7 +332,7 @@ const Home = () => {
               We aim to create smarter environments powered by automation, AI,
               and connected devices.
             </p>
-            <div className="flex flex-col md:flex-row flex-wrap justify-center gap-6 sm:gap-8">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8">
               {partnerCards.map((card, i) => (
                 <InfoCard
                   key={i}

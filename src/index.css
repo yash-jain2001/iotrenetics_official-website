@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    @apply scroll-smooth overflow-x-hidden;
+    @apply scroll-smooth;
+    overflow-x: hidden;
   }
   body {
-    @apply font-sans text-gray-800 bg-white leading-relaxed overflow-x-hidden max-w-full;
+    @apply font-sans text-gray-800 bg-white leading-relaxed;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   a {
     @apply no-underline text-inherit;
   }
-  img {
-    @apply max-w-full h-auto;
+  h1, h2, h3, h4, h5, h6 {
+    @apply leading-tight;
   }
 }
 
-/* Hamburger animation — needs real CSS, can't do with Tailwind alone */
+/* Hamburger menu icon animations */
 .menu-toggle span {
-  @apply block h-[3px] w-full bg-black rounded-sm origin-center;
-  transition: all 0.3s ease;
+  @apply block h-[2px] bg-gray-800 rounded transition-all duration-300;
 }
 .menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg) translate(6px, 6px);
@@ -31,24 +31,21 @@
   opacity: 0;
 }
 .menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+  transform: rotate(-45deg) translate(7px, -7px);
 }
 
-/* NavLink active state */
-a.active {
-  @apply text-brand;
-  font-weight: 600;
-  text-decoration: underline;
+/* Custom scrollbar for horizontal scroll sections */
+.scrollbar-hide::-webkit-scrollbar {
+  @apply hidden;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* WhatsApp button subtle bounce */
-@keyframes bounce-slow {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-.animate-bounce-slow {
-  animation: bounce-slow 2s ease-in-out infinite;
-}
-.animate-bounce-slow:hover {
-  animation: none;
+/* Responsive text utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
 }

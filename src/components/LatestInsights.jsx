@@ -52,11 +52,11 @@ const LatestInsights = () => {
           {/* <Link to="#" className="hidden md:inline-block text-brand font-bold hover:text-accent transition-colors">View All Articles &rarr;</Link> */}
         </div>
 
-        <div className="flex gap-8 overflow-x-scroll">
+        <div className="flex gap-4 sm:gap-8 overflow-x-auto scrollbar-hide pb-4">
           {insights.map((item, i) => (
             <div
               key={i}
-              className="w-96 h-[450px] shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col hover:-translate-y-1"
+              className="w-72 sm:w-80 md:w-96 h-[400px] sm:h-[450px] shrink-0 bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer border border-gray-100 flex flex-col hover:-translate-y-1"
             >
               <div className="h-[50%] border overflow-hidden relative">
                 <div className="absolute inset-0 bg-brand/10 mix-blend-multiply z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

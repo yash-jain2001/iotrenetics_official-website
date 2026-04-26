@@ -90,26 +90,29 @@ const About = () => {
         className="max-w-[1200px] mx-auto px-5 flex items-center justify-between gap-10 py-20 overflow-hidden max-md:flex-col max-md:text-center"
         data-aos="fade-up"
       >
-        <div className="max-w-[550px] flex flex-col items-center md:items-start text-center md:text-justify">
-          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+        <div className="max-w-[480px] flex flex-col items-center justify-center text-justify">
+          <h1 className="text-3xl font-bold">
             Building Intelligent, Connected Systems for a Smarter Future
           </h1>
-          <p className="mt-5 leading-relaxed text-base text-gray-600">
+          <p className="mt-3.5 leading-relaxed text-base text-gray-600 max-w-[420px]">
             <span className="text-accent font-bold italic">
               IoTrenetics Solutions Pvt. Ltd.
             </span>{" "}
-            is an innovative technology company
+            (pronounced: Eye-oh-Tren-etics) is an innovative technology company
             building intelligent solutions at the intersection of IoT, AI, and
             digital transformation. We create connected, data-driven systems
             that help businesses automate operations, gain real-time insights,
             and make smarter decisions.
           </p>
 
-          <p className="mt-4 leading-relaxed text-gray-600">
+          <p className="mt-3.5 leading-relaxed  max-w-[420px] text-gray-600">
             Driven by a vision of self-reliance, we proudly promote Swadeshi
             innovation—developing indigenous technologies that empower
             industries and contribute to a sustainable, future-ready ecosystem.
           </p>
+          {/* <button className="mt-5 py-2.5 px-6 border-none bg-gray-200 rounded-full cursor-pointer font-medium transition-colors duration-200 hover:bg-gray-300">
+            <span className="text-accent">Explore</span> Our Vision
+          </button> */}
         </div>
         <div className="flex-shrink-0">
           <img
@@ -204,25 +207,28 @@ const About = () => {
         data-aos="fade-up"
       >
         <SectionTitle accent="Our" postText=" Impact" className="mb-12" />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-gray-100 p-8 md:p-10 rounded-2xl text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex flex-col items-center justify-center text-center">
-            <div className="text-3xl mb-4">🏬</div>
+        <div className="flex flex-col md:flex-row gap-5 md:gap-5">
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-start">
             <p>
+              🏬
+              <br />
               Companies achieve{" "}
               <span className="text-accent font-bold">30%+</span> improvement in
               efficiency using our automated systems.
             </p>
           </div>
-          <div className="bg-gray-100 p-8 md:p-10 rounded-2xl text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex flex-col items-center justify-center text-center">
-            <div className="text-3xl mb-4">🖥️</div>
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-end">
             <p>
+              🖥️
+              <br />
               Real-time monitoring reduces downtime and enhances
               decision-making.
             </p>
           </div>
-          <div className="bg-gray-100 p-8 md:p-10 rounded-2xl text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg flex flex-col items-center justify-center text-center">
-            <div className="text-3xl mb-4">🧠</div>
+          <div className="bg-gray-100 h-[200px] p-10 rounded-md text-lg leading-relaxed shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lg justify-self-center">
             <p>
+              🧠
+              <br />
               Intelligent automation enables faster, safer, and more scalable
               workflows.
             </p>

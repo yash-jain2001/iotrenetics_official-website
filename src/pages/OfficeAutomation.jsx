@@ -40,7 +40,7 @@ const useCases = [
 ];
 
 const FeatureCard = ({ icon, title, desc }) => (
-  <div className="bg-white rounded-2xl p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+  <div className="w-[calc(50%-16px)] md:w-[calc(25%-24px)] bg-white rounded-2xl p-6 text-center shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
     <img
       src={`https://img.icons8.com/ios-filled/50/00c3ff/${icon}`}
       alt={title}
@@ -106,7 +106,7 @@ const OfficeAutomation = () => {
         <h2 className="text-center text-3xl md:text-4xl font-bold mb-16">
           Core <span className="text-accent">Features</span>
         </h2>
-        <div className="max-w-[1200px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="max-w-[1200px] mx-auto flex flex-wrap justify-center gap-8">
           {features.map((f, i) => (
             <FeatureCard key={i} {...f} />
           ))}

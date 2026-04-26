@@ -358,7 +358,7 @@ const PrivacyPolicyFinexo = () => {
             access to certain data as required to perform their functions:
           </Paragraph>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="flex flex-col md:flex-row flex-wrap gap-6 mb-8">
             <div className="bg-slate-50 rounded-xl p-5 border border-slate-200">
               <h4 className="font-bold text-slate-800 mb-2">
                 5.1 Google Firebase

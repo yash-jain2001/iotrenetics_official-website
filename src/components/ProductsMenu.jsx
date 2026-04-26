@@ -9,10 +9,10 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import { useNavigate } from "react-router-dom";
 
-// Import Logos
-import finexoLogo from "../../public/assets/finexo logo.png";
-import healnetLogo from "../../public/assets/healnet logo.jpeg";
-import agentraLogo from "../../public/assets/agentra logo.jpeg";
+// Logo paths (served from public directory)
+const finexoLogo = "/assets/finexo logo.png";
+const healnetLogo = "/assets/healnet logo.jpeg";
+const agentraLogo = "/assets/agentra logo.jpeg";
 
 const ProductsMenu = ({ closeMobileMenu }) => {
   // Desktop State

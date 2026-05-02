@@ -10,7 +10,7 @@ const cards = [
   {
     title: "Bedroom",
     image:
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85" ,
     items: [
       "Smart Lights",
       "Automated Curtains",

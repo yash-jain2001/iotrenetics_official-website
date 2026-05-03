@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Healnet = () => {
   return (
@@ -232,7 +233,7 @@ const Healnet = () => {
           </section>
 
           {/* Footer Card */}
-          <div className="bg-slate-900 rounded-3xl p-8 md:p-12 text-center text-white shadow-xl relative overflow-hidden">
+          <div className="bg-slate-900 rounded-3xl p-8 flex flex-col justify-center items-center  md:p-12 text-center text-white shadow-xl relative overflow-hidden">
             <div className="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 rounded-full bg-teal-500 opacity-20 blur-2xl"></div>
             <div className="absolute bottom-0 left-0 -ml-8 -mb-8 w-32 h-32 rounded-full bg-slate-500 opacity-20 blur-2xl"></div>
             
@@ -247,13 +248,13 @@ const Healnet = () => {
               <span>Individuals</span>
             </div>
             
-            <p className="text-xl font-semibold mb-6">
+            {/* <p className="text-xl font-semibold mb-6">
               Request a demo and explore our capabilities.
-            </p>
+            </p> */}
 
-            <a href="https://healnet.io" target="_blank" rel="noreferrer" className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-[0_0_15px_rgba(20,184,166,0.3)] border border-teal-400">
+            <Link to="/coming-soon" className="inline-flex items-center justify-center bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-xl transition-all shadow-[0_0_15px_rgba(20,184,166,0.3)] border border-teal-400">
               Visit healnet.io
-            </a>
+            </Link>
           </div>
 
         </article>

@@ -35,6 +35,16 @@ const NavStyles = () => (
       transition: opacity 0.22s ease, transform 0.22s cubic-bezier(.16,1,.3,1);
       z-index: 2000;
     }
+    /* Bridge gap between trigger and panel to maintain hover */
+    .dropdown-panel::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: transparent;
+    }
     .dropdown-trigger:hover .dropdown-panel,
     .dropdown-panel:hover {
       opacity: 1;

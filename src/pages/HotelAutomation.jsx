@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import SmartifyClone from '../components/SmartifyClone';
+import { Link } from 'react-router-dom';
 
 /* ─── Data ──────────────────────────────────────────────────────────────── */
 
@@ -271,12 +272,12 @@ const HotelAutomation = () => {
           </div>
 
           <div className="ha2-h4 flex items-center gap-4 flex-wrap justify-center">
-            <button className="bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-[0_0_28px_rgba(217,119,6,0.5)] hover:scale-[1.03] tracking-wide">
+            <Link to="/contact" className="bg-amber-600 hover:bg-amber-500 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all duration-200 hover:shadow-[0_0_28px_rgba(217,119,6,0.5)] hover:scale-[1.03] tracking-wide">
               Request a Demo
-            </button>
-            <button className="bg-white/8 hover:bg-white/15 backdrop-blur-md border border-white/20 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all duration-200 tracking-wide">
+            </Link>
+            <Link to="/coming-soon" className="bg-white/8 hover:bg-white/15 backdrop-blur-md border border-white/20 text-white font-semibold text-sm px-8 py-3.5 rounded-full transition-all duration-200 tracking-wide">
               Download Deck
-            </button>
+            </Link>
           </div>
         </div>
 

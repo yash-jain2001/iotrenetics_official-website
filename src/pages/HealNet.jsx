@@ -7,7 +7,7 @@ const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap');
 
   :root {
-    --ink:      #070d14;
+    --ink:      #070d14; 
     --ink-2:    #111b27;
     --ink-3:    #2e3d4f;
     --sub:      #637080;

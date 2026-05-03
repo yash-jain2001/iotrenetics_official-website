@@ -95,15 +95,14 @@ const FooterStyles = () => (
     .logo-wrap {
       display: inline-flex;
       align-items: center;
-      padding: 6px 10px 6px 6px;
+      padding: 8px 12px;
       border-radius: 12px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
-      transition: background 0.25s, border-color 0.25s;
+      background: #ffffff;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: box-shadow 0.25s;
     }
     .logo-wrap:hover {
-      background: rgba(255,255,255,0.1);
-      border-color: rgba(255,255,255,0.15);
+      box-shadow: 0 4px 20px rgba(255,255,255,0.12);
     }
 
     /* ── Bottom bar separator ── */
@@ -282,10 +281,7 @@ const Footer = () => {
                   src="/assets/IOT.webp"
                   alt="IoTrenetics"
                   className="h-16 w-auto"
-                  style={{
-                    filter: "brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,0.08))",
-                    opacity: 1,
-                  }}
+                  style={{ opacity: 1 }}
                 />
               </Link>
 

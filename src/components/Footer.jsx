@@ -283,8 +283,8 @@ const Footer = () => {
                   alt="IoTrenetics"
                   className="h-16 w-auto"
                   style={{
-                    filter: "brightness(0) invert(1)",
-                    opacity: 0.9,
+                    filter: "brightness(1.15) drop-shadow(0 0 6px rgba(255,255,255,0.08))",
+                    opacity: 1,
                   }}
                 />
               </Link>

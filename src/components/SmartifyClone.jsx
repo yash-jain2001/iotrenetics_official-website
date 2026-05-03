@@ -4,7 +4,7 @@ const cards = [
   {
     title: "Living Room",
     image:
-      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7" ,
     items: ["Voice Control", "Smart Lights", "Climate Control", "Smart TV"],
   },
   {

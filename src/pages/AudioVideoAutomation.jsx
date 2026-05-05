@@ -23,7 +23,7 @@ class AudioEngine {
     this._initiated = true;
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.value = 0.82; // increased master gain
+    this.masterGain.gain.value = 0.82;
     this.masterGain.connect(this.ctx.destination);
 
     this.analyser = this.ctx.createAnalyser();
@@ -37,12 +37,10 @@ class AudioEngine {
     if (this.ctx?.state === "suspended") this.ctx.resume();
   }
 
-  /* ── EPIC ENTRY BASS — fires once on page enter ── */
   playEntryBass() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
 
-    // Layer 1: Deep sub-bass punch
     [18, 28, 38, 52].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -58,7 +56,6 @@ class AudioEngine {
       osc.stop(t + i * 0.04 + 3);
     });
 
-    // Layer 2: Mid harmonic swell
     [80, 120, 160].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
@@ -73,7 +70,6 @@ class AudioEngine {
       osc.stop(t + 2.6);
     });
 
-    // Layer 3: Noise burst — chest thud feel
     const bufSize = this.ctx.sampleRate * 0.18;
     const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
     const data = buf.getChannelData(0);
@@ -91,7 +87,6 @@ class AudioEngine {
     noiseGain.connect(this.analyser);
     noise.start(t);
 
-    // Layer 4: High shimmer sparkle
     const shimmer = this.ctx.createOscillator();
     const shimGain = this.ctx.createGain();
     shimmer.type = "sine";
@@ -105,7 +100,6 @@ class AudioEngine {
     shimmer.stop(t + 2.4);
   }
 
-  /* ── AMBIENT BASS RUMBLE — heavily enhanced ── */
   startAmbient() {
     if (!this.ctx || this.isAmbientPlaying) return;
     this.isAmbientPlaying = true;
@@ -137,16 +131,14 @@ class AudioEngine {
       this._ambientOscs.push({ osc, gain, lfo });
     };
 
-    // Much stronger bass layers
-    createLayer(18, 0.32, 0, 0.08);     // Ultra sub-bass
-    createLayer(28, 0.28, 2, 0.1);      // Deep sub
-    createLayer(38, 0.22, -1, 0.12);    // Sub bass
-    createLayer(52, 0.16, 4, 0.15);     // Mid bass
-    createLayer(76, 0.10, -3, 0.18);    // Upper bass
-    createLayer(19, 0.18, 0, 0.06);     // Sub-sub rumble
-    createLayer(110, 0.06, 2, 0.22);    // Low-mid presence
+    createLayer(18, 0.32, 0, 0.08);
+    createLayer(28, 0.28, 2, 0.1);
+    createLayer(38, 0.22, -1, 0.12);
+    createLayer(52, 0.16, 4, 0.15);
+    createLayer(76, 0.10, -3, 0.18);
+    createLayer(19, 0.18, 0, 0.06);
+    createLayer(110, 0.06, 2, 0.22);
 
-    // Slow evolving texture oscillator
     const texOsc = this.ctx.createOscillator();
     const texGain = this.ctx.createGain();
     const texFilter = this.ctx.createBiquadFilter();
@@ -176,7 +168,6 @@ class AudioEngine {
     this.isAmbientPlaying = false;
   }
 
-  /* ── BASS THUD — enhanced chest punch ── */
   bassThud(intensity = 1) {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
@@ -195,7 +186,6 @@ class AudioEngine {
       osc.stop(t + 0.75);
     });
 
-    // Heavy noise burst
     const bufSize = this.ctx.sampleRate * 0.12;
     const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
     const data = buf.getChannelData(0);
@@ -214,7 +204,6 @@ class AudioEngine {
     noise.start(t);
   }
 
-  /* ── SCROLL RUMBLE — fires on scroll ── */
   playScrollRumble() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
@@ -231,7 +220,6 @@ class AudioEngine {
     osc.stop(t + 0.25);
   }
 
-  /* ── CINEMA — epic swell ── */
   playCinema() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
@@ -299,7 +287,6 @@ class AudioEngine {
       osc.start(t + i * 0.14);
       osc.stop(t + i * 0.14 + 1.7);
     });
-    // Add soft bass undertone for relax
     const bassOsc = this.ctx.createOscillator();
     const bassGain = this.ctx.createGain();
     bassOsc.type = "sine";
@@ -523,10 +510,10 @@ const GlobalStyles = () => (
     .img-zoom:hover img { transform: scale(1.06); }
     .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
 
-    /* ── BASS BUTTON — REDESIGNED, UNMISSABLE ── */
+    /* ── BASS BUTTON — moved up to avoid chatbot overlap ── */
     .bass-btn-wrap {
       position: fixed;
-      bottom: 32px;
+      bottom: 100px;
       right: 32px;
       z-index: 9999;
       display: flex;
@@ -590,7 +577,7 @@ const GlobalStyles = () => (
     }
     .audio-toggle.active { animation: bassButtonPulse 2s ease-in-out infinite; }
 
-    /* ── ENTRY BASS PROMPT ── */
+    /* ── ENTRY BASS PROMPT — shifted up to match button ── */
     @keyframes entryPromptIn {
       from { opacity: 0; transform: translateY(12px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -601,7 +588,7 @@ const GlobalStyles = () => (
     }
     .entry-prompt {
       position: fixed;
-      bottom: 112px;
+      bottom: 180px;
       right: 24px;
       z-index: 9998;
       padding: 10px 16px;
@@ -625,9 +612,9 @@ const GlobalStyles = () => (
       50% { transform: translateX(4px); }
     }
 
-    /* Live audio indicator */
+    /* Live audio indicator — shifted up to match button */
     .audio-indicator {
-      position: fixed; bottom: 108px; right: 26px; z-index: 9998;
+      position: fixed; bottom: 176px; right: 26px; z-index: 9998;
       display: flex; align-items: flex-end; gap: 2px; padding: 8px 10px;
       background: rgba(7,8,10,0.82); backdrop-filter: blur(10px);
       border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;
@@ -740,7 +727,7 @@ const ReactiveWaveform = ({ bars = 28, height = 48, audioActive }) => {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   BASS BUTTON — redesigned, prominent
+   BASS BUTTON
 ───────────────────────────────────────────────────────────────────────────── */
 const AudioToggle = ({ audioActive, onToggle }) => (
   <div className="bass-btn-wrap">
@@ -768,7 +755,7 @@ const AudioToggle = ({ audioActive, onToggle }) => (
 );
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   DATA — TruAudio references removed/softened
+   DATA
 ───────────────────────────────────────────────────────────────────────────── */
 const solutions = [
   {
@@ -902,27 +889,22 @@ const AudioVideo = () => {
   const lastHoverSound = useRef(0);
   const lastScrollSound = useRef(0);
 
-  /* Init audio + fire entry bass on first interaction */
   const handleFirstInteraction = useCallback(() => {
     if (audioInited) return;
     audioEngine.init();
     setAudioInited(true);
 
-    // Fire epic entry bass immediately
     if (!entryBassPlayed) {
       setEntryBassPlayed(true);
       audioEngine.resume();
       audioEngine.playEntryBass();
       setShowScreenFlash(true);
       setTimeout(() => setShowScreenFlash(false), 1400);
-
-      // Show the prompt after a moment
       setTimeout(() => setShowEntryPrompt(true), 1200);
       setTimeout(() => setShowEntryPrompt(false), 5000);
     }
   }, [audioInited, entryBassPlayed]);
 
-  /* Scroll-triggered rumble */
   useEffect(() => {
     const onScroll = () => {
       if (!audioInited) return;
@@ -936,7 +918,6 @@ const AudioVideo = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, [audioInited]);
 
-  /* Toggle ambient bass */
   const toggleAudio = useCallback(() => {
     if (!audioInited) { audioEngine.init(); setAudioInited(true); }
     audioEngine.resume();
@@ -1001,10 +982,8 @@ const AudioVideo = () => {
       <GlobalStyles />
       <Cursor onFirstInteraction={handleFirstInteraction} />
 
-      {/* Screen flash on entry bass */}
       {showScreenFlash && <div className="screen-flash" />}
 
-      {/* Entry prompt bubble */}
       <AnimatePresence>
         {showEntryPrompt && (
           <div className={`entry-prompt`}>
@@ -1017,10 +996,8 @@ const AudioVideo = () => {
         )}
       </AnimatePresence>
 
-      {/* Floating Bass Button */}
       <AudioToggle audioActive={audioActive} onToggle={toggleAudio} />
 
-      {/* Live indicator */}
       <div className={`audio-indicator ${audioActive ? "" : "hidden"}`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="rwave-bar" style={{ height: "8px", width: "3px" }} />
@@ -1111,7 +1088,7 @@ const AudioVideo = () => {
         </motion.div>
       </section>
 
-      {/* ══ STORY — TruAudio softened ══ */}
+      {/* ══ STORY ══ */}
       <section className="max-w-[1120px] mx-auto px-6 sm:px-10 py-28">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="sr-left flex-1">

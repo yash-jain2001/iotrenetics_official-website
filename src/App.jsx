@@ -37,6 +37,7 @@ import DeleteAccFinexo from "./pages/DeleteAccFinexo";
 import Agentra from "./pages/Agentra";
 import ChatBot from "./components/ChatBot";
 import HotelAutomation from "./pages/HotelAutomation";
+import AudioVideoAutomation from "./pages/AudioVideoAutomation";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -69,6 +70,7 @@ function App() {
         <Route path="/home-automation" element={<HomeAutomation />} />
         <Route path="/office-automation" element={<OfficeAutomation />} />
         <Route path="/hotel-automation" element={<HotelAutomation />} />
+        <Route path="/audio-video-automation" element={<AudioVideoAutomation />} />
         <Route path="/coming-soon" element={<ComingSoon />} />
         <Route
           path="/privacy-policy-finexo"

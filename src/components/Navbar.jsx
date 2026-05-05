@@ -291,6 +291,19 @@ const automationItems = [
       </svg>
     ),
   },
+  {
+    to: "/audio-video-automation",
+    label: "Audio-Video Automation",
+    desc: "Immersive sound and visuals",
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+        <path d="M3 22V8l9-6 9 6v14"/>
+        <path d="M9 22v-4h6v4"/>
+        <rect x="9" y="10" width="2" height="2"/>
+        <rect x="13" y="10" width="2" height="2"/>
+      </svg>
+    ),
+  },
 ];
 
 const mainNavLinks = [

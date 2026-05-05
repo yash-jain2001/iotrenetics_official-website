@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   AUDIO ENGINE  (Web Audio API)
-   All sound synthesis happens here — no external files needed.
+   AUDIO ENGINE  (Web Audio API) — ENHANCED BASS + MORE SOUNDS
 ───────────────────────────────────────────────────────────────────────────── */
 class AudioEngine {
   constructor() {
@@ -15,21 +14,21 @@ class AudioEngine {
     this.isAmbientPlaying = false;
     this.dataArray = null;
     this._initiated = false;
+    this._ambientOscs = [];
+    this._scrollSoundTimer = null;
   }
 
-  /* Lazily create AudioContext on first user gesture */
   init() {
     if (this._initiated) return;
     this._initiated = true;
     this.ctx = new (window.AudioContext || window.webkitAudioContext)();
     this.masterGain = this.ctx.createGain();
-    this.masterGain.gain.value = 0.55;
+    this.masterGain.gain.value = 0.82; // increased master gain
     this.masterGain.connect(this.ctx.destination);
 
-    /* Analyser for waveform visualizer */
     this.analyser = this.ctx.createAnalyser();
-    this.analyser.fftSize = 256;
-    this.analyser.smoothingTimeConstant = 0.82;
+    this.analyser.fftSize = 512;
+    this.analyser.smoothingTimeConstant = 0.85;
     this.dataArray = new Uint8Array(this.analyser.frequencyBinCount);
     this.analyser.connect(this.masterGain);
   }
@@ -38,12 +37,80 @@ class AudioEngine {
     if (this.ctx?.state === "suspended") this.ctx.resume();
   }
 
-  /* ── LOW-FREQUENCY BASS RUMBLE (ambient) ── */
+  /* ── EPIC ENTRY BASS — fires once on page enter ── */
+  playEntryBass() {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+
+    // Layer 1: Deep sub-bass punch
+    [18, 28, 38, 52].forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq * 1.4, t + i * 0.04);
+      osc.frequency.exponentialRampToValueAtTime(freq, t + i * 0.04 + 0.6);
+      gain.gain.setValueAtTime(0, t + i * 0.04);
+      gain.gain.linearRampToValueAtTime(0.38 - i * 0.06, t + i * 0.04 + 0.12);
+      gain.gain.linearRampToValueAtTime(0.001, t + i * 0.04 + 2.8);
+      osc.connect(gain);
+      gain.connect(this.analyser);
+      osc.start(t + i * 0.04);
+      osc.stop(t + i * 0.04 + 3);
+    });
+
+    // Layer 2: Mid harmonic swell
+    [80, 120, 160].forEach((freq, i) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = "triangle";
+      osc.frequency.value = freq;
+      gain.gain.setValueAtTime(0, t + 0.2 + i * 0.08);
+      gain.gain.linearRampToValueAtTime(0.10 - i * 0.025, t + 0.5 + i * 0.08);
+      gain.gain.linearRampToValueAtTime(0.001, t + 2.4);
+      osc.connect(gain);
+      gain.connect(this.analyser);
+      osc.start(t + 0.2 + i * 0.08);
+      osc.stop(t + 2.6);
+    });
+
+    // Layer 3: Noise burst — chest thud feel
+    const bufSize = this.ctx.sampleRate * 0.18;
+    const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 2.5);
+    const noise = this.ctx.createBufferSource();
+    const noiseGain = this.ctx.createGain();
+    const noiseFilter = this.ctx.createBiquadFilter();
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 120;
+    noise.buffer = buf;
+    noiseGain.gain.setValueAtTime(0.55, t);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+    noise.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(this.analyser);
+    noise.start(t);
+
+    // Layer 4: High shimmer sparkle
+    const shimmer = this.ctx.createOscillator();
+    const shimGain = this.ctx.createGain();
+    shimmer.type = "sine";
+    shimmer.frequency.value = 5200;
+    shimGain.gain.setValueAtTime(0, t + 0.3);
+    shimGain.gain.linearRampToValueAtTime(0.025, t + 0.6);
+    shimGain.gain.linearRampToValueAtTime(0.001, t + 2.2);
+    shimmer.connect(shimGain);
+    shimGain.connect(this.analyser);
+    shimmer.start(t + 0.3);
+    shimmer.stop(t + 2.4);
+  }
+
+  /* ── AMBIENT BASS RUMBLE — heavily enhanced ── */
   startAmbient() {
     if (!this.ctx || this.isAmbientPlaying) return;
     this.isAmbientPlaying = true;
 
-    const createLayer = (freq, gainVal, detune = 0) => {
+    const createLayer = (freq, gainVal, detune = 0, lfoRate = 0.12) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       const lfo = this.ctx.createOscillator();
@@ -54,8 +121,8 @@ class AudioEngine {
       osc.detune.value = detune;
 
       lfo.type = "sine";
-      lfo.frequency.value = 0.12;
-      lfoGain.gain.value = freq * 0.08;
+      lfo.frequency.value = lfoRate;
+      lfoGain.gain.value = freq * 0.12;
       lfo.connect(lfoGain);
       lfoGain.connect(osc.frequency);
 
@@ -67,196 +134,239 @@ class AudioEngine {
 
       lfo.start();
       osc.start();
-      this._ambientOscs = this._ambientOscs || [];
       this._ambientOscs.push({ osc, gain, lfo });
-      return gain;
     };
 
-    createLayer(38, 0.18);          // Deep sub bass
-    createLayer(52, 0.10, 3);       // Mid bass
-    createLayer(76, 0.05, -2);      // Upper bass harmonic
-    createLayer(19, 0.08);          // Sub-sub rumble
+    // Much stronger bass layers
+    createLayer(18, 0.32, 0, 0.08);     // Ultra sub-bass
+    createLayer(28, 0.28, 2, 0.1);      // Deep sub
+    createLayer(38, 0.22, -1, 0.12);    // Sub bass
+    createLayer(52, 0.16, 4, 0.15);     // Mid bass
+    createLayer(76, 0.10, -3, 0.18);    // Upper bass
+    createLayer(19, 0.18, 0, 0.06);     // Sub-sub rumble
+    createLayer(110, 0.06, 2, 0.22);    // Low-mid presence
+
+    // Slow evolving texture oscillator
+    const texOsc = this.ctx.createOscillator();
+    const texGain = this.ctx.createGain();
+    const texFilter = this.ctx.createBiquadFilter();
+    texOsc.type = "sawtooth";
+    texOsc.frequency.value = 32;
+    texFilter.type = "lowpass";
+    texFilter.frequency.value = 80;
+    texFilter.Q.value = 3;
+    texGain.gain.value = 0;
+    texGain.gain.linearRampToValueAtTime(0.12, this.ctx.currentTime + 4);
+    texOsc.connect(texFilter);
+    texFilter.connect(texGain);
+    texGain.connect(this.analyser);
+    texOsc.start();
+    this._ambientOscs.push({ osc: texOsc, gain: texGain, lfo: null });
   }
 
   stopAmbient() {
-    if (!this.isAmbientPlaying || !this._ambientOscs) return;
+    if (!this.isAmbientPlaying) return;
     this._ambientOscs.forEach(({ osc, gain, lfo }) => {
-      gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1.5);
-      setTimeout(() => { try { osc.stop(); lfo.stop(); } catch {} }, 1600);
+      try {
+        gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 1.5);
+        setTimeout(() => { try { osc.stop(); if (lfo) lfo.stop(); } catch {} }, 1600);
+      } catch {}
     });
     this._ambientOscs = [];
     this.isAmbientPlaying = false;
   }
 
-  /* ── BASS THUD — deep impact hit ── */
+  /* ── BASS THUD — enhanced chest punch ── */
   bassThud(intensity = 1) {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
 
-    [40, 60, 80].forEach((freq, i) => {
+    [22, 35, 50, 70].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = "sine";
-      osc.frequency.setValueAtTime(freq * (1 + i * 0.1), t);
-      osc.frequency.exponentialRampToValueAtTime(freq * 0.3, t + 0.25);
-      gain.gain.setValueAtTime(0.28 * intensity * (1 - i * 0.08), t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.5);
+      osc.frequency.setValueAtTime(freq * 1.6, t);
+      osc.frequency.exponentialRampToValueAtTime(freq * 0.25, t + 0.35);
+      gain.gain.setValueAtTime(0.42 * intensity * (1 - i * 0.07), t);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.7);
       osc.connect(gain);
       gain.connect(this.analyser);
       osc.start(t);
-      osc.stop(t + 0.55);
+      osc.stop(t + 0.75);
     });
 
-    // Noise burst for punch
-    const bufSize = this.ctx.sampleRate * 0.08;
+    // Heavy noise burst
+    const bufSize = this.ctx.sampleRate * 0.12;
     const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
     const data = buf.getChannelData(0);
-    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * (1 - i / bufSize);
+    for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufSize, 1.8);
     const noise = this.ctx.createBufferSource();
     const noiseGain = this.ctx.createGain();
     const noiseFilter = this.ctx.createBiquadFilter();
     noiseFilter.type = "lowpass";
-    noiseFilter.frequency.value = 180;
+    noiseFilter.frequency.value = 150;
     noise.buffer = buf;
-    noiseGain.gain.setValueAtTime(0.15 * intensity, t);
-    noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    noiseGain.gain.setValueAtTime(0.38 * intensity, t);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
     noise.connect(noiseFilter);
     noiseFilter.connect(noiseGain);
     noiseGain.connect(this.analyser);
     noise.start(t);
   }
 
-  /* ── MODE-SPECIFIC SOUND SIGNATURES ── */
+  /* ── SCROLL RUMBLE — fires on scroll ── */
+  playScrollRumble() {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(45, t);
+    osc.frequency.exponentialRampToValueAtTime(28, t + 0.18);
+    gain.gain.setValueAtTime(0.22, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.22);
+    osc.connect(gain);
+    gain.connect(this.analyser);
+    osc.start(t);
+    osc.stop(t + 0.25);
+  }
+
+  /* ── CINEMA — epic swell ── */
   playCinema() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    // Epic cinematic bass swell
-    [28, 42, 56, 84].forEach((freq, i) => {
+    [20, 30, 42, 56, 84].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = i < 2 ? "sine" : "triangle";
       osc.frequency.setValueAtTime(freq, t + i * 0.06);
-      osc.frequency.linearRampToValueAtTime(freq * 1.04, t + 0.8);
+      osc.frequency.linearRampToValueAtTime(freq * 1.05, t + 1.0);
       gain.gain.setValueAtTime(0, t + i * 0.06);
-      gain.gain.linearRampToValueAtTime(0.18 - i * 0.03, t + i * 0.06 + 0.12);
-      gain.gain.linearRampToValueAtTime(0.001, t + 1.8);
+      gain.gain.linearRampToValueAtTime(0.26 - i * 0.04, t + i * 0.06 + 0.14);
+      gain.gain.linearRampToValueAtTime(0.001, t + 2.2);
       osc.connect(gain);
       gain.connect(this.analyser);
       osc.start(t + i * 0.06);
-      osc.stop(t + 2);
+      osc.stop(t + 2.4);
     });
-    // High shimmer
     const shimmer = this.ctx.createOscillator();
     const shimGain = this.ctx.createGain();
     shimmer.type = "sine";
-    shimmer.frequency.value = 4200;
+    shimmer.frequency.value = 4800;
     shimGain.gain.setValueAtTime(0, t + 0.1);
-    shimGain.gain.linearRampToValueAtTime(0.015, t + 0.5);
-    shimGain.gain.linearRampToValueAtTime(0.001, t + 1.6);
+    shimGain.gain.linearRampToValueAtTime(0.022, t + 0.6);
+    shimGain.gain.linearRampToValueAtTime(0.001, t + 1.8);
     shimmer.connect(shimGain);
     shimGain.connect(this.analyser);
     shimmer.start(t + 0.1);
-    shimmer.stop(t + 1.8);
+    shimmer.stop(t + 2.0);
+    this.bassThud(1.4);
   }
 
   playParty() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    // Energetic kick + rising synth
-    [60, 90, 120].forEach((freq, i) => {
+    [50, 75, 100, 140].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = "square";
-      osc.frequency.setValueAtTime(freq, t + i * 0.09);
-      osc.frequency.exponentialRampToValueAtTime(freq * 2.5, t + i * 0.09 + 0.3);
-      gain.gain.setValueAtTime(0.12, t + i * 0.09);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.09 + 0.4);
+      osc.frequency.setValueAtTime(freq, t + i * 0.08);
+      osc.frequency.exponentialRampToValueAtTime(freq * 2.8, t + i * 0.08 + 0.32);
+      gain.gain.setValueAtTime(0.16, t + i * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.08 + 0.45);
       osc.connect(gain);
       gain.connect(this.analyser);
-      osc.start(t + i * 0.09);
-      osc.stop(t + i * 0.09 + 0.45);
+      osc.start(t + i * 0.08);
+      osc.stop(t + i * 0.08 + 0.5);
     });
-    this.bassThud(0.8);
+    this.bassThud(1.1);
   }
 
   playRelax() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    // Soft chime cluster — pentatonic
-    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5]; // C5 E5 G5 C6 E6
+    const notes = [523.25, 659.25, 783.99, 1046.5, 1318.5];
     notes.forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = "sine";
       osc.frequency.value = freq;
       gain.gain.setValueAtTime(0, t + i * 0.14);
-      gain.gain.linearRampToValueAtTime(0.07 - i * 0.008, t + i * 0.14 + 0.05);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.14 + 1.4);
+      gain.gain.linearRampToValueAtTime(0.09 - i * 0.01, t + i * 0.14 + 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.14 + 1.6);
       osc.connect(gain);
       gain.connect(this.analyser);
       osc.start(t + i * 0.14);
-      osc.stop(t + i * 0.14 + 1.5);
+      osc.stop(t + i * 0.14 + 1.7);
     });
+    // Add soft bass undertone for relax
+    const bassOsc = this.ctx.createOscillator();
+    const bassGain = this.ctx.createGain();
+    bassOsc.type = "sine";
+    bassOsc.frequency.value = 65;
+    bassGain.gain.setValueAtTime(0, t);
+    bassGain.gain.linearRampToValueAtTime(0.12, t + 0.5);
+    bassGain.gain.linearRampToValueAtTime(0.001, t + 2.5);
+    bassOsc.connect(bassGain);
+    bassGain.connect(this.analyser);
+    bassOsc.start(t);
+    bassOsc.stop(t + 2.7);
   }
 
   playSleep() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    // Gentle descending tone — fade to silence
-    [220, 196, 174.6, 164.8].forEach((freq, i) => {
+    [220, 196, 174.6, 164.8, 146.8].forEach((freq, i) => {
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = "sine";
       osc.frequency.value = freq;
-      gain.gain.setValueAtTime(0, t + i * 0.4);
-      gain.gain.linearRampToValueAtTime(0.06, t + i * 0.4 + 0.2);
-      gain.gain.linearRampToValueAtTime(0.001, t + i * 0.4 + 1.2);
+      gain.gain.setValueAtTime(0, t + i * 0.42);
+      gain.gain.linearRampToValueAtTime(0.08, t + i * 0.42 + 0.25);
+      gain.gain.linearRampToValueAtTime(0.001, t + i * 0.42 + 1.4);
       osc.connect(gain);
       gain.connect(this.analyser);
-      osc.start(t + i * 0.4);
-      osc.stop(t + i * 0.4 + 1.3);
+      osc.start(t + i * 0.42);
+      osc.stop(t + i * 0.42 + 1.5);
     });
   }
 
-  /* ── HOVER MICRO-SOUND — subtle tick ── */
   playHover() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = "sine";
-    osc.frequency.setValueAtTime(1800, t);
-    osc.frequency.exponentialRampToValueAtTime(2400, t + 0.04);
-    gain.gain.setValueAtTime(0.025, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+    osc.frequency.setValueAtTime(2000, t);
+    osc.frequency.exponentialRampToValueAtTime(2600, t + 0.045);
+    gain.gain.setValueAtTime(0.035, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.07);
     osc.connect(gain);
     gain.connect(this.masterGain);
     osc.start(t);
-    osc.stop(t + 0.07);
+    osc.stop(t + 0.08);
   }
 
-  /* ── CLICK SOUND — satisfying thunk ── */
   playClick() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
     const osc = this.ctx.createOscillator();
     const gain = this.ctx.createGain();
     osc.type = "sine";
-    osc.frequency.setValueAtTime(320, t);
-    osc.frequency.exponentialRampToValueAtTime(80, t + 0.08);
-    gain.gain.setValueAtTime(0.18, t);
-    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+    osc.frequency.setValueAtTime(380, t);
+    osc.frequency.exponentialRampToValueAtTime(90, t + 0.1);
+    gain.gain.setValueAtTime(0.28, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.14);
     osc.connect(gain);
     gain.connect(this.analyser);
     osc.start(t);
-    osc.stop(t + 0.13);
+    osc.stop(t + 0.15);
   }
 
-  /* ── SECTION ENTER — whoosh ── */
   playSectionWhoosh() {
     if (!this.ctx) return;
     const t = this.ctx.currentTime;
-    const bufSize = this.ctx.sampleRate * 0.35;
+    const bufSize = this.ctx.sampleRate * 0.4;
     const buf = this.ctx.createBuffer(1, bufSize, this.ctx.sampleRate);
     const data = buf.getChannelData(0);
     for (let i = 0; i < bufSize; i++) data[i] = (Math.random() * 2 - 1);
@@ -264,19 +374,18 @@ class AudioEngine {
     const filter = this.ctx.createBiquadFilter();
     const gain = this.ctx.createGain();
     filter.type = "bandpass";
-    filter.frequency.setValueAtTime(200, t);
-    filter.frequency.linearRampToValueAtTime(2800, t + 0.3);
-    filter.Q.value = 0.6;
+    filter.frequency.setValueAtTime(180, t);
+    filter.frequency.linearRampToValueAtTime(3200, t + 0.35);
+    filter.Q.value = 0.5;
     noise.buffer = buf;
-    gain.gain.setValueAtTime(0.06, t);
-    gain.gain.linearRampToValueAtTime(0.001, t + 0.35);
+    gain.gain.setValueAtTime(0.09, t);
+    gain.gain.linearRampToValueAtTime(0.001, t + 0.4);
     noise.connect(filter);
     filter.connect(gain);
     gain.connect(this.masterGain);
     noise.start(t);
   }
 
-  /* Get frequency data for visualizer */
   getFrequencyData() {
     if (!this.analyser) return null;
     this.analyser.getByteFrequencyData(this.dataArray);
@@ -284,7 +393,6 @@ class AudioEngine {
   }
 }
 
-/* Singleton */
 const audioEngine = new AudioEngine();
 
 /* ─────────────────────────────────────────────────────────────────────────────
@@ -410,27 +518,116 @@ const GlobalStyles = () => (
     }
     .mode-btn:hover, .mode-btn.active { border-color: rgba(201,168,76,0.5); }
     .mode-btn:hover::before, .mode-btn.active::before { opacity: 1; }
-    .process-line { position: absolute; left: 20px; top: 32px; bottom: 0; width: 1px; background: linear-gradient(to bottom, var(--gold), transparent); }
     .img-zoom { overflow: hidden; border-radius: 20px; }
     .img-zoom img { transition: transform .7s cubic-bezier(.16,1,.3,1); }
     .img-zoom:hover img { transform: scale(1.06); }
     .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
 
-    /* Audio toggle button */
-    .audio-toggle {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      width: 52px; height: 52px; border-radius: 50%;
-      border: 1px solid rgba(201,168,76,0.35);
-      background: rgba(7,8,10,0.88); backdrop-filter: blur(12px);
-      display: flex; align-items: center; justify-content: center;
-      cursor: none; transition: border-color .25s, transform .2s;
+    /* ── BASS BUTTON — REDESIGNED, UNMISSABLE ── */
+    .bass-btn-wrap {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
     }
-    .audio-toggle:hover { border-color: var(--gold); transform: scale(1.08); }
-    .audio-toggle.active { border-color: var(--gold); background: rgba(201,168,76,0.12); }
+    .bass-btn-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0.85;
+      transition: opacity 0.3s;
+      white-space: nowrap;
+    }
+    .bass-btn-label.muted { color: rgba(201,168,76,0.4); }
+    .audio-toggle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(201,168,76,0.5);
+      background: rgba(7,8,10,0.92);
+      backdrop-filter: blur(16px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: none;
+      transition: border-color .25s, transform .2s, box-shadow .3s;
+      box-shadow: 0 0 0 0 rgba(201,168,76,0);
+      position: relative;
+    }
+    .audio-toggle::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .audio-toggle::after {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,168,76,0.07);
+    }
+    .audio-toggle:hover {
+      border-color: var(--gold);
+      transform: scale(1.1);
+      box-shadow: 0 0 28px rgba(201,168,76,0.35);
+    }
+    .audio-toggle.active {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.14);
+      box-shadow: 0 0 40px rgba(201,168,76,0.4), 0 0 80px rgba(201,168,76,0.15);
+    }
+    @keyframes bassButtonPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(201,168,76,0.3), 0 0 0 0 rgba(201,168,76,0.2); }
+      50%       { box-shadow: 0 0 40px rgba(201,168,76,0.5), 0 0 20px rgba(201,168,76,0.1); }
+    }
+    .audio-toggle.active { animation: bassButtonPulse 2s ease-in-out infinite; }
+
+    /* ── ENTRY BASS PROMPT ── */
+    @keyframes entryPromptIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes entryPromptOut {
+      from { opacity: 1; transform: translateY(0); }
+      to   { opacity: 0; transform: translateY(-8px); }
+    }
+    .entry-prompt {
+      position: fixed;
+      bottom: 112px;
+      right: 24px;
+      z-index: 9998;
+      padding: 10px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(7,8,10,0.9);
+      backdrop-filter: blur(14px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: entryPromptIn 0.5s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    .entry-prompt.out { animation: entryPromptOut 0.4s ease-in forwards; }
+    .entry-prompt-text { font-size: 11px; color: rgba(240,236,228,0.7); white-space: nowrap; line-height: 1.4; }
+    .entry-prompt-arrow {
+      font-size: 16px;
+      animation: bounceRight 1s ease-in-out infinite;
+    }
+    @keyframes bounceRight {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(4px); }
+    }
 
     /* Live audio indicator */
     .audio-indicator {
-      position: fixed; bottom: 90px; right: 22px; z-index: 9998;
+      position: fixed; bottom: 108px; right: 26px; z-index: 9998;
       display: flex; align-items: flex-end; gap: 2px; padding: 8px 10px;
       background: rgba(7,8,10,0.82); backdrop-filter: blur(10px);
       border: 1px solid rgba(201,168,76,0.2); border-radius: 10px;
@@ -438,7 +635,6 @@ const GlobalStyles = () => (
     }
     .audio-indicator.hidden { opacity: 0; pointer-events: none; }
 
-    /* Reactive waveform bar */
     .rwave-bar {
       width: 3px; background: var(--gold); border-radius: 2px;
       transform-origin: bottom; transition: height 0.05s ease;
@@ -446,18 +642,29 @@ const GlobalStyles = () => (
 
     @keyframes scrollHint { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }
 
-    /* Mode sound flash */
     @keyframes modeFlash {
       0%   { opacity: 0; transform: scale(0.94); }
       30%  { opacity: 1; transform: scale(1); }
       100% { opacity: 1; transform: scale(1); }
     }
     .mode-flash { animation: modeFlash .4s cubic-bezier(.16,1,.3,1); }
+
+    /* Screen flash on entry bass */
+    @keyframes screenFlash {
+      0%   { opacity: 0.18; }
+      100% { opacity: 0; }
+    }
+    .screen-flash {
+      position: fixed; inset: 0; z-index: 99990;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.22), transparent 70%);
+      pointer-events: none;
+      animation: screenFlash 1.2s ease-out forwards;
+    }
   `}</style>
 );
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   CUSTOM CURSOR (with audio init on first move)
+   CUSTOM CURSOR
 ───────────────────────────────────────────────────────────────────────────── */
 const Cursor = ({ onFirstInteraction }) => {
   const dot = useRef(null);
@@ -471,7 +678,7 @@ const Cursor = ({ onFirstInteraction }) => {
       if (!interacted.current) { interacted.current = true; onFirstInteraction?.(); }
     };
     const over = (e) => {
-      if (e.target.closest("a,button,.exp-tab,.mode-btn,.audio-toggle")) {
+      if (e.target.closest("a,button,.exp-tab,.mode-btn,.audio-toggle,.bass-btn-wrap")) {
         dot.current?.classList.add("hover"); ring.current?.classList.add("hover");
       } else {
         dot.current?.classList.remove("hover"); ring.current?.classList.remove("hover");
@@ -491,7 +698,7 @@ const Cursor = ({ onFirstInteraction }) => {
 };
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   REACTIVE WAVEFORM — reads live frequency data from analyser
+   REACTIVE WAVEFORM
 ───────────────────────────────────────────────────────────────────────────── */
 const ReactiveWaveform = ({ bars = 28, height = 48, audioActive }) => {
   const barsRef = useRef([]);
@@ -502,24 +709,16 @@ const ReactiveWaveform = ({ bars = 28, height = 48, audioActive }) => {
     const animate = () => {
       rafRef.current = requestAnimationFrame(animate);
       const freqData = audioActive ? audioEngine.getFrequencyData() : null;
-
       barsRef.current.forEach((bar, i) => {
         if (!bar) return;
-        let h;
         if (freqData && audioActive) {
-          // Map bar index to frequency bin (focus on bass/mid range)
-          const binIndex = Math.floor((i / bars) * (freqData.length * 0.6));
+          const binIndex = Math.floor((i / bars) * (freqData.length * 0.65));
           const freqVal = freqData[binIndex] / 255;
-          h = Math.max(8, freqVal * 95 + 5);
-          bar.style.height = h + "%";
+          bar.style.height = Math.max(8, freqVal * 95 + 5) + "%";
           bar.style.opacity = 0.5 + freqVal * 0.5;
-          bar.style.background = freqVal > 0.6
-            ? `var(--gold-light)`
-            : `var(--gold)`;
+          bar.style.background = freqVal > 0.6 ? `var(--gold-light)` : `var(--gold)`;
         } else {
-          // Fallback CSS animation when no audio
-          h = baseHeights.current[i];
-          bar.style.height = h + "%";
+          bar.style.height = baseHeights.current[i] + "%";
           bar.style.background = "var(--gold)";
           bar.style.opacity = "0.7";
         }
@@ -532,62 +731,44 @@ const ReactiveWaveform = ({ bars = 28, height = 48, audioActive }) => {
   return (
     <div className="flex items-end gap-[3px]" style={{ height }}>
       {Array.from({ length: bars }).map((_, i) => (
-        <div
-          key={i}
-          ref={(el) => (barsRef.current[i] = el)}
+        <div key={i} ref={(el) => (barsRef.current[i] = el)}
           className={`wave-bar flex-1 ${audioActive ? "audio-active" : ""}`}
-          style={{
-            "--dur": `${0.8 + Math.random() * 0.8}s`,
-            "--delay": `${(i / bars) * 0.8}s`,
-            height: `${baseHeights.current[i]}%`,
-          }}
-        />
+          style={{ "--dur": `${0.8 + Math.random() * 0.8}s`, "--delay": `${(i / bars) * 0.8}s`, height: `${baseHeights.current[i]}%` }} />
       ))}
     </div>
   );
 };
 
-/* Static waveform for non-reactive uses */
-const Waveform = ({ bars = 28, height = 48 }) => (
-  <div className="flex items-end gap-[3px]" style={{ height }}>
-    {Array.from({ length: bars }).map((_, i) => (
-      <div key={i} className="wave-bar flex-1"
-        style={{
-          "--dur": `${0.8 + Math.random() * 0.8}s`,
-          "--delay": `${(i / bars) * 0.8}s`,
-          height: `${30 + Math.random() * 70}%`,
-        }} />
-    ))}
+/* ─────────────────────────────────────────────────────────────────────────────
+   BASS BUTTON — redesigned, prominent
+───────────────────────────────────────────────────────────────────────────── */
+const AudioToggle = ({ audioActive, onToggle }) => (
+  <div className="bass-btn-wrap">
+    <span className={`bass-btn-label ${audioActive ? "" : "muted"}`}>
+      {audioActive ? "🔊 BASS ON" : "🔇 FEEL BASS"}
+    </span>
+    <button
+      className={`audio-toggle ${audioActive ? "active" : ""}`}
+      onClick={onToggle}
+      title={audioActive ? "Mute" : "Feel the bass"}
+    >
+      {audioActive ? (
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="w-6 h-6">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+          <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.6)" strokeWidth="1.5" className="w-6 h-6">
+          <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+          <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+      )}
+    </button>
   </div>
 );
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   AUDIO TOGGLE BUTTON (floating)
-───────────────────────────────────────────────────────────────────────────── */
-const AudioToggle = ({ audioActive, onToggle }) => (
-  <button
-    className={`audio-toggle ${audioActive ? "active" : ""}`}
-    onClick={onToggle}
-    title={audioActive ? "Mute ambient sound" : "Enable ambient sound"}
-  >
-    {audioActive ? (
-      /* Sound on icon */
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" className="w-5 h-5">
-        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-        <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
-      </svg>
-    ) : (
-      /* Sound off icon */
-      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(201,168,76,0.5)" strokeWidth="1.5" className="w-5 h-5">
-        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-        <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-      </svg>
-    )}
-  </button>
-);
-
-/* ─────────────────────────────────────────────────────────────────────────────
-   DATA
+   DATA — TruAudio references removed/softened
 ───────────────────────────────────────────────────────────────────────────── */
 const solutions = [
   {
@@ -632,8 +813,8 @@ const expZones = [
   {
     id: "audio", label: "Hi-Fi Listening",
     headline: "Hear what you've been missing",
-    body: "A dedicated stereo listening room with TruAudio architectural in-walls and in-ceilings driven by premium amplification. Compare speaker models side-by-side in a properly treated space — not a showroom or a mall.",
-    specs: ["TruAudio architectural speakers", "Room EQ Wizard calibration", "A/B switching between models", "Hi-Res FLAC streaming"],
+    body: "A dedicated stereo listening room with premium architectural in-wall and in-ceiling speakers driven by reference amplification. Compare speaker models side-by-side in a properly treated space — not a showroom, not a mall.",
+    specs: ["Premium architectural speakers", "Room EQ Wizard calibration", "A/B switching between models", "Hi-Res FLAC streaming"],
   },
   {
     id: "control", label: "Smart Control",
@@ -666,10 +847,26 @@ const features = [
 ];
 
 const whyCards = [
-  { icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>), title: "Premium US Brand", desc: "TruAudio is a globally recognized leader in architectural audio innovation, trusted by luxury integrators worldwide." },
-  { icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>), title: "Architectural Design", desc: "Speakers that disappear into your walls and ceilings — invisible installations that preserve premium interiors." },
-  { icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>), title: "End-to-End Service", desc: "From acoustic design and room treatment to installation, calibration, and long-term support — everything in-house." },
-  { icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>), title: "Smart Integration", desc: "Fully compatible with Control4, KNX, and major smart home ecosystems for unified single-app control." },
+  {
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>),
+    title: "World-Class Brands",
+    desc: "We partner with globally recognized leaders in architectural audio — brands trusted by luxury integrators worldwide, led by our flagship US partner.",
+  },
+  {
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>),
+    title: "Architectural Design",
+    desc: "Speakers that disappear into your walls and ceilings — invisible installations that preserve premium interiors.",
+  },
+  {
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>),
+    title: "End-to-End Service",
+    desc: "From acoustic design and room treatment to installation, calibration, and long-term support — everything in-house.",
+  },
+  {
+    icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></svg>),
+    title: "Smart Integration",
+    desc: "Fully compatible with Control4, KNX, and major smart home ecosystems for unified single-app control.",
+  },
 ];
 
 const procesSteps = [
@@ -695,17 +892,48 @@ const AudioVideo = () => {
   const [activeMode, setActiveMode] = useState("cinema");
   const [audioActive, setAudioActive] = useState(false);
   const [audioInited, setAudioInited] = useState(false);
+  const [showEntryPrompt, setShowEntryPrompt] = useState(false);
+  const [entryBassPlayed, setEntryBassPlayed] = useState(false);
+  const [showScreenFlash, setShowScreenFlash] = useState(false);
   const heroRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
   const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const lastHoverSound = useRef(0);
+  const lastScrollSound = useRef(0);
 
-  /* Init audio on first mouse interaction */
+  /* Init audio + fire entry bass on first interaction */
   const handleFirstInteraction = useCallback(() => {
     if (audioInited) return;
     audioEngine.init();
     setAudioInited(true);
+
+    // Fire epic entry bass immediately
+    if (!entryBassPlayed) {
+      setEntryBassPlayed(true);
+      audioEngine.resume();
+      audioEngine.playEntryBass();
+      setShowScreenFlash(true);
+      setTimeout(() => setShowScreenFlash(false), 1400);
+
+      // Show the prompt after a moment
+      setTimeout(() => setShowEntryPrompt(true), 1200);
+      setTimeout(() => setShowEntryPrompt(false), 5000);
+    }
+  }, [audioInited, entryBassPlayed]);
+
+  /* Scroll-triggered rumble */
+  useEffect(() => {
+    const onScroll = () => {
+      if (!audioInited) return;
+      const now = Date.now();
+      if (now - lastScrollSound.current < 350) return;
+      lastScrollSound.current = now;
+      audioEngine.resume();
+      audioEngine.playScrollRumble();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, [audioInited]);
 
   /* Toggle ambient bass */
@@ -713,6 +941,7 @@ const AudioVideo = () => {
     if (!audioInited) { audioEngine.init(); setAudioInited(true); }
     audioEngine.resume();
     audioEngine.playClick();
+    setShowEntryPrompt(false);
     if (!audioActive) {
       audioEngine.startAmbient();
       setAudioActive(true);
@@ -722,7 +951,6 @@ const AudioVideo = () => {
     }
   }, [audioActive, audioInited]);
 
-  /* Mode button click — play signature sound */
   const handleModeClick = useCallback((modeId) => {
     if (!audioInited) return;
     audioEngine.resume();
@@ -735,13 +963,11 @@ const AudioVideo = () => {
     }
   }, [audioInited]);
 
-  /* Zone tab click */
   const handleZoneClick = useCallback((zoneId) => {
     if (audioInited) { audioEngine.resume(); audioEngine.playClick(); }
     setActiveZone(zoneId);
   }, [audioInited]);
 
-  /* Hover micro-sound — throttled to every 120ms */
   const handleButtonHover = useCallback(() => {
     if (!audioInited) return;
     const now = Date.now();
@@ -751,22 +977,17 @@ const AudioVideo = () => {
     audioEngine.playHover();
   }, [audioInited]);
 
-  /* CTA click — bass thud */
   const handleCtaClick = useCallback(() => {
     if (!audioInited) return;
     audioEngine.resume();
-    audioEngine.bassThud(1.2);
+    audioEngine.bassThud(1.5);
   }, [audioInited]);
 
-  /* Scroll reveal */
   useEffect(() => {
     const els = document.querySelectorAll(".sr, .sr-left, .sr-right");
     const obs = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
-        if (e.isIntersecting) {
-          e.target.classList.add("in");
-          obs.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); }
       });
     }, { threshold: 0.08 });
     els.forEach((el) => obs.observe(el));
@@ -780,10 +1001,26 @@ const AudioVideo = () => {
       <GlobalStyles />
       <Cursor onFirstInteraction={handleFirstInteraction} />
 
-      {/* Floating Audio Toggle */}
+      {/* Screen flash on entry bass */}
+      {showScreenFlash && <div className="screen-flash" />}
+
+      {/* Entry prompt bubble */}
+      <AnimatePresence>
+        {showEntryPrompt && (
+          <div className={`entry-prompt`}>
+            <span className="entry-prompt-text">
+              <span style={{ color: "var(--gold)", fontWeight: 600 }}>Enable continuous bass</span><br/>
+              for the full experience
+            </span>
+            <span className="entry-prompt-arrow">→</span>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Bass Button */}
       <AudioToggle audioActive={audioActive} onToggle={toggleAudio} />
 
-      {/* Live indicator dots */}
+      {/* Live indicator */}
       <div className={`audio-indicator ${audioActive ? "" : "hidden"}`}>
         {Array.from({ length: 5 }).map((_, i) => (
           <div key={i} className="rwave-bar" style={{ height: "8px", width: "3px" }} />
@@ -812,7 +1049,7 @@ const AudioVideo = () => {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .8, delay: .1 }}
             className="inline-flex items-center gap-2.5 px-5 py-2 border border-[rgba(201,168,76,0.25)] rounded-full bg-[rgba(201,168,76,0.07)] mb-10">
             <ReactiveWaveform bars={8} height={14} audioActive={audioActive} />
-            <span className="eyebrow text-[10px]">TruAudio · Premium AV · India</span>
+            <span className="eyebrow text-[10px]">Premium AV · Architectural Audio · India</span>
             <ReactiveWaveform bars={8} height={14} audioActive={audioActive} />
           </motion.div>
 
@@ -851,19 +1088,17 @@ const AudioVideo = () => {
             </button>
           </motion.div>
 
-          {/* Live reactive waveform hero */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: .9 }}
             className="w-full max-w-[380px]">
             <ReactiveWaveform bars={48} height={40} audioActive={audioActive} />
           </motion.div>
 
-          {/* Audio hint */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6 }}
-            className="mt-5 flex items-center gap-2 text-white/20 text-[11px]">
+            className="mt-5 flex items-center gap-2 text-white/25 text-[11px]">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-3.5 h-3.5">
               <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 010 7.07"/>
             </svg>
-            <span>Click the sound button (bottom-right) to feel the bass</span>
+            <span>Move your mouse to feel the entry bass · Enable continuous bass (bottom-right)</span>
           </motion.div>
         </motion.div>
 
@@ -876,7 +1111,7 @@ const AudioVideo = () => {
         </motion.div>
       </section>
 
-      {/* ══ STORY ══ */}
+      {/* ══ STORY — TruAudio softened ══ */}
       <section className="max-w-[1120px] mx-auto px-6 sm:px-10 py-28">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="sr-left flex-1">
@@ -887,8 +1122,8 @@ const AudioVideo = () => {
             </h2>
             <p className="text-white/50 leading-relaxed mb-4 text-[15px]">
               At IoTrenetics, every project begins with listening — to you, to your space, and to the
-              acoustics of your rooms. We partner with TruAudio to bring world-class architectural
-              audio that becomes invisible in your interiors while filling every room with crystal-clear sound.
+              acoustics of your rooms. We partner with world-class architectural audio brands to deliver
+              invisible installations that fill every room with crystal-clear, reference-quality sound.
             </p>
             <p className="text-white/40 leading-relaxed text-[15px] mb-8">
               From the first acoustic simulation to the final calibration sweep, we're with you
@@ -916,8 +1151,8 @@ const AudioVideo = () => {
               </div>
               <div className="absolute -bottom-5 -left-5 z-20 px-5 py-3 rounded-xl border"
                 style={{ background: "var(--dark2)", borderColor: "rgba(201,168,76,0.2)" }}>
-                <div className="eyebrow text-[9px] mb-1">TruAudio Partner</div>
-                <div className="text-white text-sm font-semibold">Certified Installer</div>
+                <div className="eyebrow text-[9px] mb-1">Certified Partner</div>
+                <div className="text-white text-sm font-semibold">Premium Installer</div>
               </div>
             </div>
           </div>
@@ -936,8 +1171,7 @@ const AudioVideo = () => {
         </div>
         <div className="sr grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {solutions.map((s, i) => (
-            <div key={i} className="spec-card p-6 flex flex-col gap-4 group"
-              onMouseEnter={handleButtonHover}>
+            <div key={i} className="spec-card p-6 flex flex-col gap-4 group" onMouseEnter={handleButtonHover}>
               <div className="w-10 h-10 rounded-xl flex items-center justify-center border"
                 style={{ background: "rgba(201,168,76,0.08)", borderColor: "rgba(201,168,76,0.15)", color: "var(--gold)" }}>
                 {s.icon}
@@ -969,8 +1203,7 @@ const AudioVideo = () => {
           </div>
           <div className="sr flex flex-wrap justify-center gap-2 mb-10">
             {expZones.map((z) => (
-              <button key={z.id}
-                onClick={() => handleZoneClick(z.id)}
+              <button key={z.id} onClick={() => handleZoneClick(z.id)}
                 onMouseEnter={handleButtonHover}
                 className={`exp-tab ${activeZone === z.id ? "active" : ""}`}>
                 {z.label}
@@ -1133,7 +1366,7 @@ const AudioVideo = () => {
 
       <div className="av-sep mx-6 sm:mx-10" />
 
-      {/* ══ SMART MODES — with audio signatures ══ */}
+      {/* ══ SMART MODES ══ */}
       <section className="py-24" style={{ background: "var(--dark2)" }}>
         <div className="max-w-[1120px] mx-auto px-6 sm:px-10">
           <div className="sr text-center mb-12">
@@ -1142,10 +1375,9 @@ const AudioVideo = () => {
               Automate your <em style={{ color: "var(--gold)" }}>atmosphere</em>
             </h2>
             <p className="text-white/30 text-xs mt-3">
-              {audioInited ? "Click each mode to hear its sound signature" : "Enable audio (bottom-right) then click modes"}
+              {audioInited ? "Click each mode to hear its sound signature" : "Move your mouse first, then click modes"}
             </p>
           </div>
-
           <div className="sr grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
             {modes.map((m) => (
               <button key={m.id}
@@ -1158,7 +1390,6 @@ const AudioVideo = () => {
               </button>
             ))}
           </div>
-
           <AnimatePresence mode="wait">
             <motion.div key={activeMode}
               initial={{ opacity: 0, scale: .97 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }}

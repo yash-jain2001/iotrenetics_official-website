@@ -142,25 +142,40 @@ const DropdownMenu = ({ label, items, closeMobileMenu, isMobile }) => {
     return (
       <div className="w-full">
         <button
-          onClick={() => setMobileOpen(v => !v)}
+          onClick={() => setMobileOpen((v) => !v)}
           className="flex items-center justify-center gap-1.5 w-full py-3 px-4 text-gray-800 font-medium text-sm hover:text-blue-700 transition-colors"
         >
           {label}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-            className={`w-3.5 h-3.5 transition-transform duration-300 ${mobileOpen ? "rotate-180" : ""}`}>
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            className={`w-3.5 h-3.5 transition-transform duration-300 ${mobileOpen ? "rotate-180" : ""}`}
+          >
             <path d="M6 9l6 6 6-6" />
           </svg>
         </button>
         {mobileOpen && (
           <div className="bg-gray-50 border-y border-gray-100 py-1">
             {items.map((item, i) => (
-              <Link key={i} to={item.to}
-                onClick={() => { setMobileOpen(false); closeMobileMenu(); }}
-                className="flex items-center gap-3 px-8 py-3 text-sm text-gray-700 hover:text-blue-700 hover:bg-blue-50/60 transition-all no-underline">
+              <Link
+                key={i}
+                to={item.to}
+                onClick={() => {
+                  setMobileOpen(false);
+                  closeMobileMenu();
+                }}
+                className="flex items-center gap-3 px-8 py-3 text-sm text-gray-700 hover:text-blue-700 hover:bg-blue-50/60 transition-all no-underline"
+              >
                 <span className="text-blue-500">{item.icon}</span>
                 <div>
                   <div className="font-medium">{item.label}</div>
-                  {item.desc && <div className="text-xs text-gray-400 mt-0.5">{item.desc}</div>}
+                  {item.desc && (
+                    <div className="text-xs text-gray-400 mt-0.5">
+                      {item.desc}
+                    </div>
+                  )}
                 </div>
               </Link>
             ))}
@@ -175,8 +190,13 @@ const DropdownMenu = ({ label, items, closeMobileMenu, isMobile }) => {
       <div className="nav-link-wrap">
         <span className="text-gray-800 font-medium text-sm flex items-center gap-1.5 select-none hover:text-blue-700 transition-colors duration-200 py-1">
           {label}
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"
-            className="dropdown-arrow w-3 h-3 text-gray-400">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            className="dropdown-arrow w-3 h-3 text-gray-400"
+          >
             <path d="M6 9l6 6 6-6" />
           </svg>
         </span>
@@ -185,24 +205,43 @@ const DropdownMenu = ({ label, items, closeMobileMenu, isMobile }) => {
 
       {/* Panel */}
       <div className="dropdown-panel">
-        <div className="bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-900/8 overflow-hidden min-w-[240px]"
-          style={{ boxShadow: "0 8px 40px rgba(0,103,184,.10), 0 1px 0 rgba(0,0,0,.04)" }}>
+        <div
+          className="bg-white border border-gray-100 rounded-2xl shadow-xl shadow-gray-900/8 overflow-hidden min-w-[240px]"
+          style={{
+            boxShadow:
+              "0 8px 40px rgba(0,103,184,.10), 0 1px 0 rgba(0,0,0,.04)",
+          }}
+        >
           {/* Top accent */}
           <div className="h-0.5 bg-gradient-to-r from-blue-600 to-cyan-400" />
           <div className="py-2">
             {items.map((item, i) => (
-              <Link key={i} to={item.to}
+              <Link
+                key={i}
+                to={item.to}
                 onClick={closeMobileMenu}
-                className="dd-item flex items-start gap-3.5 px-5 py-3.5 hover:bg-blue-50/50 transition-colors no-underline group">
+                className="dd-item flex items-start gap-3.5 px-5 py-3.5 hover:bg-blue-50/50 transition-colors no-underline group"
+              >
                 <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0 group-hover:bg-blue-100 transition-colors mt-0.5">
                   {item.icon}
                 </div>
                 <div>
-                  <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">{item.label}</div>
-                  {item.desc && <div className="text-xs text-gray-400 mt-0.5 leading-relaxed">{item.desc}</div>}
+                  <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-700 transition-colors">
+                    {item.label}
+                  </div>
+                  {item.desc && (
+                    <div className="text-xs text-gray-400 mt-0.5 leading-relaxed">
+                      {item.desc}
+                    </div>
+                  )}
                 </div>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                  className="w-3.5 h-3.5 text-gray-300 group-hover:text-blue-400 transition-all ml-auto shrink-0 mt-1 group-hover:translate-x-0.5">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="w-3.5 h-3.5 text-gray-300 group-hover:text-blue-400 transition-all ml-auto shrink-0 mt-1 group-hover:translate-x-0.5"
+                >
                   <path d="M9 18l6-6-6-6" />
                 </svg>
               </Link>
@@ -223,10 +262,16 @@ const productItems = [
     label: "Finexo",
     desc: "Smart financial management",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
-        <path d="M15 8h-4a2 2 0 000 4h2a2 2 0 010 4H9"/>
-        <path d="M12 6v2M12 16v2"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+        <path d="M15 8h-4a2 2 0 000 4h2a2 2 0 010 4H9" />
+        <path d="M12 6v2M12 16v2" />
       </svg>
     ),
   },
@@ -235,8 +280,14 @@ const productItems = [
     label: "HealNet",
     desc: "AI-powered health monitoring",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
       </svg>
     ),
   },
@@ -245,10 +296,16 @@ const productItems = [
     label: "Agentra",
     desc: "AI teammates for business",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <rect x="2" y="2" width="20" height="8" rx="2"/>
-        <rect x="2" y="14" width="20" height="8" rx="2"/>
-        <path d="M6 6h.01M6 18h.01"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <rect x="2" y="2" width="20" height="8" rx="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" />
+        <path d="M6 6h.01M6 18h.01" />
       </svg>
     ),
   },
@@ -260,9 +317,15 @@ const automationItems = [
     label: "Home Automation",
     desc: "Smart living environments",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-        <polyline points="9 22 9 12 15 12 15 22"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
       </svg>
     ),
   },
@@ -271,10 +334,16 @@ const automationItems = [
     label: "Commercial Automation",
     desc: "Intelligent workspaces",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <rect x="2" y="7" width="20" height="15" rx="2"/>
-        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/>
-        <path d="M12 12v4M10 14h4"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <rect x="2" y="7" width="20" height="15" rx="2" />
+        <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
+        <path d="M12 12v4M10 14h4" />
       </svg>
     ),
   },
@@ -283,11 +352,17 @@ const automationItems = [
     label: "Hotel Automation",
     desc: "Connected hospitality",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <path d="M3 22V8l9-6 9 6v14"/>
-        <path d="M9 22v-4h6v4"/>
-        <rect x="9" y="10" width="2" height="2"/>
-        <rect x="13" y="10" width="2" height="2"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <path d="M3 22V8l9-6 9 6v14" />
+        <path d="M9 22v-4h6v4" />
+        <rect x="9" y="10" width="2" height="2" />
+        <rect x="13" y="10" width="2" height="2" />
       </svg>
     ),
   },
@@ -296,11 +371,17 @@ const automationItems = [
     label: "Audio-Video Automation",
     desc: "Immersive sound and visuals",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
-        <path d="M3 22V8l9-6 9 6v14"/>
-        <path d="M9 22v-4h6v4"/>
-        <rect x="9" y="10" width="2" height="2"/>
-        <rect x="13" y="10" width="2" height="2"/>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        className="w-4 h-4"
+      >
+        <path d="M3 22V8l9-6 9 6v14" />
+        <path d="M9 22v-4h6v4" />
+        <rect x="9" y="10" width="2" height="2" />
+        <rect x="13" y="10" width="2" height="2" />
       </svg>
     ),
   },
@@ -327,7 +408,9 @@ const Navbar = () => {
   }, []);
 
   // Close mobile menu on route change
-  useEffect(() => { setMenuOpen(false); }, [location]);
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -339,11 +422,12 @@ const Navbar = () => {
         style={{ fontFamily: "'DM Sans', sans-serif" }}
       >
         {/* Progress bar */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 opacity-0 transition-opacity duration-300"
-          style={{ opacity: scrolled ? 1 : 0 }} />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-blue-600 via-cyan-400 to-blue-600 opacity-0 transition-opacity duration-300"
+          style={{ opacity: scrolled ? 1 : 0 }}
+        />
 
         <div className="max-w-[1200px] mx-auto px-5 flex items-center justify-between h-[68px] md:h-[76px]">
-
           {/* Logo */}
           <Link to="/" onClick={closeMenu} className="flex-shrink-0 group">
             <img
@@ -356,14 +440,16 @@ const Navbar = () => {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             <ul className="flex items-center gap-1 list-none m-0 p-0">
-
               {/* Home */}
               <li>
-                <NavLink to="/" end
+                <NavLink
+                  to="/"
+                  end
                   className={({ isActive }) =>
                     `nav-link-wrap relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline block
                      ${isActive ? "text-blue-700" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50/60"}`
-                  }>
+                  }
+                >
                   {({ isActive }) => (
                     <>
                       Home
@@ -375,11 +461,13 @@ const Navbar = () => {
 
               {/* About */}
               <li>
-                <NavLink to="/about"
+                <NavLink
+                  to="/about"
                   className={({ isActive }) =>
                     `nav-link-wrap relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline block
                      ${isActive ? "text-blue-700" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50/60"}`
-                  }>
+                  }
+                >
                   {({ isActive }) => (
                     <>
                       About
@@ -391,21 +479,31 @@ const Navbar = () => {
 
               {/* Products dropdown */}
               <li className="px-1">
-                <DropdownMenu label="Products" items={productItems} closeMobileMenu={closeMenu} />
+                <DropdownMenu
+                  label="Products"
+                  items={productItems}
+                  closeMobileMenu={closeMenu}
+                />
               </li>
 
               {/* Automation dropdown */}
               <li className="px-1">
-                <DropdownMenu label="Automation" items={automationItems} closeMobileMenu={closeMenu} />
+                <DropdownMenu
+                  label="Automation"
+                  items={automationItems}
+                  closeMobileMenu={closeMenu}
+                />
               </li>
 
               {/* Industries */}
               <li>
-                <NavLink to="/industries"
+                <NavLink
+                  to="/industries"
                   className={({ isActive }) =>
                     `nav-link-wrap relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline block
                      ${isActive ? "text-blue-700" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50/60"}`
-                  }>
+                  }
+                >
                   {({ isActive }) => (
                     <>
                       Industries
@@ -417,11 +515,13 @@ const Navbar = () => {
 
               {/* Solutions */}
               <li>
-                <NavLink to="/solutions"
+                <NavLink
+                  to="/solutions"
                   className={({ isActive }) =>
                     `nav-link-wrap relative px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200 no-underline block
                      ${isActive ? "text-blue-700" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50/60"}`
-                  }>
+                  }
+                >
                   {({ isActive }) => (
                     <>
                       Solutions
@@ -430,16 +530,22 @@ const Navbar = () => {
                   )}
                 </NavLink>
               </li>
-
             </ul>
 
             {/* CTA */}
-            <Link to="/contact"
+            <Link
+              to="/contact"
               className="nav-cta ml-4 inline-flex items-center gap-2 px-5 py-2.5 bg-blue-700 text-white text-sm font-semibold rounded-full no-underline transition-all duration-200 hover:bg-blue-800 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-700/25"
-              style={{ fontFamily: "'Syne', sans-serif" }}>
+              style={{ fontFamily: "'Syne', sans-serif" }}
+            >
               Contact
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-                className="w-3.5 h-3.5">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                className="w-3.5 h-3.5"
+              >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </Link>
@@ -447,7 +553,7 @@ const Navbar = () => {
 
           {/* Hamburger */}
           <button
-            onClick={() => setMenuOpen(v => !v)}
+            onClick={() => setMenuOpen((v) => !v)}
             className={`ham md:hidden flex flex-col gap-[6px] w-7 cursor-pointer bg-none border-none p-1 ${menuOpen ? "open" : ""}`}
             aria-label="Toggle menu"
           >
@@ -465,41 +571,73 @@ const Navbar = () => {
                 { to: "/", label: "Home", end: true },
                 { to: "/about", label: "About" },
               ].map(({ to, label, end }) => (
-                <NavLink key={to} to={to} end={end} onClick={closeMenu}
+                <NavLink
+                  key={to}
+                  to={to}
+                  end={end}
+                  onClick={closeMenu}
                   className={({ isActive }) =>
                     `block px-6 py-3.5 text-sm font-medium no-underline transition-colors ${isActive ? "text-blue-700 bg-blue-50/50" : "text-gray-800 hover:text-blue-700 hover:bg-gray-50"}`
-                  }>
+                  }
+                >
                   {label}
                 </NavLink>
               ))}
 
               <div className="border-t border-gray-50 mt-1 mb-1">
-                <p className="px-6 pt-3 pb-1 text-[10px] font-bold tracking-[0.12em] uppercase text-gray-400">Products</p>
-                <DropdownMenu label="Products" items={productItems} closeMobileMenu={closeMenu} isMobile />
+                <p className="px-6 pt-3 pb-1 text-[10px] font-bold tracking-[0.12em] uppercase text-gray-400">
+                  Products
+                </p>
+                <DropdownMenu
+                  label="Products"
+                  items={productItems}
+                  closeMobileMenu={closeMenu}
+                  isMobile
+                />
               </div>
 
               <div className="border-t border-gray-50 mt-1 mb-1">
-                <p className="px-6 pt-3 pb-1 text-[10px] font-bold tracking-[0.12em] uppercase text-gray-400">Automation</p>
-                <DropdownMenu label="Automation" items={automationItems} closeMobileMenu={closeMenu} isMobile />
+                <p className="px-6 pt-3 pb-1 text-[10px] font-bold tracking-[0.12em] uppercase text-gray-400">
+                  Automation
+                </p>
+                <DropdownMenu
+                  label="Automation"
+                  items={automationItems}
+                  closeMobileMenu={closeMenu}
+                  isMobile
+                />
               </div>
 
               {[
                 { to: "/industries", label: "Industries" },
                 { to: "/solutions", label: "Solutions" },
               ].map(({ to, label }) => (
-                <NavLink key={to} to={to} onClick={closeMenu}
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={closeMenu}
                   className={({ isActive }) =>
                     `block px-6 py-3.5 text-sm font-medium no-underline transition-colors border-t border-gray-50 ${isActive ? "text-blue-700 bg-blue-50/50" : "text-gray-800 hover:text-blue-700 hover:bg-gray-50"}`
-                  }>
+                  }
+                >
                   {label}
                 </NavLink>
               ))}
 
               <div className="px-5 py-4 border-t border-gray-100 mt-1">
-                <Link to="/contact" onClick={closeMenu}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-blue-700 text-white text-sm font-bold rounded-full no-underline hover:bg-blue-800 transition-colors">
+                <Link
+                  to="/contact"
+                  onClick={closeMenu}
+                  className="flex items-center justify-center gap-2 w-full py-3.5 bg-blue-700 text-white text-sm font-bold rounded-full no-underline hover:bg-blue-800 transition-colors"
+                >
                   Contact Us
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4">
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    className="w-4 h-4"
+                  >
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
                 </Link>

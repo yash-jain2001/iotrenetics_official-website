@@ -292,7 +292,7 @@ const useReveal = () => {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     blocks.forEach((b) => obs.observe(b));
     return () => obs.disconnect();
@@ -305,8 +305,8 @@ const IndustryBlock = ({ industry, index }) => {
   const isEven = index % 2 === 0;
 
   // text slides in from left on even, right on odd
-  const textClass   = isEven ? "slide-left"        : "slide-right";
-  const mediaClass  = isEven ? "slide-right-media" : "slide-left-media";
+  const textClass = isEven ? "slide-left" : "slide-right";
+  const mediaClass = isEven ? "slide-right-media" : "slide-left-media";
 
   return (
     <>
@@ -320,7 +320,6 @@ const IndustryBlock = ({ industry, index }) => {
         >
           {/* ── Text column ── */}
           <div className={`w-full md:w-[50%] flex flex-col gap-5 ${textClass}`}>
-
             {/* Number + tag */}
             <div className="num-wrap flex items-center gap-3">
               <span className="ind-number text-6xl font-black select-none">
@@ -354,7 +353,10 @@ const IndustryBlock = ({ industry, index }) => {
             {/* Items */}
             <ul className="flex flex-col gap-3.5 mt-1">
               {industry.items.map((item, i) => (
-                <li key={i} className="list-item text-gray-700 text-sm leading-relaxed">
+                <li
+                  key={i}
+                  className="list-item text-gray-700 text-sm leading-relaxed"
+                >
                   {item}
                 </li>
               ))}

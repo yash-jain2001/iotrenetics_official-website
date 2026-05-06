@@ -273,14 +273,19 @@ function useBatchReveal() {
   useEffect(() => {
     const parent = ref.current;
     if (!parent) return;
-    const children = parent.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+    const children = parent.querySelectorAll(
+      ".reveal, .reveal-left, .reveal-right",
+    );
     const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
-          if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); }
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            obs.unobserve(e.target);
+          }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.08 },
     );
     children.forEach((c) => obs.observe(c));
     return () => obs.disconnect();
@@ -292,30 +297,190 @@ const Eyebrow = ({ children }) => <p className="eyebrow">{children}</p>;
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
 const Icon = {
-  home:     <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>,
-  wifi:     <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" /><path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07" /></svg>,
-  monitor:  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>,
-  mobile:   <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><rect x="5" y="2" width="14" height="20" rx="2" /><line x1="12" y1="18" x2="12.01" y2="18" strokeLinecap="round" strokeWidth={2} /></svg>,
-  layers:   <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5M2 12l10 5 10-5" /></svg>,
-  activity: <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>,
-  eye:      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke="currentColor" strokeWidth={1.5}><circle cx="12" cy="12" r="10" /><path d="M12 8v4l3 3" /></svg>,
-  zap:      <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke="currentColor" strokeWidth={1.5}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>,
-  search:   <svg viewBox="0 0 24 24" fill="none" className="w-6 h-6" stroke="currentColor" strokeWidth={1.5}><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>,
-  users:    <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" /></svg>,
-  shield:   <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>,
-  pen:      <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="currentColor" strokeWidth={1.6}><path d="M12 20h9" /><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" /></svg>,
-  pin:      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" /><circle cx="12" cy="9" r="2.5" /></svg>,
-  volume:   <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2}><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" /></svg>,
+  home: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+      <polyline points="9 22 9 12 15 12 15 22" />
+    </svg>
+  ),
+  wifi: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" />
+      <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07" />
+    </svg>
+  ),
+  monitor: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>
+  ),
+  mobile: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <rect x="5" y="2" width="14" height="20" rx="2" />
+      <line
+        x1="12"
+        y1="18"
+        x2="12.01"
+        y2="18"
+        strokeLinecap="round"
+        strokeWidth={2}
+      />
+    </svg>
+  ),
+  layers: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <path d="M12 2L2 7l10 5 10-5-10-5z" />
+      <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+    </svg>
+  ),
+  activity: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  ),
+  eye: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-6 h-6"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v4l3 3" />
+    </svg>
+  ),
+  zap: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-6 h-6"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+    </svg>
+  ),
+  search: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-6 h-6"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  ),
+  users: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+      <circle cx="9" cy="7" r="4" />
+      <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" />
+    </svg>
+  ),
+  shield: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    </svg>
+  ),
+  pen: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-5 h-5"
+      stroke="currentColor"
+      strokeWidth={1.6}
+    >
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+    </svg>
+  ),
+  pin: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-4 h-4"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+      <circle cx="12" cy="9" r="2.5" />
+    </svg>
+  ),
+  volume: (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      className="w-3.5 h-3.5"
+      stroke="currentColor"
+      strokeWidth={2}
+    >
+      <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+      <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" />
+    </svg>
+  ),
 };
 
 // ── Pronunciation Card ────────────────────────────────────────────────────────
 const PronunciationCard = () => {
   const syllables = [
-    { text: "Eye", ipa: "/aɪ/",   stressed: false },
-    { text: "oh",  ipa: "/oʊ/",   stressed: false },
-    { text: "Tren",ipa: "/trɛn/", stressed: true  },
-    { text: "et",  ipa: "/ɛt/",   stressed: false },
-    { text: "ics", ipa: "/ɪks/",  stressed: false },
+    { text: "Eye", ipa: "/aɪ/", stressed: false },
+    { text: "oh", ipa: "/oʊ/", stressed: false },
+    { text: "Tren", ipa: "/trɛn/", stressed: true },
+    { text: "et", ipa: "/ɛt/", stressed: false },
+    { text: "ics", ipa: "/ɪks/", stressed: false },
   ];
 
   const speak = () => {
@@ -350,19 +515,26 @@ const PronunciationCard = () => {
         {syllables.map((s, i) => (
           <span key={i} className="flex items-end">
             <span className="syllable">
-              <span className={`syllable-text ${s.stressed ? "stressed" : ""}`}>{s.text}</span>
+              <span className={`syllable-text ${s.stressed ? "stressed" : ""}`}>
+                {s.text}
+              </span>
               <span className="syllable-ipa">{s.ipa}</span>
             </span>
-            {i < syllables.length - 1 && <span className="syllable-dot">·</span>}
+            {i < syllables.length - 1 && (
+              <span className="syllable-dot">·</span>
+            )}
           </span>
         ))}
       </div>
 
       {/* Friendly explanation */}
       <p className="text-[13px] text-gray-500 leading-relaxed">
-        Spelled <span className="font-semibold text-gray-700">IoTrenetics</span>, said{" "}
-        <span className="font-semibold text-blue-600 italic">"Eye-oh-Tren-et-ics"</span>
-        {" "}— think <em>IoT</em> meets <em>kinetics</em>, minus the <em>ki</em>.
+        Spelled <span className="font-semibold text-gray-700">IoTrenetics</span>
+        , said{" "}
+        <span className="font-semibold text-blue-600 italic">
+          "Eye-oh-Tren-et-ics"
+        </span>{" "}
+        — think <em>IoT</em> meets <em>kinetics</em>, minus the <em>ki</em>.
       </p>
 
       <button className="play-btn self-start" onClick={speak} type="button">
@@ -374,49 +546,119 @@ const PronunciationCard = () => {
 
 // ── Data ──────────────────────────────────────────────────────────────────────
 const services = [
-  { icon: Icon.home,     heading: "Smart Home Automation",     quote: "Effortless living through automated control of lighting, climate, and security—reducing energy costs while improving comfort." },
-  { icon: Icon.wifi,     heading: "AI & Intelligent Systems",  quote: "Turn data into decisions with AI that automates workflows, reduces manual effort, and helps you operate faster and smarter." },
-  { icon: Icon.monitor,  heading: "Intelligent Software",      quote: "From AI agents to video analytics and health insights—custom software that streamlines operations and unlocks actionable intelligence." },
-  { icon: Icon.mobile,   heading: "Mobile Applications",       quote: "Intuitive mobile apps that provide real-time insights, seamless experiences, and smarter decision-making on the go." },
-  { icon: Icon.layers,   heading: "Industrial IoT",            quote: "Minimize downtime and maximize efficiency with connected systems that monitor equipment, predict failures, and optimize performance." },
-  { icon: Icon.activity, heading: "Data Analytics & Insights", quote: "Transform raw data into meaningful insights with analytics dashboards that track performance and surface actionable trends." },
+  {
+    icon: Icon.home,
+    heading: "Smart Home Automation",
+    quote:
+      "Effortless living through automated control of lighting, climate, and security—reducing energy costs while improving comfort.",
+  },
+  {
+    icon: Icon.wifi,
+    heading: "AI & Intelligent Systems",
+    quote:
+      "Turn data into decisions with AI that automates workflows, reduces manual effort, and helps you operate faster and smarter.",
+  },
+  {
+    icon: Icon.monitor,
+    heading: "Intelligent Software",
+    quote:
+      "From AI agents to video analytics and health insights—custom software that streamlines operations and unlocks actionable intelligence.",
+  },
+  {
+    icon: Icon.mobile,
+    heading: "Mobile Applications",
+    quote:
+      "Intuitive mobile apps that provide real-time insights, seamless experiences, and smarter decision-making on the go.",
+  },
+  {
+    icon: Icon.layers,
+    heading: "Industrial IoT",
+    quote:
+      "Minimize downtime and maximize efficiency with connected systems that monitor equipment, predict failures, and optimize performance.",
+  },
+  {
+    icon: Icon.activity,
+    heading: "Data Analytics & Insights",
+    quote:
+      "Transform raw data into meaningful insights with analytics dashboards that track performance and surface actionable trends.",
+  },
 ];
 
 const timelineData = [
-  { year: "1999",    title: "The Concept Born",          desc: "The term 'Internet of Things' was coined—conceptualizing a world where objects communicate without human interaction." },
-  { year: "2010",    title: "Rise of Connected Devices", desc: "Smartphones catalyzed smart-device growth, bringing basic automation into consumer homes and personal spaces." },
-  { year: "2015",    title: "Industrial IoT Expansion",  desc: "Heavy industries adopted sensors and analytics for predictive maintenance and real-time operational tracking." },
-  { year: "2020",    title: "AI & IoT Convergence",      desc: "Machine learning integrated directly with edge devices, creating highly intelligent, autonomous systems." },
-  { year: "Present", title: "The Agentic Era",           desc: "Advanced AI models working alongside IoT grids to continuously self-optimize infrastructure and industrial plants." },
+  {
+    year: "1999",
+    title: "The Concept Born",
+    desc: "The term 'Internet of Things' was coined—conceptualizing a world where objects communicate without human interaction.",
+  },
+  {
+    year: "2010",
+    title: "Rise of Connected Devices",
+    desc: "Smartphones catalyzed smart-device growth, bringing basic automation into consumer homes and personal spaces.",
+  },
+  {
+    year: "2015",
+    title: "Industrial IoT Expansion",
+    desc: "Heavy industries adopted sensors and analytics for predictive maintenance and real-time operational tracking.",
+  },
+  {
+    year: "2020",
+    title: "AI & IoT Convergence",
+    desc: "Machine learning integrated directly with edge devices, creating highly intelligent, autonomous systems.",
+  },
+  {
+    year: "Present",
+    title: "The Agentic Era",
+    desc: "Advanced AI models working alongside IoT grids to continuously self-optimize infrastructure and industrial plants.",
+  },
 ];
 
 const pillars = [
-  { label: "Our Vision",  icon: Icon.eye,    body: "Intelligent, predictive, self-optimizing environments that seamlessly connect the physical and digital worlds for a smarter future." },
-  { label: "Our Mission", icon: Icon.zap,    body: "Empowering businesses and communities with cutting-edge IoT and AI-driven solutions that improve sustainability, efficiency, and safety." },
-  { label: "Our Focus",   icon: Icon.search, body: "Innovating across Industrial IoT, AI/GenAI integration, smart city infrastructure, and deep technological automation systems." },
+  {
+    label: "Our Vision",
+    icon: Icon.eye,
+    body: "Intelligent, predictive, self-optimizing environments that seamlessly connect the physical and digital worlds for a smarter future.",
+  },
+  {
+    label: "Our Mission",
+    icon: Icon.zap,
+    body: "Empowering businesses and communities with cutting-edge IoT and AI-driven solutions that improve sustainability, efficiency, and safety.",
+  },
+  {
+    label: "Our Focus",
+    icon: Icon.search,
+    body: "Innovating across Industrial IoT, AI/GenAI integration, smart city infrastructure, and deep technological automation systems.",
+  },
 ];
 
 const impact = [
-  { icon: Icon.home,    body: "Businesses achieve measurable efficiency improvements through our automated, connected systems deployed across India." },
-  { icon: Icon.monitor, body: "Real-time monitoring reduces unplanned downtime and enhances decision-making at every operational level." },
-  { icon: Icon.layers,  body: "Intelligent automation enables faster, safer, and more scalable workflows from factory floors to smart homes." },
+  {
+    icon: Icon.home,
+    body: "Businesses achieve measurable efficiency improvements through our automated, connected systems deployed across India.",
+  },
+  {
+    icon: Icon.monitor,
+    body: "Real-time monitoring reduces unplanned downtime and enhances decision-making at every operational level.",
+  },
+  {
+    icon: Icon.layers,
+    body: "Intelligent automation enables faster, safer, and more scalable workflows from factory floors to smart homes.",
+  },
 ];
 
 // ── Page ──────────────────────────────────────────────────────────────────────
 const About = () => {
-  const heroRef     = useBatchReveal();
-  const pillarRef   = useBatchReveal();
+  const heroRef = useBatchReveal();
+  const pillarRef = useBatchReveal();
   const timelineRef = useBatchReveal();
-  const impactRef   = useBatchReveal();
-  const serviceRef  = useBatchReveal();
-  const philoRef    = useBatchReveal();
-  const teamRef     = useBatchReveal();
+  const impactRef = useBatchReveal();
+  const serviceRef = useBatchReveal();
+  const philoRef = useBatchReveal();
+  const teamRef = useBatchReveal();
 
   return (
     <>
       <style>{css}</style>
       <div className="about-root">
-
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
         <section className="hero-section">
           <div className="hero-mesh" />
@@ -445,27 +687,47 @@ const About = () => {
                 className="reveal text-gray-500 leading-relaxed text-[16px] mb-4"
                 style={{ transitionDelay: "0.2s" }}
               >
-                <span className="text-blue-600 font-semibold">IoTrenetics Solutions Pvt. Ltd.</span>{" "}
-                is an innovative technology company building intelligent solutions at the intersection of IoT,
-                AI, and digital transformation. We create connected, data-driven systems that help businesses
-                automate operations, gain real-time insights, and make smarter decisions.
+                <span className="text-blue-600 font-semibold">
+                  IoTrenetics Solutions Pvt. Ltd.
+                </span>{" "}
+                is an innovative technology company building intelligent
+                solutions at the intersection of IoT, AI, and digital
+                transformation. We create connected, data-driven systems that
+                help businesses automate operations, gain real-time insights,
+                and make smarter decisions.
               </p>
 
               <p
                 className="reveal text-gray-500 leading-relaxed text-[16px] mb-8"
                 style={{ transitionDelay: "0.26s" }}
               >
-                Driven by a vision of self-reliance, we proudly promote Swadeshi innovation—developing
-                indigenous technologies that empower industries and contribute to a sustainable,
-                future-ready ecosystem.
+                Driven by a vision of self-reliance, we proudly promote Swadeshi
+                innovation—developing indigenous technologies that empower
+                industries and contribute to a sustainable, future-ready
+                ecosystem.
               </p>
 
-              <div className="reveal flex flex-wrap gap-3 mb-8" style={{ transitionDelay: "0.32s" }}>
+              <div
+                className="reveal flex flex-wrap gap-3 mb-8"
+                style={{ transitionDelay: "0.32s" }}
+              >
                 <span className="pill bg-blue-50 text-blue-700 border-blue-100">
                   {Icon.pin} India-based Operations
                 </span>
                 <span className="pill bg-green-50 text-green-700 border-green-100">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-3.5 h-3.5" stroke="currentColor" strokeWidth={2.5}><polyline points="20 6 9 17 4 12" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="w-3.5 h-3.5"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <polyline
+                      points="20 6 9 17 4 12"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
                   Swadeshi Innovation
                 </span>
               </div>
@@ -477,7 +739,10 @@ const About = () => {
             </div>
 
             {/* Right */}
-            <div className="reveal-right flex-shrink-0 relative" style={{ transitionDelay: "0.18s" }}>
+            <div
+              className="reveal-right flex-shrink-0 relative"
+              style={{ transitionDelay: "0.18s" }}
+            >
               <div className="relative border border-blue-100 rounded-3xl overflow-hidden bg-gradient-to-br from-blue-50 to-white p-7 shadow-sm w-[340px] max-w-full">
                 <img
                   src="/assets/display.webp"
@@ -489,21 +754,45 @@ const About = () => {
 
               <div className="float-a absolute -top-4 -left-8 bg-white border border-blue-100 rounded-2xl shadow-md px-4 py-3 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12" /></svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="w-4 h-4"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                  </svg>
                 </div>
                 <div>
-                  <p className="text-[11px] text-gray-400 font-medium">Real-time</p>
-                  <p className="text-sm font-bold text-gray-900">IoT Monitoring</p>
+                  <p className="text-[11px] text-gray-400 font-medium">
+                    Real-time
+                  </p>
+                  <p className="text-sm font-bold text-gray-900">
+                    IoT Monitoring
+                  </p>
                 </div>
               </div>
 
               <div className="float-b absolute -bottom-4 -right-6 bg-white border border-blue-100 rounded-2xl shadow-md px-4 py-3 flex items-center gap-3">
                 <div className="w-9 h-9 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center text-green-600">
-                  <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="w-4 h-4"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+                  </svg>
                 </div>
                 <div>
-                  <p className="text-[11px] text-gray-400 font-medium">Powered by</p>
-                  <p className="text-sm font-bold text-gray-900">AI & Automation</p>
+                  <p className="text-[11px] text-gray-400 font-medium">
+                    Powered by
+                  </p>
+                  <p className="text-sm font-bold text-gray-900">
+                    AI & Automation
+                  </p>
                 </div>
               </div>
             </div>
@@ -526,7 +815,9 @@ const About = () => {
                 <div key={i} className={`reveal pillar-card delay-${i}`}>
                   <div className="pillar-icon">{p.icon}</div>
                   <h3 className="text-lg font-bold text-gray-900">{p.label}</h3>
-                  <p className="text-gray-500 leading-relaxed text-[14px]">{p.body}</p>
+                  <p className="text-gray-500 leading-relaxed text-[14px]">
+                    {p.body}
+                  </p>
                 </div>
               ))}
             </div>
@@ -560,15 +851,21 @@ const About = () => {
                       </div>
                     </div>
                     <div className="timeline-dot hidden md:flex" />
-                    <div className={`flex-1 md:max-w-[calc(50%-2.5rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"}`}>
+                    <div
+                      className={`flex-1 md:max-w-[calc(50%-2.5rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"}`}
+                    >
                       <div className="timeline-card">
                         <div className="flex items-center justify-between mb-2 gap-3">
-                          <h4 className="font-bold text-gray-900">{item.title}</h4>
+                          <h4 className="font-bold text-gray-900">
+                            {item.title}
+                          </h4>
                           <span className="shrink-0 text-[10px] font-bold tracking-[0.12em] uppercase text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
                             {item.year}
                           </span>
                         </div>
-                        <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+                        <p className="text-gray-500 text-sm leading-relaxed">
+                          {item.desc}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -588,8 +885,9 @@ const About = () => {
               Technology We Specialize In
             </h2>
             <p className="max-w-[560px] mx-auto text-gray-500 leading-relaxed">
-              Cutting-edge engineering and AI-driven intelligence power our future-ready systems—spanning
-              IoT, Machine Learning, Computer Vision, and Robotics.
+              Cutting-edge engineering and AI-driven intelligence power our
+              future-ready systems—spanning IoT, Machine Learning, Computer
+              Vision, and Robotics.
             </p>
           </div>
           <FeatureCard direction="left" />
@@ -612,7 +910,9 @@ const About = () => {
                   <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
                     {item.icon}
                   </div>
-                  <p className="text-gray-600 leading-relaxed text-sm">{item.body}</p>
+                  <p className="text-gray-600 leading-relaxed text-sm">
+                    {item.body}
+                  </p>
                 </div>
               ))}
             </div>
@@ -635,7 +935,9 @@ const About = () => {
                 <div key={i} className={`reveal service-card delay-${i % 3}`}>
                   <div className="service-icon">{s.icon}</div>
                   <h3 className="font-bold text-gray-900">{s.heading}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">{s.quote}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {s.quote}
+                  </p>
                 </div>
               ))}
             </div>
@@ -656,16 +958,20 @@ const About = () => {
             <div className="reveal philosophy-block">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative z-10">
                 <p className="text-gray-600 leading-[1.85] text-[15px]">
-                  "Intelligence in Motion" reflects our belief that intelligence should not remain static
-                  or confined to systems—it should be continuously active, adaptive, and evolving. At
-                  IoTrenetics, we embed intelligence into the flow of everyday environments, enabling
-                  systems that not only collect data but interpret, learn, and act in real time.
+                  "Intelligence in Motion" reflects our belief that intelligence
+                  should not remain static or confined to systems—it should be
+                  continuously active, adaptive, and evolving. At IoTrenetics,
+                  we embed intelligence into the flow of everyday environments,
+                  enabling systems that not only collect data but interpret,
+                  learn, and act in real time.
                 </p>
                 <p className="text-gray-600 leading-[1.85] text-[15px]">
-                  It signifies a shift from passive technology to dynamic ecosystems—where devices
-                  communicate seamlessly, decisions are driven by live insights, and automation responds
-                  intelligently to changing conditions. From smart homes to industrial operations, we bring
-                  intelligence into motion by transforming how systems think, interact, and perform.
+                  It signifies a shift from passive technology to dynamic
+                  ecosystems—where devices communicate seamlessly, decisions are
+                  driven by live insights, and automation responds intelligently
+                  to changing conditions. From smart homes to industrial
+                  operations, we bring intelligence into motion by transforming
+                  how systems think, interact, and perform.
                 </p>
               </div>
             </div>
@@ -685,19 +991,38 @@ const About = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {[
-                { icon: Icon.users,  accent: "Multidisciplinary", title: "Expert Engineers",  body: "IoT engineers, AI specialists, and automation architects united by a shared mission—building intelligent, connected systems that solve real problems." },
-                { icon: Icon.shield, accent: "Trust-first",       title: "Reliable Partners", body: "We believe in full transparency and clear communication at every step—making us not just a vendor, but a long-term technology partner." },
-                { icon: Icon.pen,    accent: "Problem-solvers",   title: "Creative Builders",  body: "Behind every solution is a team of passionate creators who believe in purposeful, human-centered technology that makes a genuine difference." },
+                {
+                  icon: Icon.users,
+                  accent: "Multidisciplinary",
+                  title: "Expert Engineers",
+                  body: "IoT engineers, AI specialists, and automation architects united by a shared mission—building intelligent, connected systems that solve real problems.",
+                },
+                {
+                  icon: Icon.shield,
+                  accent: "Trust-first",
+                  title: "Reliable Partners",
+                  body: "We believe in full transparency and clear communication at every step—making us not just a vendor, but a long-term technology partner.",
+                },
+                {
+                  icon: Icon.pen,
+                  accent: "Problem-solvers",
+                  title: "Creative Builders",
+                  body: "Behind every solution is a team of passionate creators who believe in purposeful, human-centered technology that makes a genuine difference.",
+                },
               ].map((t, i) => (
                 <div key={i} className={`reveal team-card delay-${i}`}>
                   <div className="w-10 h-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
                     {t.icon}
                   </div>
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-blue-400 mb-1">{t.accent}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.14em] text-blue-400 mb-1">
+                      {t.accent}
+                    </p>
                     <h3 className="font-bold text-gray-900">{t.title}</h3>
                   </div>
-                  <p className="text-gray-500 text-sm leading-relaxed">{t.body}</p>
+                  <p className="text-gray-500 text-sm leading-relaxed">
+                    {t.body}
+                  </p>
                 </div>
               ))}
             </div>

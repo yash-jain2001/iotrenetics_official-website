@@ -28,11 +28,25 @@ const solutions = [
       "Continuous data acquisition and analysis to monitor system health and performance. Automated alerts, predictive insights, and rapid fault detection ensure system stability and optimized operational efficiency.",
     image: "/assets/System.webp",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        className="w-5 h-5"
+      >
+        <polyline
+          points="22 12 18 12 15 21 9 3 6 12 2 12"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
-    bullets: ["Automated alert pipelines", "Predictive fault detection", "Live health dashboards"],
+    bullets: [
+      "Automated alert pipelines",
+      "Predictive fault detection",
+      "Live health dashboards",
+    ],
   },
   {
     id: "iot",
@@ -44,13 +58,29 @@ const solutions = [
       "Bidirectional communication with IoT endpoints for remote control, rule-based automation, and secure data transmission—enabling scalable and efficient IoT deployments at any scale.",
     image: "/assets/Data.webp",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        className="w-5 h-5"
+      >
         <circle cx="12" cy="12" r="3" />
-        <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" strokeLinecap="round" />
-        <path d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07" strokeLinecap="round" />
+        <path
+          d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"
+          strokeLinecap="round"
+        />
+        <path
+          d="M15.54 8.46a5 5 0 010 7.07M8.46 8.46a5 5 0 000 7.07"
+          strokeLinecap="round"
+        />
       </svg>
     ),
-    bullets: ["Bidirectional device control", "Rule-based automation engine", "Secure encrypted transmission"],
+    bullets: [
+      "Bidirectional device control",
+      "Rule-based automation engine",
+      "Secure encrypted transmission",
+    ],
   },
   {
     id: "industrial",
@@ -62,14 +92,24 @@ const solutions = [
       "Real-time monitoring of industrial machines using sensor data to track operational parameters, detect anomalies, and reduce unplanned downtime through continuous data-driven insights.",
     image: "/assets/industrial.webp",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        className="w-5 h-5"
+      >
         <rect x="2" y="7" width="20" height="14" rx="2" />
         <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" />
         <line x1="12" y1="12" x2="12" y2="16" strokeLinecap="round" />
         <line x1="10" y1="14" x2="14" y2="14" strokeLinecap="round" />
       </svg>
     ),
-    bullets: ["Sensor data aggregation", "Anomaly detection at edge", "Downtime reduction analytics"],
+    bullets: [
+      "Sensor data aggregation",
+      "Anomaly detection at edge",
+      "Downtime reduction analytics",
+    ],
   },
   {
     id: "optimization",
@@ -81,12 +121,30 @@ const solutions = [
       "AI models that continuously learn from operational data to optimize workflows, reduce energy consumption, and automate decision-making for improved industrial efficiency.",
     image: "/assets/Automation.webp",
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} className="w-5 h-5">
-        <path d="M12 2L2 7l10 5 10-5-10-5z" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" strokeLinecap="round" strokeLinejoin="round" />
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={1.6}
+        className="w-5 h-5"
+      >
+        <path
+          d="M12 2L2 7l10 5 10-5-10-5z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M2 17l10 5 10-5M2 12l10 5 10-5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
-    bullets: ["Continuous AI learning loops", "Energy consumption optimizer", "Automated decision workflows"],
+    bullets: [
+      "Continuous AI learning loops",
+      "Energy consumption optimizer",
+      "Automated decision workflows",
+    ],
   },
 ];
 
@@ -253,8 +311,14 @@ const Solutions = () => {
   useEffect(() => {
     const els = document.querySelectorAll(".fade-up-once");
     const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } }),
-      { threshold: 0.1 }
+      (entries) =>
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("visible");
+            obs.unobserve(e.target);
+          }
+        }),
+      { threshold: 0.1 },
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -274,20 +338,27 @@ const Solutions = () => {
       <style>{css}</style>
 
       {/* ── Hero ── */}
-      <section className="max-w-[1200px] mx-auto px-5 pt-24 pb-16 text-center fade-up-once" ref={sectionRef}>
+      <section
+        className="max-w-[1200px] mx-auto px-5 pt-24 pb-16 text-center fade-up-once"
+        ref={sectionRef}
+      >
         <Eyebrow>What We Build</Eyebrow>
         <h1 className="text-3xl sm:text-4xl font-bold tracking-[-0.02em] text-gray-900 mb-4">
           Our Solutions
         </h1>
         <p className="max-w-[480px] mx-auto text-gray-500 leading-relaxed">
-          Explore how intelligent systems transform the way businesses operate, monitor, and grow.
+          Explore how intelligent systems transform the way businesses operate,
+          monitor, and grow.
         </p>
       </section>
 
       <SectionDivider />
 
       {/* ── Bento selector grid ── */}
-      <section className="max-w-[1200px] mx-auto px-5 py-14 fade-up-once" ref={bentoRef}>
+      <section
+        className="max-w-[1200px] mx-auto px-5 py-14 fade-up-once"
+        ref={bentoRef}
+      >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12">
           {solutions.map((sol, i) => (
             <button
@@ -376,8 +447,18 @@ const Solutions = () => {
                         className="bullet-item flex items-start gap-3 text-sm text-gray-700"
                       >
                         <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center">
-                          <svg viewBox="0 0 12 12" fill="none" className="w-3 h-3 text-blue-600" stroke="currentColor" strokeWidth={2}>
-                            <polyline points="2 6 5 9 10 3" strokeLinecap="round" strokeLinejoin="round" />
+                          <svg
+                            viewBox="0 0 12 12"
+                            fill="none"
+                            className="w-3 h-3 text-blue-600"
+                            stroke="currentColor"
+                            strokeWidth={2}
+                          >
+                            <polyline
+                              points="2 6 5 9 10 3"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
                           </svg>
                         </span>
                         {b}
@@ -388,24 +469,52 @@ const Solutions = () => {
                   {/* Nav arrows */}
                   <div className="flex items-center gap-3 pt-2">
                     <button
-                      onClick={() => setActive((prev) => (prev - 1 + solutions.length) % solutions.length)}
+                      onClick={() =>
+                        setActive(
+                          (prev) =>
+                            (prev - 1 + solutions.length) % solutions.length,
+                        )
+                      }
                       className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
                       aria-label="Previous solution"
                     >
-                      <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
-                        <path d="M10 4L6 8l4 4" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        className="w-4 h-4"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          d="M10 4L6 8l4 4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
                     <span className="text-xs text-gray-400 font-medium tabular-nums">
-                      {String(active + 1).padStart(2, "0")} / {String(solutions.length).padStart(2, "0")}
+                      {String(active + 1).padStart(2, "0")} /{" "}
+                      {String(solutions.length).padStart(2, "0")}
                     </span>
                     <button
-                      onClick={() => setActive((prev) => (prev + 1) % solutions.length)}
+                      onClick={() =>
+                        setActive((prev) => (prev + 1) % solutions.length)
+                      }
                       className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-blue-200 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
                       aria-label="Next solution"
                     >
-                      <svg viewBox="0 0 16 16" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
-                        <path d="M6 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
+                      <svg
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        className="w-4 h-4"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path
+                          d="M6 4l4 4-4 4"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </button>
                   </div>

@@ -124,25 +124,26 @@ const FooterStyles = () => (
 ───────────────────────────────────────────────────────────────────────────── */
 const footerLinks = {
   Company: [
-    { label: "About Us",   to: "/about" },
-    { label: "Solutions",  to: "/solutions" },
+    { label: "About Us", to: "/about" },
+    { label: "Solutions", to: "/solutions" },
     { label: "Industries", to: "/industries" },
-    { label: "Contact",    to: "/contact" },
+    { label: "Contact", to: "/contact" },
   ],
   Products: [
-    { label: "Finexo",  to: "/finexo" },
+    { label: "Finexo", to: "/finexo" },
     { label: "HealNet", to: "/healnet" },
     { label: "Agentra", to: "/agentra" },
   ],
   Automation: [
-    { label: "Home Automation",       to: "/home-automation" },
+    { label: "Home Automation", to: "/home-automation" },
     { label: "Commercial Automation", to: "/office-automation" },
-    { label: "Hotel Automation",      to: "/hotel-automation" },
+    { label: "Hotel Automation", to: "/hotel-automation" },
+    { label: "Audio Video Automation", to: "/audio-video-automation" },
   ],
   Legal: [
-    { label: "Terms & Conditions",       to: "/terms-and-conditions" },
-    { label: "Privacy Policy",           to: "/privacy-policy-finexo" },
-    { label: "Delete Account (Finexo)",  to: "/delete-account-policy-finexo" },
+    { label: "Terms & Conditions", to: "/terms-and-conditions" },
+    { label: "Privacy Policy", to: "/privacy-policy-finexo" },
+    { label: "Delete Account (Finexo)", to: "/delete-account-policy-finexo" },
   ],
 };
 
@@ -165,7 +166,7 @@ const Footer = () => {
           obs.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (gridRef.current) obs.observe(gridRef.current);
     return () => obs.disconnect();
@@ -173,7 +174,10 @@ const Footer = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (email) { setSubmitted(true); setEmail(""); }
+    if (email) {
+      setSubmitted(true);
+      setEmail("");
+    }
   };
 
   return (
@@ -182,70 +186,122 @@ const Footer = () => {
       <footer
         className="relative overflow-hidden text-white"
         style={{
-          background: "linear-gradient(160deg, #020b18 0%, #041428 40%, #020b18 100%)",
+          background:
+            "linear-gradient(160deg, #020b18 0%, #041428 40%, #020b18 100%)",
           fontFamily: "'DM Sans', sans-serif",
         }}
       >
         {/* ── Background dot grid ── */}
-        <div className="absolute inset-0 opacity-[.04] pointer-events-none"
+        <div
+          className="absolute inset-0 opacity-[.04] pointer-events-none"
           style={{
-            backgroundImage: "radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(circle, rgba(255,255,255,.6) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
-          }} />
+          }}
+        />
 
         {/* ── Glow blobs ── */}
-        <div className="footer-glow absolute top-0 left-1/4 w-[550px] h-[320px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(29,78,216,.18), transparent 70%)", filter: "blur(50px)" }} />
-        <div className="footer-glow absolute bottom-0 right-1/4 w-[420px] h-[260px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(8,145,178,.1), transparent 70%)", filter: "blur(55px)", animationDelay: "2.5s" }} />
-        <div className="footer-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
-          style={{ background: "radial-gradient(ellipse, rgba(96,165,250,.04), transparent 70%)", filter: "blur(40px)", animationDelay: "4s" }} />
+        <div
+          className="footer-glow absolute top-0 left-1/4 w-[550px] h-[320px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(29,78,216,.18), transparent 70%)",
+            filter: "blur(50px)",
+          }}
+        />
+        <div
+          className="footer-glow absolute bottom-0 right-1/4 w-[420px] h-[260px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(8,145,178,.1), transparent 70%)",
+            filter: "blur(55px)",
+            animationDelay: "2.5s",
+          }}
+        />
+        <div
+          className="footer-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse, rgba(96,165,250,.04), transparent 70%)",
+            filter: "blur(40px)",
+            animationDelay: "4s",
+          }}
+        />
 
         <div className="relative max-w-[1200px] mx-auto px-6 sm:px-10">
-
           {/* ── Newsletter ── */}
           <div className="pt-14 pb-12 border-b border-white/[.055]">
             <div
               className="relative rounded-2xl px-8 sm:px-12 py-10 overflow-hidden"
               style={{
-                background: "linear-gradient(135deg, rgba(29,78,216,.22), rgba(8,145,178,.12))",
+                background:
+                  "linear-gradient(135deg, rgba(29,78,216,.22), rgba(8,145,178,.12))",
                 border: "1px solid rgba(96,165,250,.18)",
               }}
             >
               {/* Inner grid pattern */}
-              <div className="absolute inset-0 opacity-[.055] pointer-events-none"
+              <div
+                className="absolute inset-0 opacity-[.055] pointer-events-none"
                 style={{
-                  backgroundImage: "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
+                  backgroundImage:
+                    "linear-gradient(rgba(255,255,255,.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.5) 1px, transparent 1px)",
                   backgroundSize: "32px 32px",
-                }} />
+                }}
+              />
 
               {/* Top-right orb */}
-              <div className="absolute top-0 right-0 w-40 h-40 pointer-events-none"
-                style={{ background: "radial-gradient(circle, rgba(96,165,250,.1), transparent 70%)", filter: "blur(20px)", transform: "translate(20%,-20%)" }} />
+              <div
+                className="absolute top-0 right-0 w-40 h-40 pointer-events-none"
+                style={{
+                  background:
+                    "radial-gradient(circle, rgba(96,165,250,.1), transparent 70%)",
+                  filter: "blur(20px)",
+                  transform: "translate(20%,-20%)",
+                }}
+              />
 
               <div className="relative flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
                 <div className="max-w-[380px]">
                   <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/15 border border-blue-400/20 rounded-full mb-4">
                     <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-pulse" />
-                    <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-cyan-300"
-                      style={{ fontFamily: "'Syne', sans-serif" }}>Stay updated</span>
+                    <span
+                      className="text-[10px] font-bold tracking-[0.15em] uppercase text-cyan-300"
+                      style={{ fontFamily: "'Syne', sans-serif" }}
+                    >
+                      Stay updated
+                    </span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight"
-                    style={{ fontFamily: "'Syne', sans-serif" }}>
+                  <h3
+                    className="text-xl sm:text-2xl font-bold text-white mb-2 leading-tight"
+                    style={{ fontFamily: "'Syne', sans-serif" }}
+                  >
                     Subscribe for Updates
                   </h3>
                   <p className="text-white/45 text-sm leading-relaxed">
-                    Latest IoT trends, automation developments, and company announcements.
+                    Latest IoT trends, automation developments, and company
+                    announcements.
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="flex gap-2.5 w-full md:w-auto md:min-w-[380px]">
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex gap-2.5 w-full md:w-auto md:min-w-[380px]"
+                >
                   {submitted ? (
                     <div className="flex-1 flex items-center gap-3 px-5 py-3.5 bg-emerald-500/15 border border-emerald-400/25 rounded-full">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#34d399" strokeWidth="2.5" className="w-4 h-4 shrink-0">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="#34d399"
+                        strokeWidth="2.5"
+                        className="w-4 h-4 shrink-0"
+                      >
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                      <span className="text-emerald-300 text-sm font-medium">You're subscribed!</span>
+                      <span className="text-emerald-300 text-sm font-medium">
+                        You're subscribed!
+                      </span>
                     </div>
                   ) : (
                     <>
@@ -257,9 +313,11 @@ const Footer = () => {
                         required
                         className="newsletter-input flex-1 bg-white/[.07] border border-white/[.11] rounded-full px-5 py-3.5 text-white text-sm placeholder:text-white/30 transition-all duration-200"
                       />
-                      <button type="submit"
+                      <button
+                        type="submit"
                         className="px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-bold rounded-full transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-600/35 shrink-0"
-                        style={{ fontFamily: "'Syne', sans-serif" }}>
+                        style={{ fontFamily: "'Syne', sans-serif" }}
+                      >
                         Subscribe
                       </button>
                     </>
@@ -270,9 +328,10 @@ const Footer = () => {
           </div>
 
           {/* ── Main grid ── */}
-          <div ref={gridRef}
-            className="py-14 grid grid-cols-2 md:grid-cols-5 gap-10 border-b border-white/[.055]">
-
+          <div
+            ref={gridRef}
+            className="py-14 grid grid-cols-2 md:grid-cols-5 gap-10 border-b border-white/[.055]"
+          >
             {/* ── Brand column ── */}
             <div className="col-span-2 md:col-span-1 col-reveal">
               {/* Logo with backdrop for visibility */}
@@ -286,32 +345,63 @@ const Footer = () => {
               </Link>
 
               <p className="text-white/38 text-[13px] leading-relaxed mb-6 max-w-[200px]">
-                Intelligent IoT &amp; AI solutions for connected environments across India.
+                Intelligent IoT &amp; AI solutions for connected environments
+                across India.
               </p>
 
               {/* Social icons */}
               <div className="flex gap-2.5">
-                <a href="https://www.linkedin.com/in/iotrenetics-solutions-private-limited-962504377"
-                  target="_blank" rel="noopener noreferrer"
-                  className="social-btn" aria-label="LinkedIn">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+                <a
+                  href="https://www.linkedin.com/in/iotrenetics-solutions-private-limited-962504377"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-btn"
+                  aria-label="LinkedIn"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452z" />
                   </svg>
                 </a>
-                <a href="https://www.instagram.com/iotrenetics_solutions/"
-                  target="_blank" rel="noopener noreferrer"
-                  className="social-btn" aria-label="Instagram">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="2" y="2" width="20" height="20" rx="5"/>
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8"/>
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                <a
+                  href="https://www.instagram.com/iotrenetics_solutions/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-btn"
+                  aria-label="Instagram"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="2" y="2" width="20" height="20" rx="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8" />
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                   </svg>
                 </a>
-                <a href="mailto:support@iotrenetics.com"
-                  className="social-btn" aria-label="Email">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="2" y="4" width="20" height="16" rx="2"/>
-                    <path d="M22 7l-10 7L2 7"/>
+                <a
+                  href="mailto:support@iotrenetics.com"
+                  className="social-btn"
+                  aria-label="Email"
+                >
+                  <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                    <path d="M22 7l-10 7L2 7" />
                   </svg>
                 </a>
               </div>
@@ -319,15 +409,19 @@ const Footer = () => {
               {/* Live status */}
               <div className="flex items-center gap-2 mt-6">
                 <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                <span className="text-white/28 text-[11px]">All systems operational</span>
+                <span className="text-white/28 text-[11px]">
+                  All systems operational
+                </span>
               </div>
             </div>
 
             {/* ── Link columns ── */}
             {Object.entries(footerLinks).map(([section, links], si) => (
               <div key={section} className="col-reveal">
-                <h4 className="text-[11px] font-bold tracking-[0.15em] uppercase text-white/28 mb-5"
-                  style={{ fontFamily: "'Syne', sans-serif" }}>
+                <h4
+                  className="text-[11px] font-bold tracking-[0.15em] uppercase text-white/28 mb-5"
+                  style={{ fontFamily: "'Syne', sans-serif" }}
+                >
                   {section}
                 </h4>
                 <ul className="flex flex-col gap-3 list-none p-0 m-0">
@@ -346,16 +440,21 @@ const Footer = () => {
           {/* ── Bottom bar ── */}
           <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-white/25 text-xs text-center sm:text-left">
-              © {new Date().getFullYear()} IoTrenetics Solutions Pvt. Ltd. — Intelligence in Motion.
+              © {new Date().getFullYear()} IoTrenetics Solutions Pvt. Ltd. —
+              Intelligence in Motion.
             </p>
             <div className="flex items-center gap-4">
-              <Link to="/terms-and-conditions"
-                className="text-white/25 text-xs hover:text-white/50 transition-colors no-underline">
+              <Link
+                to="/terms-and-conditions"
+                className="text-white/25 text-xs hover:text-white/50 transition-colors no-underline"
+              >
                 Terms
               </Link>
               <div className="w-px h-3 bg-white/10" />
-              <Link to="/privacy-policy-finexo"
-                className="text-white/25 text-xs hover:text-white/50 transition-colors no-underline">
+              <Link
+                to="/privacy-policy-finexo"
+                className="text-white/25 text-xs hover:text-white/50 transition-colors no-underline"
+              >
                 Privacy
               </Link>
               <div className="w-px h-3 bg-white/10" />

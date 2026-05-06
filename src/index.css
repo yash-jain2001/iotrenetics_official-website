@@ -3,54 +3,77 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e5c77a;
+    --dark: #07080a;
+    --dark-lighter: #12141a;
+  }
+
   html {
-    @apply scroll-smooth;
+    @apply scroll-smooth antialiased;
     overflow-x: hidden;
   }
+  
   body {
     @apply font-sans text-gray-800 bg-white leading-relaxed;
     overflow-x: hidden;
     max-width: 100vw;
   }
-  a {
-    @apply no-underline text-inherit;
+
+  /* Selection color */
+  ::selection {
+    background: rgba(201, 168, 76, 0.3);
+    color: inherit;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply leading-tight;
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display leading-tight tracking-tight;
   }
 }
 
-/* Hamburger menu icon animations */
-.menu-toggle span {
-  @apply block h-[2px] bg-gray-800 rounded transition-all duration-300;
-}
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -7px);
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-md border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-black/40 backdrop-blur-xl border border-white/5;
+  }
+
+  .premium-btn {
+    @apply relative overflow-hidden px-8 py-3.5 rounded-full font-bold transition-all duration-500 hover:scale-[1.02] active:scale-[0.98];
+  }
 }
 
-/* Custom scrollbar for horizontal scroll sections */
-.scrollbar-hide::-webkit-scrollbar {
-  @apply hidden;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
 }
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #e5e7eb; /* gray-200 */
+  border: 4px solid white;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d1d5db; /* gray-300 */
 }
 
-/* Responsive text utilities */
+/* Dark mode scrollbar override */
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border: 4px solid var(--dark);
+}
+
+/* Utilities */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .bg-noise {
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   }
 }

@@ -10,10 +10,15 @@ export default {
         "brand-dark": "#002e5d",
         accent: "#e53935",
         "accent-dark": "#c62828",
+        "luxury-gold": "#c9a84c",
+        "luxury-gold-light": "#e5c77a",
+        "luxury-black": "#07080a",
+        "luxury-black-lighter": "#12141a",
+        "luxury-gray": "#1a1c23",
       },
       fontFamily: {
-        sans: ["DM Sans", "Arial", "sans-serif"],
-        display: ["Syne", "Arial", "sans-serif"],
+        sans: ["DM Sans", "Inter", "sans-serif"],
+        display: ["Syne", "Outfit", "sans-serif"],
       },
       keyframes: {
         floatImage: {

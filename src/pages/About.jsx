@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import CTASection from "../components/CTASection";
 import FeatureCard from "../components/FeatureCard";
 
@@ -657,6 +658,10 @@ const About = () => {
 
   return (
     <>
+      <Helmet>
+        <title>About Us | IoTrenetics Solutions</title>
+        <meta name="description" content="Learn about IoTrenetics Solutions, our mission, vision, and how we are building intelligent connected systems for a smarter future in India." />
+      </Helmet>
       <style>{css}</style>
       <div className="about-root">
         {/* ══ HERO ══════════════════════════════════════════════════════════════ */}

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
@@ -702,6 +703,11 @@ const Cursor = ({ onFirstInteraction }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Audio & Video Automation | IoTrenetics</title>
+        <meta name="description" content="Seamless audio and video automation for homes, offices, and commercial spaces." />
+      </Helmet>
+
       <div className="av-cursor" ref={dot} />
       <div className="av-cursor-ring" ref={ring} />
     </>

@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import React from 'react';
 
 const AIOT = () => {
   return (
     <div className="pt-2 pb-2 min-h-screen bg-slate-50 font-sans">
+      <Helmet>
+        <title>AIoT: Artificial Intelligence of Things | IoTrenetics</title>
+        <meta name="description" content="Discover how AI and IoT combine to create powerful AIoT solutions." />
+      </Helmet>
+
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}
         <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 md:p-14 mb-1 transition-all hover:shadow-md">

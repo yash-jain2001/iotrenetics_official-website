@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import CTASection from "../components/CTASection";
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────── */
@@ -987,6 +988,10 @@ const CheckItem = ({ children }) => (
 /* ─── PAGE ───────────────────────────────────────────────────────────────── */
 const Finexo = () => (
   <div className="fx" style={{ overflowX: "hidden" }}>
+    <Helmet>
+      <title>Finexo AI - Smart Finance App | IoTrenetics</title>
+      <meta name="description" content="Finexo AI by IoTrenetics categorizes and tracks your finances seamlessly with AI automation. Smart finance app for intelligent tracking." />
+    </Helmet>
     <style>{STYLES}</style>
 
     {/* ══ HERO ════════════════════════════════════════════════════════════ */}

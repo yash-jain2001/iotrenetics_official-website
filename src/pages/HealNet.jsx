@@ -1,6 +1,7 @@
 import CTASection from "../components/CTASection";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────── */
 const STYLES = `
@@ -1360,6 +1361,10 @@ function UseCases() {
 /* ─── PAGE ───────────────────────────────────────────────────────────────── */
 const HealTech = () => (
   <div className="ht" style={{ overflowX: "hidden" }}>
+    <Helmet>
+      <title>HealTech - AI Healthcare Intelligence | IoTrenetics</title>
+      <meta name="description" content="HealTech connects your health data and vitals with AI intelligence. Get instant medical scan analysis and trends with IoTrenetics." />
+    </Helmet>
     <style>{STYLES}</style>
 
     {/* ══ HERO ════════════════════════════════════════════════════════════ */}

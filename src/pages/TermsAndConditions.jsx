@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import React from "react";
 
 const TermsAndConditions = () => {
@@ -6,6 +7,11 @@ const TermsAndConditions = () => {
 
   return (
     <div className="bg-gray-50 py-10 px-5 font-sans text-gray-800 leading-relaxed">
+      <Helmet>
+        <title>Terms and Conditions | IoTrenetics</title>
+        <meta name="description" content="Read the terms and conditions for IoTrenetics Solutions." />
+      </Helmet>
+
       <div className="max-w-[1200px] mx-auto rounded-3xl">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-extrabold mb-4">

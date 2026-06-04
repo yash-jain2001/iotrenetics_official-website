@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useEffect, useRef } from "react";
 import SmartifyClone from "../components/SmartifyClone";
 import { Link } from "react-router-dom";
@@ -282,6 +283,11 @@ const HotelAutomation = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Smart Hotel Automation | IoTrenetics</title>
+        <meta name="description" content="Enhance guest experiences and operational efficiency with our smart hotel automation." />
+      </Helmet>
+
       <style>{`
         /* ── Reveal ── */
         .ha2-reveal {

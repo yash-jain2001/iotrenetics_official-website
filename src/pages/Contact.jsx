@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import CTASection from "../components/CTASection";
 
 // ── CSS ───────────────────────────────────────────────────────────────────────
@@ -605,6 +606,10 @@ const Contact = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Contact Us | IoTrenetics</title>
+        <meta name="description" content="Get in touch with IoTrenetics Solutions. We build intelligent IoT and AI systems for your business needs in India." />
+      </Helmet>
       <style>{css}</style>
 
       <section className="contact-bg py-20 px-5 md:px-10 min-h-screen flex items-center">

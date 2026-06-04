@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import LatestInsights from "../components/LatestInsights";
 import NewsTicker from "../components/NewsTicker";
 
@@ -854,6 +855,11 @@ const Home = () => {
       className="bg-white overflow-x-hidden"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
+      <Helmet>
+        <title>IoTrenetics Solutions - IoT & AI Automation in India</title>
+        <meta name="description" content="Leading IoT & AI solutions provider operating PAN India. Smart home automation, AI enterprise platforms, and digital transformation." />
+        <link rel="canonical" href="https://iotrenetics.com/" />
+      </Helmet>
       <GlobalStyles />
       <ScrollBar />
       <NewsTicker />

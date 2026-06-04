@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import CTASection from "../components/CTASection";
 import { useEffect, useRef, useState } from "react";
 
@@ -212,6 +213,11 @@ function FadeUp({ children, className = "", style }) {
   const ref = useFadeUp();
   return (
     <div ref={ref} className={`fu ${className}`} style={style}>
+      <Helmet>
+        <title>Agentra | IoTrenetics Solutions</title>
+        <meta name="description" content="Agentra - Intelligent AI solutions by IoTrenetics." />
+      </Helmet>
+
       {children}
     </div>
   );

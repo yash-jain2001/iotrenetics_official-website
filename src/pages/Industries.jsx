@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CTASection from "../components/CTASection";
@@ -310,6 +311,11 @@ const IndustryBlock = ({ industry, index }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Industries | IoTrenetics Solutions</title>
+        <meta name="description" content="Discover the industries we serve with our advanced IoT and AI solutions." />
+      </Helmet>
+
       {index > 0 && <div className="block-sep mx-auto" />}
 
       <div className="ind-block py-16 md:py-24">

@@ -1,8 +1,14 @@
+import { Helmet } from "react-helmet-async";
 import { Link } from 'react-router-dom';
 
 const ComingSoon = () => {
   return (
     <section className="min-h-[80vh] flex items-center justify-center px-4 py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <Helmet>
+        <title>Coming Soon | IoTrenetics</title>
+        <meta name="description" content="Exciting new solutions are coming soon from IoTrenetics." />
+      </Helmet>
+
       <div className="text-center max-w-xl mx-auto">
         {/* Animated rocket emoji */}
         <div className="text-6xl mb-6 animate-bounce">🚀</div>

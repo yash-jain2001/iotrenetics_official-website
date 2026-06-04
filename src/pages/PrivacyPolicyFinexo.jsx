@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import React from "react";
 
 const HeaderInfo = ({ label, value }) => (
@@ -32,6 +33,11 @@ const UnorderedList = ({ children }) => (
 const PrivacyPolicyFinexo = () => {
   return (
     <div className="min-h-screen bg-slate-50 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-indigo-100 selection:text-indigo-900">
+      <Helmet>
+        <title>Finexo Privacy Policy | IoTrenetics</title>
+        <meta name="description" content="Privacy policy for the Finexo app." />
+      </Helmet>
+
       <div className=" mx-auto rounded-3xl shadow-xl overflow-hidden bg-white ring-1 ring-slate-900/5">
         {/* Header Section */}
         <div className="bg-gradient-to-br from-indigo-600 to-blue-700 px-6 py-12 sm:px-12 sm:py-16 relative overflow-hidden">

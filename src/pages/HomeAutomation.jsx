@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { useEffect, useRef } from "react";
 import CTASection from "../components/CTASection";
 import SectionTitle from "../components/SectionTitle";
@@ -401,10 +401,7 @@ const HomeAutomation = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Smart Home Automation | IoTrenetics</title>
-        <meta name="description" content="Experience the future of living with our smart home automation systems in India." />
-      </Helmet>
+      <SEO title="Smart Home Automation | IoTrenetics" description="Experience the future of living with our smart home automation systems in India." url="/home-automation" />
 
       <style>{`
         /* Scroll reveal */

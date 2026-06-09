@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from "react";
 
 const DeleteAccFinexo = () => {
   return (
     <div className="min-h-screen bg-gray-50 text-gray-800 font-sans">
-      <Helmet>
-        <title>Finexo Delete Account | IoTrenetics</title>
-        <meta name="description" content="Instructions on how to delete your Finexo account." />
-      </Helmet>
+      <SEO title="Finexo Delete Account | IoTrenetics" description="Instructions on how to delete your Finexo account." url="/delete-account-policy-finexo" />
 
       <header className="bg-gradient-to-br from-orange-500 to-red-500 text-white py-6 px-5 text-center">
         <h1 className="text-3xl font-extrabold tracking-tight">Finexo</h1>

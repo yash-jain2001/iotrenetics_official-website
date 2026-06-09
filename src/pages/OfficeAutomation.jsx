@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { useEffect, useRef } from "react";
 import CTASection from "../components/CTASection";
 import { Link } from "react-router-dom";
@@ -264,10 +264,7 @@ const OfficeAutomation = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Smart Office Automation | IoTrenetics</title>
-        <meta name="description" content="Optimize your workspace with intelligent office automation solutions." />
-      </Helmet>
+      <SEO title="Smart Office Automation | IoTrenetics" description="Optimize your workspace with intelligent office automation solutions." url="/office-automation" />
 
       <style>{`
         /* ── Reveal system ── */

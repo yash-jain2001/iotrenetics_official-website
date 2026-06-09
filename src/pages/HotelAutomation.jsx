@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { useEffect, useRef } from "react";
 import SmartifyClone from "../components/SmartifyClone";
 import { Link } from "react-router-dom";
@@ -283,10 +283,7 @@ const HotelAutomation = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Smart Hotel Automation | IoTrenetics</title>
-        <meta name="description" content="Enhance guest experiences and operational efficiency with our smart hotel automation." />
-      </Helmet>
+      <SEO title="Smart Hotel Automation | IoTrenetics" description="Enhance guest experiences and operational efficiency with our smart hotel automation." url="/hotel-automation" />
 
       <style>{`
         /* ── Reveal ── */

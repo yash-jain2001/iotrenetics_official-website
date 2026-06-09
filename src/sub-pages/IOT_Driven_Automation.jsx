@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react'
 
 const IOT_Driven_Automation = () => {
   return (
     <div>
-      <Helmet>
-        <title>IoT Driven Automation | IoTrenetics</title>
-        <meta name="description" content="Explore our IoT driven automation services." />
-      </Helmet>
+      <SEO title="IoT Driven Automation | IoTrenetics" description="Explore our IoT driven automation services." url="/iot-driven-automation" />
 IOT-Driven-Automation</div> )
 }
 

@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from "react";
 
 const HeaderInfo = ({ label, value }) => (
@@ -33,10 +33,7 @@ const UnorderedList = ({ children }) => (
 const PrivacyPolicyFinexo = () => {
   return (
     <div className="min-h-screen bg-slate-50 py-12 sm:py-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-indigo-100 selection:text-indigo-900">
-      <Helmet>
-        <title>Finexo Privacy Policy | IoTrenetics</title>
-        <meta name="description" content="Privacy policy for the Finexo app." />
-      </Helmet>
+      <SEO title="Finexo Privacy Policy | IoTrenetics" description="Privacy policy for the Finexo app." url="/privacy-policy-finexo" />
 
       <div className=" mx-auto rounded-3xl shadow-xl overflow-hidden bg-white ring-1 ring-slate-900/5">
         {/* Header Section */}

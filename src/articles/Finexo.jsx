@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from "react";
 
 const FinexoArticle = () => {
   return (
     <div className="pt-2 pb-2 min-h-screen bg-slate-50 font-sans">
-      <Helmet>
-        <title>Finexo AI Overview | IoTrenetics</title>
-        <meta name="description" content="An in-depth look at Finexo AI and its capabilities." />
-      </Helmet>
+      <SEO title="Finexo AI Overview | IoTrenetics" description="An in-depth look at Finexo AI and its capabilities." url="/finexo-article" />
 
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}

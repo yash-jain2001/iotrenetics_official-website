@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react';
 
 const SmartHomeAutomation = () => {
   return (
     <div className="pt-2 pb-2 min-h-screen bg-slate-50 font-sans">
-      <Helmet>
-        <title>Smart Home Automation Guide | IoTrenetics</title>
-        <meta name="description" content="Learn more about the benefits of smart home automation." />
-      </Helmet>
+      <SEO title="Smart Home Automation Guide | IoTrenetics" description="Learn more about the benefits of smart home automation." url="/smart-home-automation" />
 
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}

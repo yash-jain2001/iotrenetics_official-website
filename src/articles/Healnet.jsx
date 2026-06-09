@@ -1,14 +1,11 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Healnet = () => {
   return (
     <div className="pt-1 pb-1 min-h-screen bg-slate-50 font-sans">
-      <Helmet>
-        <title>HealTech Overview | IoTrenetics</title>
-        <meta name="description" content="An in-depth look at HealTech and how it transforms healthcare." />
-      </Helmet>
+      <SEO title="HealTech Overview | IoTrenetics" description="An in-depth look at HealTech and how it transforms healthcare." url="/healnet-article" />
 
       <div className="px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}

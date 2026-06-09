@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react'
 
 const ARVR_and_Immersive_technologies = () => {
   return (
     <div>
-      <Helmet>
-        <title>AR/VR & Immersive Technologies | IoTrenetics</title>
-        <meta name="description" content="Immersive AR and VR solutions by IoTrenetics." />
-      </Helmet>
+      <SEO title="AR/VR & Immersive Technologies | IoTrenetics" description="Immersive AR and VR solutions by IoTrenetics." url="/arvr-and-immersive-technologies" />
 ARVR_and_Immersive_technologies</div>
   )
 }

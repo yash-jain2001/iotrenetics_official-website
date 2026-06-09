@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 import SectionTitle from "../components/SectionTitle";
 
@@ -336,10 +336,7 @@ const Solutions = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Our Solutions | IoTrenetics</title>
-        <meta name="description" content="Explore IoTrenetics solutions including Real-Time System Monitoring, IoT Data Control, Industrial Equipment Monitoring, and Process Automation." />
-      </Helmet>
+      <SEO title="Our Solutions | IoTrenetics" description="Explore our comprehensive range of IoT and AI driven solutions." url="/solutions" />
       <style>{css}</style>
 
       {/* ── Hero ── */}

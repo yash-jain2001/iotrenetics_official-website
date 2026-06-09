@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react';
 
 const AIOT = () => {
   return (
     <div className="pt-2 pb-2 min-h-screen bg-slate-50 font-sans">
-      <Helmet>
-        <title>AIoT: Artificial Intelligence of Things | IoTrenetics</title>
-        <meta name="description" content="Discover how AI and IoT combine to create powerful AIoT solutions." />
-      </Helmet>
+      <SEO title="AIoT: Artificial Intelligence of Things | IoTrenetics" description="Discover how AI and IoT combine to create powerful AIoT solutions." url="/aiot-article" />
 
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}

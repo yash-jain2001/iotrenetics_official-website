@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react'
 
 const Video_Analytics_and_Computer_Vision = () => {
   return (
     <div>
-      <Helmet>
-        <title>Video Analytics & Computer Vision | IoTrenetics</title>
-        <meta name="description" content="Advanced video analytics and computer vision services." />
-      </Helmet>
+      <SEO title="Video Analytics & Computer Vision | IoTrenetics" description="Advanced video analytics and computer vision services." url="/video-analytics-and-computer-vision" />
 Video_Analytics_and_Computer_Vision</div>
   )
 }

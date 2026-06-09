@@ -1,13 +1,10 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from 'react'
 
 const Ai_and_Genrative_Solutions = () => {
   return (
     <div>
-      <Helmet>
-        <title>AI & Generative Solutions | IoTrenetics</title>
-        <meta name="description" content="Cutting edge AI and Generative solutions for your business." />
-      </Helmet>
+      <SEO title="AI & Generative Solutions | IoTrenetics" description="Cutting edge AI and Generative solutions for your business." url="/ai-and-genrative-solutions" />
 Ai_and_Genrative_Solutions</div>
   )
 }

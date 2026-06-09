@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import React from "react";
 
 const TermsAndConditions = () => {
@@ -7,10 +7,7 @@ const TermsAndConditions = () => {
 
   return (
     <div className="bg-gray-50 py-10 px-5 font-sans text-gray-800 leading-relaxed">
-      <Helmet>
-        <title>Terms and Conditions | IoTrenetics</title>
-        <meta name="description" content="Read the terms and conditions for IoTrenetics Solutions." />
-      </Helmet>
+      <SEO title="Terms and Conditions | IoTrenetics" description="Read the terms and conditions for IoTrenetics Solutions." url="/terms-and-conditions" />
 
       <div className="max-w-[1200px] mx-auto rounded-3xl">
         <div className="text-center mb-12">

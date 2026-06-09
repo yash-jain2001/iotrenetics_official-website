@@ -1,4 +1,4 @@
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import CTASection from "../components/CTASection";
@@ -311,10 +311,7 @@ const IndustryBlock = ({ industry, index }) => {
 
   return (
     <>
-      <Helmet>
-        <title>Industries | IoTrenetics Solutions</title>
-        <meta name="description" content="Discover the industries we serve with our advanced IoT and AI solutions." />
-      </Helmet>
+      <SEO title="Industries | IoTrenetics Solutions" description="Discover the industries we serve with our advanced IoT and AI solutions." url="/industries" />
 
       {index > 0 && <div className="block-sep mx-auto" />}
 

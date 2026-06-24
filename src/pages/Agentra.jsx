@@ -213,7 +213,20 @@ function FadeUp({ children, className = "", style }) {
   const ref = useFadeUp();
   return (
     <div ref={ref} className={`fu ${className}`} style={style}>
-      <SEO title="Agentra | IoTrenetics Solutions" description="Agentra - Intelligent AI solutions by IoTrenetics." url="/agentra" />
+      <SEO 
+        title="Agentra - Intelligent AI Solutions | IoTrenetics" 
+        description="Agentra provides intelligent AI solutions by IoTrenetics for seamless operational workflows and advanced cognitive automation." 
+        url="/agentra" 
+        schema={{
+          "@type": "SoftwareApplication",
+          "@id": "https://iotrenetics.com/agentra/#software",
+          "name": "Agentra AI",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "description": "Agentra provides intelligent AI solutions by IoTrenetics for seamless operational workflows and advanced cognitive automation.",
+          "provider": { "@id": "https://iotrenetics.com/#organization" }
+        }}
+      />
 
       {children}
     </div>

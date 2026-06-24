@@ -399,9 +399,23 @@ const HomeAutomation = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  const serviceSchema = {
+    "@type": "Service",
+    "@id": "https://iotrenetics.com/home-automation/#service",
+    "name": "Smart Home Automation Services",
+    "description": "Transform your residence with IoTrenetics' smart home automation systems in India.",
+    "provider": { "@id": "https://iotrenetics.com/#organization" },
+    "areaServed": "IN"
+  };
+
   return (
     <>
-      <SEO title="Smart Home Automation | IoTrenetics" description="Experience the future of living with our smart home automation systems in India." url="/home-automation" />
+      <SEO 
+        title="Smart Home Automation Services in India | IoTrenetics" 
+        description="Transform your residence with IoTrenetics' smart home automation systems in India. Control lighting, security, climate, and entertainment effortlessly." 
+        url="/home-automation" 
+        schema={serviceSchema}
+      />
 
       <style>{`
         /* Scroll reveal */

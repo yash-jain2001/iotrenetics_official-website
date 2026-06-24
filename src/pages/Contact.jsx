@@ -604,9 +604,28 @@ const Contact = () => {
     }
   };
 
+  const localBusinessSchema = {
+    "@type": "LocalBusiness",
+    "@id": "https://iotrenetics.com/contact/#localbusiness",
+    "name": "IoTrenetics Solutions Pvt. Ltd.",
+    "telephone": "+91-7303677709",
+    "email": "sales@iotrenetics.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "New Delhi",
+      "addressRegion": "Delhi",
+      "addressCountry": "IN"
+    }
+  };
+
   return (
     <>
-      <SEO title="Contact Us | IoTrenetics" description="Get in touch with IoTrenetics for your smart automation and AI solution needs." url="/contact" />
+      <SEO 
+        title="Contact Us | IoTrenetics Smart Automation" 
+        description="Get in touch with IoTrenetics Solutions to consult with our experts on smart home automation, AI, and industrial IoT solutions across India." 
+        url="/contact" 
+        schema={localBusinessSchema}
+      />
       <style>{css}</style>
 
       <section className="contact-bg py-20 px-5 md:px-10 min-h-screen flex items-center">

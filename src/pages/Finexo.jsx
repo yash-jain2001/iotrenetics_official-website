@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────── */
@@ -986,12 +987,27 @@ const CheckItem = ({ children }) => (
 );
 
 /* ─── PAGE ───────────────────────────────────────────────────────────────── */
-const Finexo = () => (
+const Finexo = () => {
+  const softwareSchema = {
+    "@type": "SoftwareApplication",
+    "@id": "https://iotrenetics.com/finexo/#software",
+    "name": "Finexo AI",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web",
+    "description": "Finexo AI by IoTrenetics categorizes and tracks your finances seamlessly with AI automation. Smart finance app for intelligent tracking.",
+    "provider": {
+      "@id": "https://iotrenetics.com/#organization"
+    }
+  };
+
+  return (
   <div className="fx" style={{ overflowX: "hidden" }}>
-    <Helmet>
-      <title>Finexo AI - Smart Finance App | IoTrenetics</title>
-      <meta name="description" content="Finexo AI by IoTrenetics categorizes and tracks your finances seamlessly with AI automation. Smart finance app for intelligent tracking." />
-    </Helmet>
+    <SEO 
+      title="Finexo AI - Smart Finance App | IoTrenetics" 
+      description="Finexo AI by IoTrenetics categorizes and tracks your finances seamlessly with AI automation. Smart finance app for intelligent tracking." 
+      url="/finexo" 
+      schema={softwareSchema}
+    />
     <style>{STYLES}</style>
 
     {/* ══ HERO ════════════════════════════════════════════════════════════ */}
@@ -2081,6 +2097,7 @@ const Finexo = () => (
 
     <CTASection />
   </div>
-);
+  );
+};
 
 export default Finexo;

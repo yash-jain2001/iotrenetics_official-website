@@ -1,32 +1,79 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-const SEO = ({ title, description, url = '', image = 'https://iotrenetics.com/assets/IOT.webp', type = 'website', schema }) => {
+const SEO = ({ 
+  title, 
+  description, 
+  url = '', 
+  image = 'https://iotrenetics.com/assets/IOT.webp', 
+  type = 'website', 
+  schema 
+}) => {
   const siteName = "IoTrenetics Solutions Pvt. Ltd.";
-  const fullUrl = `https://iotrenetics.com${url}`;
+  const baseUrl = "https://iotrenetics.com";
+  const fullUrl = `${baseUrl}${url}`;
 
-  // Default LocalBusiness Schema
-  const defaultSchema = {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+  // Core Organization Schema (Base Entity)
+  const organizationSchema = {
+    "@type": "Organization",
+    "@id": `${baseUrl}/#organization`,
     "name": siteName,
-    "image": "https://iotrenetics.com/assets/IOT.webp",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "faridabad",
-      "addressLocality": "New Delhi",
-      "addressRegion": "Delhi",
-      "postalCode": "110044",
-      "addressCountry": "IN"
+    "url": baseUrl,
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${baseUrl}/assets/IOT.webp`
     },
-    "telephone": "+91-9873468833",
-    "url": "https://iotrenetics.com"
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91-7303677709",
+      "contactType": "sales",
+      "areaServed": "IN",
+      "availableLanguage": ["en", "hi"]
+    }
   };
 
-  const finalSchema = schema || defaultSchema;
+  // WebSite Schema for site search and identification
+  const websiteSchema = {
+    "@type": "WebSite",
+    "@id": `${baseUrl}/#website`,
+    "url": baseUrl,
+    "name": siteName,
+    "publisher": {
+      "@id": `${baseUrl}/#organization`
+    }
+  };
+
+  // WebPage Schema for the current page
+  const webpageSchema = {
+    "@type": "WebPage",
+    "@id": `${fullUrl}/#webpage`,
+    "url": fullUrl,
+    "name": title,
+    "description": description,
+    "isPartOf": {
+      "@id": `${baseUrl}/#website`
+    }
+  };
+
+  // Combine default schemas
+  const graph = [organizationSchema, websiteSchema, webpageSchema];
+
+  // If a custom schema is provided (like Product or Service), add it to the graph
+  if (schema) {
+    if (Array.isArray(schema)) {
+      graph.push(...schema);
+    } else {
+      graph.push(schema);
+    }
+  }
+
+  const finalSchema = {
+    "@context": "https://schema.org",
+    "@graph": graph
+  };
 
   return (
-    <Helmet>
+    <Helmet prioritizeSeoTags>
       {/* Standard Meta Tags */}
       <title>{title}</title>
       <meta name="description" content={description} />

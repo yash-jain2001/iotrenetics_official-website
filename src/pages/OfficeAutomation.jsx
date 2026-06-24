@@ -262,9 +262,23 @@ const OfficeAutomation = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  const serviceSchema = {
+    "@type": "Service",
+    "@id": "https://iotrenetics.com/office-automation/#service",
+    "name": "Smart Office Automation Services",
+    "description": "Optimize your workspace with intelligent office automation solutions from IoTrenetics.",
+    "provider": { "@id": "https://iotrenetics.com/#organization" },
+    "areaServed": "IN"
+  };
+
   return (
     <>
-      <SEO title="Smart Office Automation | IoTrenetics" description="Optimize your workspace with intelligent office automation solutions." url="/office-automation" />
+      <SEO 
+        title="Smart Office Automation Solutions in India | IoTrenetics" 
+        description="Optimize your workspace with intelligent office automation solutions from IoTrenetics. Improve energy efficiency, security, and productivity." 
+        url="/office-automation" 
+        schema={serviceSchema}
+      />
 
       <style>{`
         /* ── Reveal system ── */

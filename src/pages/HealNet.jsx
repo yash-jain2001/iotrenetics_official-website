@@ -2,6 +2,7 @@ import CTASection from "../components/CTASection";
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────── */
 const STYLES = `
@@ -1359,12 +1360,27 @@ function UseCases() {
 }
 
 /* ─── PAGE ───────────────────────────────────────────────────────────────── */
-const HealTech = () => (
+const HealTech = () => {
+  const softwareSchema = {
+    "@type": "SoftwareApplication",
+    "@id": "https://iotrenetics.com/healnet/#software",
+    "name": "HealTech AI",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "description": "HealTech connects your health data and vitals with AI intelligence. Get instant medical scan analysis and trends with IoTrenetics.",
+    "provider": {
+      "@id": "https://iotrenetics.com/#organization"
+    }
+  };
+
+  return (
   <div className="ht" style={{ overflowX: "hidden" }}>
-    <Helmet>
-      <title>HealTech - AI Healthcare Intelligence | IoTrenetics</title>
-      <meta name="description" content="HealTech connects your health data and vitals with AI intelligence. Get instant medical scan analysis and trends with IoTrenetics." />
-    </Helmet>
+    <SEO 
+      title="HealTech - AI Healthcare Intelligence | IoTrenetics" 
+      description="HealTech connects your health data and vitals with AI intelligence. Get instant medical scan analysis and trends with IoTrenetics." 
+      url="/healnet" 
+      schema={softwareSchema}
+    />
     <style>{STYLES}</style>
 
     {/* ══ HERO ════════════════════════════════════════════════════════════ */}
@@ -2193,6 +2209,7 @@ const HealTech = () => (
 
     <CTASection />
   </div>
-);
+  );
+};
 
 export default HealTech;

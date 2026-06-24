@@ -701,9 +701,23 @@ const Cursor = ({ onFirstInteraction }) => {
     return () => { window.removeEventListener("mousemove", move); window.removeEventListener("mouseover", over); };
   }, [onFirstInteraction]);
 
+  const serviceSchema = {
+    "@type": "Service",
+    "@id": "https://iotrenetics.com/audio-video-automation/#service",
+    "name": "Luxury Audio Video Automation Services",
+    "description": "Experience seamless audio and video automation for luxury homes, offices, and commercial spaces with IoTrenetics in India.",
+    "provider": { "@id": "https://iotrenetics.com/#organization" },
+    "areaServed": "IN"
+  };
+
   return (
     <>
-      <SEO title="Audio & Video Automation | IoTrenetics" description="Seamless audio and video automation for homes, offices, and commercial spaces." url="/audio-video-automation" />
+      <SEO 
+        title="Luxury Audio & Video Automation Systems in India | IoTrenetics" 
+        description="Experience seamless audio and video automation for luxury homes, offices, and commercial spaces with IoTrenetics. Premium multi-room AV solutions." 
+        url="/audio-video-automation" 
+        schema={serviceSchema}
+      />
 
       <div className="av-cursor" ref={dot} />
       <div className="av-cursor-ring" ref={ring} />

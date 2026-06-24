@@ -855,7 +855,11 @@ const Home = () => {
       className="bg-white overflow-x-hidden"
       style={{ fontFamily: "'DM Sans', sans-serif" }}
     >
-      <SEO title="IoTrenetics Solutions | Smart IoT & AI Automation" description="Leading provider of smart home, office, and industrial automation solutions in India." url="/" />
+      <SEO 
+        title="IoTrenetics Solutions | Premium Smart Automation & AI in India" 
+        description="IoTrenetics Solutions provides premium smart home automation, office automation, and industrial IoT solutions across India, integrating AI for seamless digital transformation." 
+        url="/" 
+      />
       <GlobalStyles />
       <ScrollBar />
       <NewsTicker />

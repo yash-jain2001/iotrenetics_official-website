@@ -281,9 +281,23 @@ const HotelAutomation = () => {
     return () => observerRef.current?.disconnect();
   }, []);
 
+  const serviceSchema = {
+    "@type": "Service",
+    "@id": "https://iotrenetics.com/hotel-automation/#service",
+    "name": "Smart Hotel Automation Services",
+    "description": "Enhance guest experiences and operational efficiency with IoTrenetics' smart hotel automation solutions in India.",
+    "provider": { "@id": "https://iotrenetics.com/#organization" },
+    "areaServed": "IN"
+  };
+
   return (
     <>
-      <SEO title="Smart Hotel Automation | IoTrenetics" description="Enhance guest experiences and operational efficiency with our smart hotel automation." url="/hotel-automation" />
+      <SEO 
+        title="Smart Hotel Automation Systems in India | IoTrenetics" 
+        description="Enhance guest experiences and operational efficiency with IoTrenetics' smart hotel automation solutions in India. Premium guest room management systems." 
+        url="/hotel-automation" 
+        schema={serviceSchema}
+      />
 
       <style>{`
         /* ── Reveal ── */

@@ -4,7 +4,11 @@ import React from "react";
 const FinexoArticle = () => {
   return (
     <div className="pt-2 pb-2 min-h-screen bg-slate-50 font-sans">
-      <SEO title="Finexo AI Overview | IoTrenetics" description="An in-depth look at Finexo AI and its capabilities." url="/finexo-article" />
+      <SEO
+        title="Finexo AI Overview | IoTrenetics"
+        description="An in-depth look at Finexo AI and its capabilities."
+        url="/finexo-article"
+      />
 
       <div className=" mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Hero Section */}
@@ -40,7 +44,15 @@ const FinexoArticle = () => {
                 >
                   <path d="M10 2a8 8 0 100 16 8 8 0 000-16zM9 11V9h2v2H9z" />
                 </svg>
-                Available on <a href="https://play.google.com/store/apps/details?id=com.iotrenetics.finexo" target="_blank"><span className="text-blue-500">Google Play Store</span></a> and comming soon on <span className="text-red-500">App Store</span>
+                Available on{" "}
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.iotrenetics.finexo"
+                  target="_blank"
+                >
+                  <span className="text-blue-500">Google Play Store</span>
+                </a>{" "}
+                and comming soon on{" "}
+                <span className="text-red-500">App Store</span>
               </span>
               <span className="w-1 h-1 rounded-full bg-slate-300"></span>
               <span className="flex items-center gap-2">Made in Bharat 🇮🇳</span>

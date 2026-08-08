@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 /* ============================================================================
    FINEXO — LIVE APP DEMO v3
@@ -324,7 +325,17 @@ export default function FinexoLiveDemo() {
   };
 
   return (
-    <div className="fdemo-wrap" style={{ display: "flex", justifyContent: "center" }}>
+    <div
+      className="fdemo-wrap"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "32px 16px 40px",
+        background: T.bg,
+      }}
+    >
       <style>{CSS}</style>
 
       {/* ============ PHONE ============ */}
@@ -828,6 +839,51 @@ export default function FinexoLiveDemo() {
             </button>
           )}
         </div>
+      </div>
+
+      {/* Navigation links below phone & above footer */}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: 24,
+          marginTop: 28,
+          marginBottom: 8,
+          flexWrap: "wrap",
+        }}
+      >
+        <Link
+          to="/privacy-policy-finexo"
+          style={{
+            fontSize: 13.5,
+            color: "rgba(255,255,255,.5)",
+            textDecoration: "underline",
+            textUnderlineOffset: 4,
+            transition: "color .2s",
+            fontFamily: "inherit",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#f97316")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,.5)")}
+        >
+          Privacy Policy
+        </Link>
+        <span style={{ color: "rgba(255,255,255,.2)", fontSize: 13 }}>•</span>
+        <Link
+          to="/delete-account-policy-finexo"
+          style={{
+            fontSize: 13.5,
+            color: "rgba(255,255,255,.5)",
+            textDecoration: "underline",
+            textUnderlineOffset: 4,
+            transition: "color .2s",
+            fontFamily: "inherit",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#f97316")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,.5)")}
+        >
+          Delete Account Policy
+        </Link>
       </div>
     </div>
   );

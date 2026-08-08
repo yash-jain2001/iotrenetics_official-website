@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
+import FinexoLiveDemo from "./FinexoLiveDemo";
 
 /* ─── STYLES ─────────────────────────────────────────────────────────────── */
 const STYLES = `
@@ -191,32 +192,6 @@ const STYLES = `
   }
   .rate-up { color: var(--green); font-size: 11px; font-weight: 600; }
   .rate-down { color: var(--red); font-size: 11px; font-weight: 600; }
-
-  /* ── phone demo ── */
-  .phone {
-    width: 320px; max-width: 100%; background: var(--ink);
-    border-radius: 42px; padding: 12px; box-shadow: 0 40px 80px rgba(0,0,0,.28);
-    position: relative;
-  }
-  .phone-notch {
-    position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-    width: 110px; height: 22px; background: var(--ink); border-radius: 0 0 14px 14px;
-    z-index: 5;
-  }
-  .phone-screen {
-    background: var(--bg); border-radius: 30px; overflow: hidden;
-    height: 640px; display: flex; flex-direction: column; position: relative;
-  }
-  .demo-chip {
-    font-size: 12px; padding: 7px 12px; border-radius: 99px;
-    background: var(--white); border: 1px solid var(--line-s); color: var(--ink-3);
-    cursor: pointer; white-space: nowrap; transition: border-color .15s, color .15s;
-  }
-  .demo-chip:hover { border-color: var(--accent); color: var(--accent); }
-  @keyframes micPulse { 0%,100%{box-shadow:0 0 0 0 rgba(26,86,219,.35)} 50%{box-shadow:0 0 0 10px rgba(26,86,219,0)} }
-  .mic-pulse { animation: micPulse 1.4s ease-in-out infinite; }
-  @keyframes slideIn { from{opacity:0; transform:translateY(-10px)} to{opacity:1; transform:translateY(0)} }
-  .slide-in { animation: slideIn .35s cubic-bezier(.16,1,.3,1); }
 
   .plan-card { border-radius: var(--r-lg); padding: 28px; position: relative; }
   .plan-free { background: var(--white); border: 1.5px solid var(--line-s); }
@@ -586,7 +561,7 @@ function SplitWidget() {
   );
 }
 
-/* ─── VOICE WAVE ─────────────────────────────────────────────────────────── */
+/* ─── VOICE WAVE (used in hero card) ─────────────────────────────────────── */
 const VoiceWave = () => (
   <div style={{ display: "flex", alignItems: "center", gap: 4, height: 28 }}>
     {[16, 26, 20, 30, 20, 26, 16].map((h, i) => <div key={i} className="wv" style={{ height: h }} />)}
@@ -602,278 +577,6 @@ const CheckItem = ({ children }) => (
     {children}
   </li>
 );
-
-/* ─── DEMO PARSER (simplified simulation of the real in-app NLP) ────────── */
-const DEMO_CATEGORIES = {
-  food: { kws: ["food", "lunch", "dinner", "breakfast", "coffee", "restaurant", "zomato", "swiggy", "pizza", "burger", "chai"], emoji: "🍔" },
-  transport: { kws: ["uber", "ola", "taxi", "petrol", "fuel", "bus", "metro", "train", "cab", "rapido"], emoji: "🚗" },
-  shopping: { kws: ["shopping", "clothes", "amazon", "flipkart", "shoes", "myntra"], emoji: "🛍️" },
-  bills: { kws: ["bill", "electricity", "recharge", "internet", "mobile", "wifi"], emoji: "💡" },
-  entertainment: { kws: ["movie", "netflix", "spotify", "game"], emoji: "🎬" },
-  salary: { kws: ["salary", "income", "wage"], emoji: "💰" },
-  travel: { kws: ["flight", "hotel", "trip", "travel"], emoji: "✈️" },
-  health: { kws: ["doctor", "medicine", "hospital", "pharmacy"], emoji: "🏥" },
-  other: { kws: [], emoji: "💸" },
-};
-
-function parseDemoTransaction(raw) {
-  const text = raw.toLowerCase().trim();
-  if (!text) return null;
-
-  const creditWords = ["got", "received", "earned", "salary", "income", "credited", "refund", "bonus"];
-  const debitWords = ["spent", "paid", "bought", "gave", "sent", "purchased"];
-  let type = "debit";
-  if (creditWords.some((w) => text.includes(w)) && !debitWords.some((w) => text.includes(w))) type = "credit";
-
-  let amount = 0;
-  const croreMatch = text.match(/(\d+(\.\d+)?)\s*crore/);
-  const lakhMatch = text.match(/(\d+(\.\d+)?)\s*(lakh|lac)/);
-  const kMatch = text.match(/(\d+(\.\d+)?)\s*k\b/);
-  const plainMatch = text.match(/(\d+(,\d{3})*(\.\d+)?)/);
-  if (croreMatch) amount = parseFloat(croreMatch[1]) * 10000000;
-  else if (lakhMatch) amount = parseFloat(lakhMatch[1]) * 100000;
-  else if (kMatch) amount = parseFloat(kMatch[1]) * 1000;
-  else if (plainMatch) amount = parseFloat(plainMatch[1].replace(/,/g, ""));
-
-  if (amount <= 0) return null;
-
-  let category = "other";
-  for (const [cat, def] of Object.entries(DEMO_CATEGORIES)) {
-    if (def.kws.some((k) => text.includes(k))) { category = cat; break; }
-  }
-  if (type === "credit" && category === "other") category = "salary";
-
-  let person = type === "debit" ? "EXPENSE" : "INCOME";
-  const toMatch = text.match(/to\s+([a-z]+)/);
-  const fromMatch = text.match(/from\s+([a-z]+)/);
-  if (toMatch) person = toMatch[1].toUpperCase();
-  else if (fromMatch && !creditWords.includes(fromMatch[1])) person = fromMatch[1].toUpperCase();
-
-  return { id: Date.now() + Math.random(), type, amount, category, person, raw };
-}
-
-function answerDemoQuestion(q, txs) {
-  const lower = q.toLowerCase();
-  const balance = txs.reduce((s, t) => s + (t.type === "credit" ? t.amount : -t.amount), 0);
-
-  if (lower.includes("balance") || lower.includes("have")) {
-    return `Your demo balance right now is ₹${balance.toLocaleString("en-IN")}.`;
-  }
-  if (lower.includes("food")) {
-    const total = txs.filter((t) => t.category === "food" && t.type === "debit").reduce((s, t) => s + t.amount, 0);
-    return total > 0
-      ? `You've spent ₹${total.toLocaleString("en-IN")} on food in this demo.`
-      : `No food expenses logged yet — try "Spent 300 on food" above.`;
-  }
-  if (lower.includes("biggest") || lower.includes("largest")) {
-    const debits = txs.filter((t) => t.type === "debit").sort((a, b) => b.amount - a.amount);
-    return debits.length
-      ? `Your biggest demo expense is ₹${debits[0].amount.toLocaleString("en-IN")} (${debits[0].category}).`
-      : `No expenses logged yet in this demo.`;
-  }
-  if (lower.includes("spent") || lower.includes("spending")) {
-    const total = txs.filter((t) => t.type === "debit").reduce((s, t) => s + t.amount, 0);
-    return `You've spent ₹${total.toLocaleString("en-IN")} so far in this demo.`;
-  }
-  return `In the real app, Finexo answers this instantly from your actual data. Try the sample questions above, or download the app to ask anything about your real finances.`;
-}
-
-/* ─── INTERACTIVE DEMO ───────────────────────────────────────────────────── */
-const DEMO_SEED = [
-  { id: 1, type: "credit", amount: 50000, category: "salary", person: "SALARY", raw: "Got salary 50000" },
-  { id: 2, type: "debit", amount: 450, category: "food", person: "EXPENSE", raw: "Spent 450 on lunch" },
-];
-
-const QUICK_CHIPS = [
-  "Spent 500 on food",
-  "Got salary 50000",
-  "Paid 200 to Rohan",
-  "Spent 1200 on shopping",
-  "Got 2 lakh from client",
-];
-
-const ASK_CHIPS = [
-  "What's my balance?",
-  "How much did I spend on food?",
-  "What was my biggest expense?",
-];
-
-function InteractiveDemo() {
-  const [txs, setTxs] = useState(DEMO_SEED);
-  const [input, setInput] = useState("");
-  const [listening, setListening] = useState(false);
-  const [hint, setHint] = useState("");
-  const [tab, setTab] = useState("log"); // 'log' | 'ask'
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-
-  const balance = txs.reduce((s, t) => s + (t.type === "credit" ? t.amount : -t.amount), 0);
-
-  const handleSubmit = (text) => {
-    const parsed = parseDemoTransaction(text);
-    if (!parsed) {
-      setHint('Couldn\'t find an amount — try "Spent 500 on food"');
-      setTimeout(() => setHint(""), 2500);
-      return;
-    }
-    setTxs((prev) => [parsed, ...prev].slice(0, 6));
-    setInput("");
-    setHint("");
-  };
-
-  const handleMic = () => {
-    if (listening) return;
-    setListening(true);
-    const sample = QUICK_CHIPS[Math.floor(Math.random() * QUICK_CHIPS.length)];
-    setTimeout(() => {
-      setListening(false);
-      handleSubmit(sample);
-    }, 1400);
-  };
-
-  const handleAsk = (q) => {
-    const text = q || question;
-    if (!text.trim()) return;
-    setAnswer(answerDemoQuestion(text, txs));
-    setQuestion("");
-  };
-
-  return (
-    <div style={{ display: "flex", gap: 60, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
-      {/* Phone mockup */}
-      <div className="phone">
-        <div className="phone-notch" />
-        <div className="phone-screen">
-          {/* Header */}
-          <div style={{ background: "linear-gradient(135deg, #1a56db 0%, #143f9e 100%)", padding: "26px 20px 20px", color: "#fff" }}>
-            <p style={{ fontSize: 11, opacity: 0.8, marginBottom: 4 }}>Demo Balance</p>
-            <p style={{ fontFamily: "'DM Serif Display',serif", fontSize: 30, letterSpacing: "-.02em" }}>
-              ₹{balance.toLocaleString("en-IN")}
-            </p>
-            <div style={{ display: "flex", gap: 8, marginTop: 14 }}>
-              <button onClick={() => setTab("log")} style={{ flex: 1, padding: "7px 0", borderRadius: 99, border: "none", fontSize: 12, fontWeight: 600, cursor: "pointer", background: tab === "log" ? "#fff" : "rgba(255,255,255,.15)", color: tab === "log" ? "var(--ink)" : "#fff" }}>
-                Log expense
-              </button>
-              <button onClick={() => setTab("ask")} style={{ flex: 1, padding: "7px 0", borderRadius: 99, border: "none", fontSize: 12, fontWeight: 600, cursor: "pointer", background: tab === "ask" ? "#fff" : "rgba(255,255,255,.15)", color: tab === "ask" ? "var(--ink)" : "#fff" }}>
-                Ask Finexo
-              </button>
-            </div>
-          </div>
-
-          {tab === "log" ? (
-            <>
-              {/* Transaction list */}
-              <div style={{ flex: 1, overflowY: "auto", padding: "14px 16px" }}>
-                <p style={{ fontSize: 11, fontWeight: 700, letterSpacing: ".06em", textTransform: "uppercase", color: "var(--sub)", marginBottom: 10 }}>
-                  Recent (demo)
-                </p>
-                {txs.map((t) => (
-                  <div key={t.id} className="slide-in" style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, background: "#fff", borderRadius: 14, padding: "10px 12px", border: "1px solid var(--line-s)" }}>
-                    <div style={{ width: 34, height: 34, borderRadius: 10, background: t.type === "debit" ? "#fef2f2" : "#e6f7ee", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 }}>
-                      {DEMO_CATEGORIES[t.category]?.emoji || "💸"}
-                    </div>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <p style={{ fontSize: 12.5, fontWeight: 600, color: "var(--ink)" }}>{t.person}</p>
-                      <p style={{ fontSize: 10.5, color: "var(--sub)", textTransform: "capitalize" }}>{t.category}</p>
-                    </div>
-                    <p style={{ fontSize: 13.5, fontWeight: 700, color: t.type === "debit" ? "var(--red)" : "var(--green)", flexShrink: 0 }}>
-                      {t.type === "debit" ? "-" : "+"}₹{t.amount.toLocaleString("en-IN")}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Input row */}
-              <div style={{ padding: "10px 16px 18px", background: "#fff", borderTop: "1px solid var(--line-s)" }}>
-                {hint && <p style={{ fontSize: 11, color: "var(--red)", marginBottom: 6 }}>{hint}</p>}
-                <div style={{ display: "flex", gap: 6, marginBottom: 8, overflowX: "auto", paddingBottom: 2 }}>
-                  {QUICK_CHIPS.map((c, i) => (
-                    <button key={i} className="demo-chip" onClick={() => handleSubmit(c)}>{c}</button>
-                  ))}
-                </div>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <input
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === "Enter") handleSubmit(input); }}
-                    placeholder='Try: "Spent 500 on food"'
-                    style={{ flex: 1, padding: "10px 14px", borderRadius: 99, border: "1.5px solid var(--line-s)", fontSize: 13, outline: "none", fontFamily: "'DM Sans',sans-serif" }}
-                  />
-                  <button
-                    onClick={handleMic}
-                    className={listening ? "mic-pulse" : ""}
-                    style={{ width: 40, height: 40, borderRadius: "50%", border: "none", flexShrink: 0, cursor: "pointer", background: listening ? "var(--red)" : "var(--accent)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}
-                  >
-                    <I.Mic />
-                  </button>
-                </div>
-                <p style={{ fontSize: 10, color: "var(--sub)", textAlign: "center", marginTop: 8 }}>
-                  Type it, tap a chip, or tap the mic to simulate voice
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Ask Finexo */}
-              <div style={{ flex: 1, overflowY: "auto", padding: "16px 16px" }}>
-                <div className="bub bub-ai" style={{ marginBottom: 14, maxWidth: "100%" }}>
-                  Ask me anything about your demo transactions — try a question below.
-                </div>
-                {answer && (
-                  <div className="bub slide-in" style={{ marginLeft: "auto", background: "var(--accent-l)", borderColor: "var(--accent-m)", color: "var(--ink)", maxWidth: "100%" }}>
-                    {answer}
-                  </div>
-                )}
-              </div>
-              <div style={{ padding: "10px 16px 18px", background: "#fff", borderTop: "1px solid var(--line-s)" }}>
-                <div style={{ display: "flex", gap: 6, marginBottom: 8, overflowX: "auto", paddingBottom: 2 }}>
-                  {ASK_CHIPS.map((c, i) => (
-                    <button key={i} className="demo-chip" onClick={() => handleAsk(c)}>{c}</button>
-                  ))}
-                </div>
-                <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                  <input
-                    value={question}
-                    onChange={(e) => setQuestion(e.target.value)}
-                    onKeyDown={(e) => { if (e.key === "Enter") handleAsk(); }}
-                    placeholder="Ask a question…"
-                    style={{ flex: 1, padding: "10px 14px", borderRadius: 99, border: "1.5px solid var(--line-s)", fontSize: 13, outline: "none", fontFamily: "'DM Sans',sans-serif" }}
-                  />
-                  <button onClick={() => handleAsk()} style={{ width: 40, height: 40, borderRadius: "50%", border: "none", flexShrink: 0, cursor: "pointer", background: "var(--ink)", color: "#fff", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <I.Send />
-                  </button>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
-      {/* Right-side copy + CTA */}
-      <div style={{ flex: "1 1 320px", minWidth: 280, maxWidth: 420 }}>
-        <span className="label label-green"><I.Play /> Try it — no signup</span>
-        <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(1.9rem,3.2vw,2.6rem)", color: "var(--ink)", margin: "16px 0 14px", lineHeight: 1.12, letterSpacing: "-.02em" }}>
-          Give it a try.
-          <br />
-          <span style={{ fontStyle: "italic" }}>Right here, right now.</span>
-        </h2>
-        <p style={{ fontSize: 15.5, color: "var(--sub)", lineHeight: 1.75, marginBottom: 24 }}>
-          This is a live, working simulation of Finexo's voice engine. Type a transaction the way you'd say it out loud, or tap the mic to simulate speaking — watch it get parsed into an amount, category and type instantly. Switch to "Ask Finexo" to query your demo data in plain language.
-        </p>
-        <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 12, marginBottom: 30 }}>
-          <CheckItem>Understands ₹, k, lakh and crore automatically</CheckItem>
-          <CheckItem>Detects income vs expense from your wording</CheckItem>
-          <CheckItem>Auto-categorizes food, transport, shopping and more</CheckItem>
-        </ul>
-        <a href="https://play.google.com/store/apps/details?id=com.iotrenetics.finexo" target="_blank" rel="noopener noreferrer">
-          <button className="btn-p">
-            <I.Play /> Like it? Get the real app
-          </button>
-        </a>
-      </div>
-    </div>
-  );
-}
 
 /* ─── EMI / CREDIT CARD MINI WIDGET ──────────────────────────────────────── */
 function EmiCardWidget() {
@@ -1028,10 +731,13 @@ const Finexo = () => {
       </div>
     </div>
 
-    {/* ══ INTERACTIVE DEMO ═══════════════════════════════════════════════ */}
+    {/* ══ INTERACTIVE / LIVE DEMO ════════════════════════════════════════ */}
+    {/* FinexoLiveDemo is the single source of truth for the interactive phone
+        demo — it renders its own phone shell, right-column copy and CTA, so
+        nothing else needs to wrap it here beyond the section/anchor. */}
     <section id="try-demo" className="sec" style={{ background: "var(--bg)" }}>
       <div className="inner">
-        <InteractiveDemo />
+        <FinexoLiveDemo />
       </div>
     </section>
 
@@ -1261,27 +967,6 @@ const Finexo = () => {
               </ul>
             </div>
           </FadeUp>
-        </div>
-      </div>
-    </section>
-
-    {/* ══ SCREENSHOTS ════════════════════════════════════════════════════ */}
-    <section className="sec" style={{ background: "var(--white)" }}>
-      <div className="inner">
-        <FadeUp style={{ textAlign: "center", marginBottom: 48 }}>
-          <span className="label">App Preview</span>
-          <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(1.9rem,3.5vw,2.6rem)", color: "var(--ink)", margin: "14px 0 0", letterSpacing: "-.02em" }}>
-            Clean. Fast. <span style={{ fontStyle: "italic" }}>Intelligent.</span>
-          </h2>
-        </FadeUp>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: 16 }}>
-          {["/assets/finexo4.webp", "/assets/finexo5.webp"].map((src, i) => (
-            <FadeUp key={i} className={`d${i + 1}`}>
-              <div className="card" style={{ overflow: "hidden", borderRadius: "var(--r-xl)" }}>
-                <img src={src} alt={`Finexo screenshot ${i + 1}`} loading="lazy" style={{ width: "100%", display: "block" }} />
-              </div>
-            </FadeUp>
-          ))}
         </div>
       </div>
     </section>

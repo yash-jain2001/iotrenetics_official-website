@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import SEO from "../components/SEO";
 import CTASection from "../components/CTASection";
+import truVisitLogo from "../../public/assets/TruVisitLogo.png"
 
 /* ─── STYLES — pulled from TruVisit's own app.css tokens ─────────────────── */
 const STYLES = `
@@ -192,8 +193,8 @@ const TruVisit = () => {
               {[440, 320].map((s, i) => (
                 <div key={i} style={{ position: "absolute", width: s, height: s, borderRadius: "50%", border: `1px solid ${i === 0 ? "#eff6ff" : "#dbeafe"}`, top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
               ))}
-              {/* <img src="/assets/truvisit1.webp" alt="TruVisit App" loading="eager" className="tv-float"
-                style={{ width: "100%", maxWidth: 300, position: "relative", zIndex: 2, filter: "drop-shadow(0 28px 48px rgba(37,99,235,.16))" }} /> */}
+              <img src={truVisitLogo} alt="TruVisit App" loading="eager" className="tv-float rounded-full"
+                style={{ width: "100%", maxWidth: 300, position: "relative", zIndex: 2, filter: "drop-shadow(0 28px 48px rgba(37,99,235,.16))" }} />
 
               <div style={{ position: "absolute", left: -4, top: "18%", zIndex: 10, background: "#fff", border: "1px solid #e5e7eb", borderRadius: 14, padding: "10px 14px", boxShadow: "0 8px 24px rgba(0,0,0,.07)" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 700, color: "#16a34a" }}>

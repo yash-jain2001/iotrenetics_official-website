@@ -168,26 +168,118 @@ const css = `
   .pillar-card:hover .pillar-icon { background: #dbeafe; transform: scale(1.08) rotate(-3deg); }
 
   /* ── Timeline ── */
+  .timeline-wrapper {
+    position: relative;
+    max-width: 940px;
+    margin: 0 auto;
+  }
   .timeline-spine {
-    position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-    background: linear-gradient(to bottom, transparent, #bfdbfe 15%, #bfdbfe 85%, transparent);
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    bottom: 24px;
+    width: 2px;
+    background: linear-gradient(
+      180deg,
+      rgba(59, 130, 246, 0.08) 0%,
+      rgba(59, 130, 246, 0.4) 15%,
+      #2563eb 50%,
+      rgba(59, 130, 246, 0.4) 85%,
+      rgba(59, 130, 246, 0.08) 100%
+    );
     transform: translateX(-50%);
+    border-radius: 9999px;
   }
-  .timeline-dot {
-    position: absolute; left: 50%; transform: translateX(-50%);
-    width: 36px; height: 36px; border-radius: 9999px;
-    background: #fff; border: 2px solid #bfdbfe;
-    display: flex; align-items: center; justify-content: center;
-    z-index: 2; box-shadow: 0 0 0 4px rgba(59,130,246,0.08);
-    transition: border-color 0.3s, box-shadow 0.3s;
+  .timeline-item {
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.22, 0.68, 0, 1);
   }
-  .timeline-dot:hover { border-color: #2563eb; box-shadow: 0 0 0 6px rgba(37,99,235,0.12); }
-  .timeline-dot span { width: 10px; height: 10px; border-radius: 9999px; background: #2563eb; }
+  .timeline-node {
+    position: absolute;
+    left: 50%;
+    top: 24px;
+    transform: translate(-50%, 0);
+    width: 42px;
+    height: 42px;
+    border-radius: 9999px;
+    background: #ffffff;
+    border: 2px solid #bfdbfe;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.08), 0 4px 14px rgba(37, 99, 235, 0.12);
+    transition: all 0.35s cubic-bezier(0.22, 0.68, 0, 1);
+  }
+  .timeline-node-core {
+    width: 14px;
+    height: 14px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
+    transition: all 0.35s cubic-bezier(0.22, 0.68, 0, 1);
+  }
+  .timeline-item:hover .timeline-node {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.18), 0 8px 22px rgba(37, 99, 235, 0.25);
+    transform: translate(-50%, 0) scale(1.12);
+  }
+  .timeline-item:hover .timeline-node-core {
+    transform: scale(1.2);
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+    box-shadow: 0 0 12px rgba(37, 99, 235, 0.8);
+  }
   .timeline-card {
-    border: 1px solid #f1f5f9; border-radius: 18px; padding: 22px 26px;
-    background: #fff; transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 24px 26px;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04), 0 1px 3px rgba(15, 23, 42, 0.02);
+    position: relative;
+    transition: all 0.35s cubic-bezier(0.22, 0.68, 0, 1);
+    overflow: hidden;
   }
-  .timeline-card:hover { border-color: #bfdbfe; box-shadow: 0 6px 24px -6px rgba(59,130,246,0.14); transform: translateY(-2px); }
+  .timeline-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+  .timeline-card:hover {
+    border-color: #bfdbfe;
+    box-shadow: 0 16px 36px -8px rgba(37, 99, 235, 0.14), 0 4px 12px -2px rgba(15, 23, 42, 0.04);
+    transform: translateY(-4px);
+  }
+  .timeline-card:hover::before {
+    opacity: 1;
+  }
+  .timeline-connector-left {
+    position: absolute;
+    right: -36px;
+    top: 44px;
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(90deg, #e2e8f0, #bfdbfe);
+    transition: background 0.35s ease;
+  }
+  .timeline-connector-right {
+    position: absolute;
+    left: -36px;
+    top: 44px;
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(90deg, #bfdbfe, #e2e8f0);
+    transition: background 0.35s ease;
+  }
+  .timeline-item:hover .timeline-connector-left,
+  .timeline-item:hover .timeline-connector-right {
+    background: #2563eb;
+  }
 
   /* ── Service cards ── */
   .service-card {
@@ -259,8 +351,18 @@ const css = `
   .section-white { background: #fff; }
 
   @media (max-width: 767px) {
-    .timeline-spine { left: 18px; transform: none; }
-    .timeline-dot   { left: 0; transform: none; }
+    .timeline-spine { left: 20px; transform: none; }
+    .timeline-node {
+      left: 20px;
+      top: 24px;
+      transform: translate(-50%, 0);
+      width: 34px;
+      height: 34px;
+    }
+    .timeline-node-core { width: 11px; height: 11px; }
+    .timeline-item:hover .timeline-node { transform: translate(-50%, 0) scale(1.08); }
+    .timeline-card { padding: 18px 20px; border-radius: 18px; }
+    .timeline-connector-left, .timeline-connector-right { display: none; }
     .philosophy-block { padding: 32px 24px; }
     .pronun-card { padding: 20px; }
     .syllable-text { font-size: 18px; }
@@ -588,28 +690,74 @@ const services = [
 const timelineData = [
   {
     year: "1999",
-    title: "The Concept Born",
-    desc: "The term 'Internet of Things' was coined—conceptualizing a world where objects communicate without human interaction.",
+    tag: "Concept & Inception",
+    title: "The Inception of IoT",
+    desc: "The term 'Internet of Things' was coined by Kevin Ashton—conceptualizing a future where physical objects communicate and exchange data autonomously without human intervention.",
+    highlights: ["RFID & Sensors", "M2M Telemetry"],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
+        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" />
+      </svg>
+    ),
   },
   {
     year: "2010",
+    tag: "Consumer Expansion",
     title: "Rise of Connected Devices",
-    desc: "Smartphones catalyzed smart-device growth, bringing basic automation into consumer homes and personal spaces.",
+    desc: "The rapid explosion of smartphones and cloud computing catalyzed smart device growth, introducing ambient sensing and accessible automation into consumer spaces.",
+    highlights: ["Smart Devices", "Cloud Platforms"],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
+        <rect x="5" y="2" width="14" height="20" rx="2" />
+        <line x1="12" y1="18" x2="12.01" y2="18" strokeLinecap="round" strokeWidth={2} />
+      </svg>
+    ),
   },
   {
     year: "2015",
+    tag: "Enterprise & Edge",
     title: "Industrial IoT Expansion",
-    desc: "Heavy industries adopted sensors and analytics for predictive maintenance and real-time operational tracking.",
+    desc: "Heavy industries embraced extensive sensor grids, SCADA modernizations, and edge computing for real-time diagnostics and predictive maintenance.",
+    highlights: ["Industry 4.0", "Predictive Analytics"],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
+        <path d="M12 2L2 7l10 5 10-5-10-5z" />
+        <path d="M2 17l10 5 10-5M2 12l10 5 10-5" />
+      </svg>
+    ),
   },
   {
     year: "2020",
-    title: "AI & IoT Convergence",
-    desc: "Machine learning integrated directly with edge devices, creating highly intelligent, autonomous systems.",
+    tag: "Intelligence Fusion",
+    title: "AI & IoT Convergence (AIoT)",
+    desc: "Machine learning algorithms integrated directly onto edge silicon and computer vision devices, transforming passive telemetry collectors into real-time decision engines.",
+    highlights: ["Edge Vision", "Real-Time Inference"],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
+        <rect x="4" y="4" width="16" height="16" rx="2" />
+        <rect x="9" y="9" width="6" height="6" />
+        <line x1="9" y1="1" x2="9" y2="4" />
+        <line x1="15" y1="1" x2="15" y2="4" />
+        <line x1="9" y1="20" x2="9" y2="23" />
+        <line x1="15" y1="20" x2="15" y2="23" />
+        <line x1="20" y1="9" x2="23" y2="9" />
+        <line x1="20" y1="14" x2="23" y2="14" />
+        <line x1="1" y1="9" x2="4" y2="9" />
+        <line x1="1" y1="14" x2="4" y2="14" />
+      </svg>
+    ),
   },
   {
     year: "Present",
-    title: "The Agentic Era",
-    desc: "Advanced AI models working alongside IoT grids to continuously self-optimize infrastructure and industrial plants.",
+    tag: "Autonomous Era",
+    title: "The Agentic & Swadeshi Era",
+    desc: "Advanced multi-agent AI frameworks orchestrate physical infrastructure in real-time—delivering self-healing, indigenous, and sustainable industrial automation.",
+    highlights: ["Agentic AI", "Swadeshi Stack"],
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="w-4 h-4" stroke="currentColor" strokeWidth={2}>
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
   },
 ];
 
@@ -829,49 +977,89 @@ const About = () => {
         <div className="divider" />
 
         {/* ══ TIMELINE ══════════════════════════════════════════════════════════ */}
-        <section className="section-gray py-24">
-          <div ref={timelineRef} className="max-w-[900px] mx-auto px-5">
+        <section className="section-gray py-24 relative overflow-hidden">
+          <div ref={timelineRef} className="max-w-[940px] mx-auto px-5">
             <div className="reveal text-center mb-16">
               <Eyebrow>A Connected History</Eyebrow>
-              <h2 className="serif text-4xl sm:text-5xl text-gray-900 font-normal tracking-tight">
+              <h2 className="serif text-4xl sm:text-5xl text-gray-900 font-normal tracking-tight mb-4">
                 Evolution of Connected Tech
               </h2>
+              <p className="max-w-[600px] mx-auto text-gray-500 text-base leading-relaxed">
+                From early machine telemetry to autonomous agentic intelligence—tracing the foundational milestones that define the future of connected systems.
+              </p>
             </div>
-            <div className="relative">
-              <div className="timeline-spine hidden md:block" />
-              <div className="flex flex-col gap-10">
-                {timelineData.map((item, index) => (
-                  <div
-                    key={index}
-                    className={`reveal relative flex items-start gap-6 md:gap-0 delay-${index % 4} ${
-                      index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                    }`}
-                  >
-                    <div className="md:hidden flex flex-col items-center gap-2 shrink-0">
-                      <div className="w-8 h-8 rounded-full border-2 border-blue-200 bg-white flex items-center justify-center shadow-sm">
-                        <span className="w-2.5 h-2.5 rounded-full bg-blue-600" />
-                      </div>
-                    </div>
-                    <div className="timeline-dot hidden md:flex" />
+
+            <div className="timeline-wrapper">
+              <div className="timeline-spine" />
+              <div className="flex flex-col gap-10 md:gap-12">
+                {timelineData.map((item, index) => {
+                  const isEven = index % 2 === 0;
+                  return (
                     <div
-                      className={`flex-1 md:max-w-[calc(50%-2.5rem)] ${index % 2 === 0 ? "md:mr-auto md:pr-10" : "md:ml-auto md:pl-10"}`}
+                      key={index}
+                      className={`timeline-item group reveal-${isEven ? "left" : "right"} relative flex items-start w-full delay-${index % 5}`}
                     >
-                      <div className="timeline-card">
-                        <div className="flex items-center justify-between mb-2 gap-3">
-                          <h4 className="font-bold text-gray-900">
+                      {/* Central Spine Node */}
+                      <div className="timeline-node">
+                        <div className="timeline-node-core" />
+                      </div>
+
+                      {/* Card Container */}
+                      <div
+                        className={`w-full pl-12 md:pl-0 md:w-[calc(50%-36px)] ${
+                          isEven ? "md:mr-auto" : "md:ml-auto"
+                        }`}
+                      >
+                        <div className="timeline-card">
+                          {/* Desktop Connector Stems */}
+                          {isEven ? (
+                            <div className="timeline-connector-left" />
+                          ) : (
+                            <div className="timeline-connector-right" />
+                          )}
+
+                          {/* Card Header */}
+                          <div className="flex items-center justify-between mb-3 gap-2">
+                            <div className="flex items-center gap-2.5 flex-wrap">
+                              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold tracking-wider bg-blue-50 text-blue-700 border border-blue-100 shadow-sm">
+                                {item.year}
+                              </span>
+                              <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider">
+                                {item.tag}
+                              </span>
+                            </div>
+                            <div className="w-8 h-8 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center text-blue-600 shrink-0 transition-transform duration-300 group-hover:scale-110">
+                              {item.icon}
+                            </div>
+                          </div>
+
+                          {/* Title & Description */}
+                          <h4 className="text-[17px] font-bold text-gray-900 mb-1.5 leading-snug group-hover:text-blue-600 transition-colors">
                             {item.title}
                           </h4>
-                          <span className="shrink-0 text-[10px] font-bold tracking-[0.12em] uppercase text-blue-600 bg-blue-50 border border-blue-100 px-3 py-1 rounded-full">
-                            {item.year}
-                          </span>
+                          <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                            {item.desc}
+                          </p>
+
+                          {/* Highlights */}
+                          {item.highlights && (
+                            <div className="flex flex-wrap gap-2 pt-3 border-t border-gray-100">
+                              {item.highlights.map((h, i) => (
+                                <span
+                                  key={i}
+                                  className="inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-200/70 rounded-md px-2.5 py-0.5"
+                                >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                                  {h}
+                                </span>
+                              ))}
+                            </div>
+                          )}
                         </div>
-                        <p className="text-gray-500 text-sm leading-relaxed">
-                          {item.desc}
-                        </p>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

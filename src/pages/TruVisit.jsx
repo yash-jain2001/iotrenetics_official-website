@@ -192,8 +192,8 @@ const TruVisit = () => {
               {[440, 320].map((s, i) => (
                 <div key={i} style={{ position: "absolute", width: s, height: s, borderRadius: "50%", border: `1px solid ${i === 0 ? "#eff6ff" : "#dbeafe"}`, top: "50%", left: "50%", transform: "translate(-50%,-50%)", pointerEvents: "none" }} />
               ))}
-              <img src="/assets/truvisit1.webp" alt="TruVisit App" loading="eager" className="tv-float"
-                style={{ width: "100%", maxWidth: 300, position: "relative", zIndex: 2, filter: "drop-shadow(0 28px 48px rgba(37,99,235,.16))" }} />
+              {/* <img src="/assets/truvisit1.webp" alt="TruVisit App" loading="eager" className="tv-float"
+                style={{ width: "100%", maxWidth: 300, position: "relative", zIndex: 2, filter: "drop-shadow(0 28px 48px rgba(37,99,235,.16))" }} /> */}
 
               <div style={{ position: "absolute", left: -4, top: "18%", zIndex: 10, background: "#fff", border: "1px solid #e5e7eb", borderRadius: 14, padding: "10px 14px", boxShadow: "0 8px 24px rgba(0,0,0,.07)" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 700, color: "#16a34a" }}>
@@ -345,7 +345,7 @@ const TruVisit = () => {
       </section>
 
       {/* ══ SCREENSHOTS ══ */}
-      <section className="tv-sec" style={{ background: "#f9fafb" }}>
+      {/* <section className="tv-sec" style={{ background: "#f9fafb" }}>
         <div className="tv-inner">
           <FadeUp style={{ textAlign: "center", marginBottom: 40 }}>
             <span className="tv-label">App Preview</span>
@@ -361,7 +361,7 @@ const TruVisit = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ══ DARK CTA ══ */}
       <section className="tv-dark-sec" style={{ padding: "96px 24px" }}>

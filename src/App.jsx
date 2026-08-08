@@ -38,6 +38,9 @@ import Agentra from "./pages/Agentra";
 import ChatBot from "./components/ChatBot";
 import HotelAutomation from "./pages/HotelAutomation";
 import AudioVideoAutomation from "./pages/AudioVideoAutomation";
+import TruVisit from "./pages/TruVisit";
+import PrivacyPolicyTruVisit from "./pages/PrivacyPolicyTruVisit";
+import DeleteAccTruVisit from "./pages/DeleteAccTruVisit";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -63,6 +66,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/solutions" element={<Solutions />} />
         <Route path="/finexo" element={<Finexo />} />
+        <Route path="/truvisit" element={<TruVisit />} />
         <Route path="/industries" element={<Industries />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/healnet" element={<HealNet />} />
@@ -77,8 +81,16 @@ function App() {
           element={<PrivacyPolicyFinexo />}
         />
         <Route
+          path="/privacy-policy-truvisit"
+          element={<PrivacyPolicyTruVisit />}
+        />
+        <Route
           path="/delete-account-policy-finexo"
           element={<DeleteAccFinexo />}
+        />
+        <Route
+          path="/delete-account-policy-truvisit"
+          element={<DeleteAccTruVisit />}
         />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 

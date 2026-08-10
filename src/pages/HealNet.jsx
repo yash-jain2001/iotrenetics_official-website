@@ -2203,6 +2203,50 @@ const HealTech = () => {
               Talk to Us
             </button>
           </Link>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: 20,
+              marginTop: 28,
+              marginBottom: 8,
+              flexWrap: "wrap",
+            }}
+          >
+            <Link
+              to="/privacy-policy-healnet"
+              style={{
+                fontSize: 13.5,
+                color: "rgba(255,255,255,.5)",
+                textDecoration: "underline",
+                textUnderlineOffset: 4,
+                transition: "color .2s",
+                fontFamily: "inherit",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#7fd9d0")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,.5)")}
+            >
+              Privacy Policy
+            </Link>
+            <span style={{ color: "rgba(255,255,255,.2)", fontSize: 13 }}>•</span>
+            <Link
+              to="/delete-account-policy-healnet"
+              style={{
+                fontSize: 13.5,
+                color: "rgba(255,255,255,.5)",
+                textDecoration: "underline",
+                textUnderlineOffset: 4,
+                transition: "color .2s",
+                fontFamily: "inherit",
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#7fd9d0")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,.5)")}
+            >
+              Delete Account Policy
+            </Link>
+          </div>
         </FadeUp>
       </div>
     </section>

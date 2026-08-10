@@ -41,6 +41,8 @@ import AudioVideoAutomation from "./pages/AudioVideoAutomation";
 import TruVisit from "./pages/TruVisit";
 import PrivacyPolicyTruVisit from "./pages/PrivacyPolicyTruVisit";
 import DeleteAccTruVisit from "./pages/DeleteAccTruVisit";
+import PrivacyPolicyHealNet from "./pages/PrivacyPolicyHealNet";
+import DeleteAccHealNet from "./pages/DeleteAccHealNet";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -85,12 +87,20 @@ function App() {
           element={<PrivacyPolicyTruVisit />}
         />
         <Route
+          path="/privacy-policy-healnet"
+          element={<PrivacyPolicyHealNet />}
+        />
+        <Route
           path="/delete-account-policy-finexo"
           element={<DeleteAccFinexo />}
         />
         <Route
           path="/delete-account-policy-truvisit"
           element={<DeleteAccTruVisit />}
+        />
+        <Route
+          path="/delete-account-policy-healnet"
+          element={<DeleteAccHealNet />}
         />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
 

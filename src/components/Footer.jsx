@@ -142,8 +142,10 @@ const footerLinks = {
   ],
   Legal: [
     { label: "Terms & Conditions", to: "/terms-and-conditions" },
-    { label: "Privacy Policy", to: "/privacy-policy-finexo" },
+    { label: "Privacy Policy (Finexo)", to: "/privacy-policy-finexo" },
+    { label: "Privacy Policy (HealNet)", to: "/privacy-policy-healnet" },
     { label: "Delete Account (Finexo)", to: "/delete-account-policy-finexo" },
+    { label: "Delete Account (HealNet)", to: "/delete-account-policy-healnet" },
   ],
 };
 
@@ -416,7 +418,7 @@ const Footer = () => {
             </div>
 
             {/* ── Link columns ── */}
-            {Object.entries(footerLinks).map(([section, links], si) => (
+            {Object.entries(footerLinks).map(([section, links]) => (
               <div key={section} className="col-reveal">
                 <h4
                   className="text-[11px] font-bold tracking-[0.15em] uppercase text-white/28 mb-5"

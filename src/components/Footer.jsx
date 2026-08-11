@@ -133,6 +133,7 @@ const footerLinks = {
     { label: "Finexo", to: "/finexo" },
     { label: "HealNet", to: "/healnet" },
     { label: "Agentra", to: "/agentra" },
+    { label: "TruVisit", to: "/truvisit" },
   ],
   Automation: [
     { label: "Home Automation", to: "/home-automation" },
@@ -144,8 +145,10 @@ const footerLinks = {
     { label: "Terms & Conditions", to: "/terms-and-conditions" },
     { label: "Privacy Policy (Finexo)", to: "/privacy-policy-finexo" },
     { label: "Privacy Policy (HealNet)", to: "/privacy-policy-healnet" },
+    { label: "Privacy Policy (TruVisit)", to: "/privacy-policy-truvisit" },
     { label: "Delete Account (Finexo)", to: "/delete-account-policy-finexo" },
     { label: "Delete Account (HealNet)", to: "/delete-account-policy-healnet" },
+    { label: "Delete Account (TruVisit)", to: "/delete-account-policy-truvisit" },
   ],
 };
 

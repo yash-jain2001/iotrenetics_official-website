@@ -743,7 +743,7 @@ const Finexo = () => {
       <div className="inner">
         <div style={{ display: "flex", gap: 60, alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
           {/* Copy + CTA */}
-          <FadeUp style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 440 }}>
+          {/* <FadeUp style={{ flex: "1 1 340px", minWidth: 280, maxWidth: 440 }}>
             <span className="label label-green"><I.Play /> Try it — no signup</span>
             <h2 style={{ fontFamily: "'DM Serif Display',serif", fontSize: "clamp(1.9rem,3.2vw,2.6rem)", color: "var(--ink)", margin: "16px 0 14px", lineHeight: 1.12, letterSpacing: "-.02em" }}>
               The real app.
@@ -765,7 +765,7 @@ const Finexo = () => {
                 <I.Play /> Like it? Get the real app
               </button>
             </a>
-          </FadeUp>
+          </FadeUp> */}
 
           {/* Live demo phone */}
           <FadeUp className="d2" style={{ flex: "0 1 auto", display: "flex", justifyContent: "center" }}>
